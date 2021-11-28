@@ -1238,6 +1238,14 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@master-c8/theme@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@master-c8/theme/-/theme-0.1.0.tgz#2a1c07aec97f49f87f05c925dc41002ce1fd740a"
+  integrity sha512-mEU6LlwMX1H7lDCOBuqMYPawtbPDS0FnOr2TiRgYBCKdbkLu39RaXxqXzDisQHR72DjevOaPUr/rWTm8i5FGMw==
+  dependencies:
+    "@mui/material" "^5.2.1"
+    prop-types "15.7.2"
+
 "@mui/base@5.0.0-alpha.55":
   version "5.0.0-alpha.55"
   resolved "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.55.tgz#564d6c9374b4cfe86a4493512356047636076d4f"
@@ -1258,7 +1266,7 @@
   dependencies:
     "@babel/runtime" "^7.16.3"
 
-"@mui/material@5.1.1":
+"@mui/material@5.1.1", "@mui/material@^5.2.1":
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.1.1.tgz#72ba1ce8c253697df96e24cd1f555d5c2569376d"
   integrity sha512-3mhuKlWnTa1r5cJ8mV66NXXmOB6Ck564oq4X8Ai0CeHqj0f6xCBHOgWXQtX6Cc8Yhf81MJkaN92AECVUpUHqLQ==
@@ -5557,7 +5565,7 @@ progress@^2.0.0:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@15.7.2, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
