@@ -30,43 +30,89 @@ export const options = {
             },
         },
     },
+    scales: {
+        x: {
+            title: {
+                display: true,
+                text: 'Eje X',
+            },
+        },
+        y: {
+            title: {
+                display: true,
+                text: 'Eje Y',
+            },
+        },
+    },
 };
 
-export const NormalDistributionChart = ({ values }) => {
-    const labels = [
-        '0%',
-        ['20%', `$${values.salariesBottom20}`],
-        ['50%', `$${values.salariesAverage}`],
-        ['80%', `$${values.salariesTop20}`],
-        '100%',
-    ];
-    const salaries1 = [0, 25, 50, 25, 0];
-    const salaries2 = [0, 23, 48, 23, 0];
+export const NormalDistributionChart = () => {
+    const labels = [0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5];
 
     const data = {
         labels,
         datasets: [
             {
                 label: 'Profile 1',
-                data: labels.map((label, i) => salaries1[i]),
                 borderColor: COLORS.contrast1,
                 borderWidth: 4,
                 tension: 0.4,
+                data: [
+                    {
+                        x: 0,
+                        y: 0,
+                    },
+                    {
+                        x: 0.7,
+                        y: 20,
+                    },
+                    {
+                        x: 0.9,
+                        y: 50,
+                    },
+                    {
+                        x: 1.2,
+                        y: 20,
+                    },
+                    {
+                        x: 1.4,
+                        y: 0,
+                    },
+                ],
             },
             {
                 label: 'Profile 2',
-                data: labels.map((label, i) => salaries2[i]),
                 borderColor: COLORS.secondary,
                 borderWidth: 4,
                 tension: 0.4,
+                data: [
+                    {
+                        x: 0,
+                        y: 0,
+                    },
+                    {
+                        x: 0.8,
+                        y: 20,
+                    },
+                    {
+                        x: 1.1,
+                        y: 50,
+                    },
+                    {
+                        x: 1.3,
+                        y: 20,
+                    },
+                    {
+                        x: 1.5,
+                        y: 0,
+                    },
+                ],
             },
         ],
     };
 
     return <Line options={options} data={data} />;
 };
-
-// PropTypes TODO
 
 NormalDistributionChart.propTypes = {
     values: PropTypes.shape({
