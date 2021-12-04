@@ -71,5 +71,21 @@ export const NormalDistributionChart = ({ values }) => {
 // PropTypes TODO
 
 NormalDistributionChart.propTypes = {
-    values: PropTypes.number.isRequired,
+    values: PropTypes.shape({
+        salaryFor10Percent: PropTypes.number.isRequired,
+        salaryFor25Percent: PropTypes.number.isRequired,
+        salaryFor50Percent: PropTypes.number.isRequired,
+        salaryFor75Percent: PropTypes.number.isRequired,
+        salaryFor90Percent: PropTypes.number.isRequired,
+    }),
+};
+
+NormalDistributionChart.defaultProps = {
+    values: PropTypes.shape({
+        salaryFor10Percent: 0,
+        salaryFor25Percent: 0,
+        salaryFor50Percent: 0,
+        salaryFor75Percent: 0,
+        salaryFor90Percent: 0,
+    }),
 };
