@@ -19,7 +19,7 @@ export const options = {
     responsive: true,
     plugins: {
         legend: {
-            position: 'top',
+            position: 'bottom',
         },
         title: {
             display: true,
@@ -34,16 +34,14 @@ export const options = {
 
 export const NormalDistributionChart = ({ values }) => {
     const labels = [
-        `0%`,
-        `10% $${values.salaryFor10Percent}`,
-        `25% $${values.salaryFor25Percent}`,
-        `50% $${values.salaryFor50Percent}`,
-        `75% $${values.salaryFor75Percent}`,
-        `90% $${values.salaryFor90Percent}`,
-        `100%`,
+        '0%',
+        ['20%', `$${values.salariesBottom20}`],
+        ['50%', `$${values.salariesAverage}`],
+        ['80%', `$${values.salariesTop20}`],
+        '100%',
     ];
-    const salaries1 = [0, 10, 25, 50, 25, 10, 0];
-    const salaries2 = [0, 8, 23, 48, 23, 8, 0];
+    const salaries1 = [0, 25, 50, 25, 0];
+    const salaries2 = [0, 23, 48, 23, 0];
 
     const data = {
         labels,
@@ -72,20 +70,16 @@ export const NormalDistributionChart = ({ values }) => {
 
 NormalDistributionChart.propTypes = {
     values: PropTypes.shape({
-        salaryFor10Percent: PropTypes.number.isRequired,
-        salaryFor25Percent: PropTypes.number.isRequired,
-        salaryFor50Percent: PropTypes.number.isRequired,
-        salaryFor75Percent: PropTypes.number.isRequired,
-        salaryFor90Percent: PropTypes.number.isRequired,
+        salariesBottom20: PropTypes.number.isRequired,
+        salariesAverage: PropTypes.number.isRequired,
+        salariesTop20: PropTypes.number.isRequired,
     }),
 };
 
 NormalDistributionChart.defaultProps = {
     values: PropTypes.shape({
-        salaryFor10Percent: 0,
-        salaryFor25Percent: 0,
-        salaryFor50Percent: 0,
-        salaryFor75Percent: 0,
-        salaryFor90Percent: 0,
+        salariesBottom20: 0,
+        salariesAverage: 0,
+        salariesTop20: 0,
     }),
 };

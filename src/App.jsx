@@ -12,11 +12,9 @@ import 'Styles/style.scss';
 // Dummy values for the chart
 
 const values = {
-    salaryFor10Percent: 800,
-    salaryFor25Percent: 1050,
-    salaryFor50Percent: 1200,
-    salaryFor75Percent: 1300,
-    salaryFor90Percent: 1800,
+    salariesBottom20: 800,
+    salariesAverage: 1050,
+    salariesTop20: 1200,
 };
 
 const App = () => (
