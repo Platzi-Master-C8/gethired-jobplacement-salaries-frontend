@@ -13,7 +13,9 @@ const App = () => (
     <React.StrictMode>
         <ThemeProvider theme={THEME}>
             <Routes />
-            <NormalDistributionChart />
+            <div style={{ width: '40%', margin: '0 auto' }}>
+                <NormalDistributionChart />
+            </div>
         </ThemeProvider>
     </React.StrictMode>
 );
