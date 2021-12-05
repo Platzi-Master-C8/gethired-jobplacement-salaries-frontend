@@ -250,16 +250,16 @@ export const NormalDistributionChart = ({ values }) => {
 
 NormalDistributionChart.propTypes = {
     values: PropTypes.shape({
-        profile1: {
+        profile1: PropTypes.shape({
             salariesBottom20: PropTypes.number.isRequired,
             salariesAverage: PropTypes.number.isRequired,
             salariesTop20: PropTypes.number.isRequired,
-        },
-        profile2: {
+        }),
+        profile2: PropTypes.shape({
             salariesBottom20: PropTypes.number.isRequired,
             salariesAverage: PropTypes.number.isRequired,
             salariesTop20: PropTypes.number.isRequired,
-        },
+        }),
     }),
 };
 
