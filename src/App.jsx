@@ -10,11 +10,17 @@ import { NormalDistributionChart } from './components/charts/NormalDistributionC
 import 'Styles/style.scss';
 
 // Dummy values for the chart
-
 const values = {
-    salariesBottom20: 800,
-    salariesAverage: 1050,
-    salariesTop20: 1200,
+    profile1: {
+        salariesBottom20: 867,
+        salariesAverage: 1065,
+        salariesTop20: 1297,
+    },
+    profile2: {
+        salariesBottom20: 989,
+        salariesAverage: 1123,
+        salariesTop20: 1278,
+    },
 };
 
 const App = () => (
