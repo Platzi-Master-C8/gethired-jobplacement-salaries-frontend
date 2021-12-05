@@ -69,7 +69,7 @@ export const NormalDistributionChart = ({ values }) => {
                 tension: 0.4,
                 data: [
                     {
-                        x: salariesBottom20Profile1 - (salariesTop20Profile1 - salariesBottom20Profile1) * 0.6, // (((1297 - 867) *0,1) + 867)
+                        x: salariesBottom20Profile1 - (salariesTop20Profile1 - salariesBottom20Profile1) * 0.6,
                         y: 0,
                     },
                     {
@@ -85,7 +85,7 @@ export const NormalDistributionChart = ({ values }) => {
                         y: 20,
                     },
                     {
-                        x: 1700,
+                        x: salariesTop20Profile1 + (salariesTop20Profile1 - salariesBottom20Profile1) * 0.6,
                         y: 0,
                     },
                 ],
@@ -115,7 +115,7 @@ export const NormalDistributionChart = ({ values }) => {
                         y: 20,
                     },
                     {
-                        x: 1700,
+                        x: salariesTop20Profile1 + (salariesTop20Profile1 - salariesBottom20Profile1) * 0.6,
                         y: 0,
                     },
                 ],
