@@ -28,7 +28,8 @@ const options = {
         x: {
             ticks: {
                 // Include a dollar sign in the ticks
-                callback: (value) => `$${value}`,
+                callback: (value, i, values) =>
+                    i === Math.floor(values.length / 2) ? [`$${value} `, '(~median)'] : `$${value}`,
             },
         },
     },
