@@ -15,6 +15,8 @@ import PropTypes from 'prop-types';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
+const currencyName = 'USD';
+
 const options = {
     scales: {
         y: {
@@ -23,11 +25,17 @@ const options = {
                 display: false,
             },
         },
+        x: {
+            ticks: {
+                // Include a dollar sign in the ticks
+                callback: (value) => `$${value}`,
+            },
+        },
     },
     plugins: {
         title: {
             display: true,
-            text: 'Normal distribution of salaries',
+            text: `Normal distribution of salaries (${currencyName})`,
             fullSize: true,
             font: {
                 size: 20,
