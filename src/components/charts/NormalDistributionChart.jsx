@@ -27,9 +27,8 @@ const options = {
         },
         x: {
             ticks: {
-                // Include a dollar sign in the ticks
-                callback: (value, i, values) =>
-                    i === Math.floor(values.length / 2) ? [`$${value} `, '(~median)'] : `$${value}`,
+                callback: (tick, i, ticks) =>
+                    i === Math.floor(ticks.length / 2) ? [`$${tick} `, '(~median)'] : `$${tick}`,
             },
         },
     },
@@ -70,7 +69,7 @@ export const NormalDistributionChart = ({ values }) => {
                 tension: 0.4,
                 data: [
                     {
-                        x: 500,
+                        x: salariesBottom20Profile1 - (salariesTop20Profile1 - salariesBottom20Profile1) * 0.6, // (((1297 - 867) *0,1) + 867)
                         y: 0,
                     },
                     {
@@ -100,7 +99,7 @@ export const NormalDistributionChart = ({ values }) => {
                 tension: 0.4,
                 data: [
                     {
-                        x: 500,
+                        x: salariesBottom20Profile1 - (salariesTop20Profile1 - salariesBottom20Profile1) * 0.6,
                         y: 0,
                     },
                     {
