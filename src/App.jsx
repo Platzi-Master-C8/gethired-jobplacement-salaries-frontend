@@ -10,19 +10,18 @@ import { NormalDistributionChart } from './components/charts/NormalDistributionC
 import 'Styles/style.scss';
 
 // Dummy values for the chart
-const values = {
-    profile1: {
+const values = [
+    {
         salariesBottom20: 867,
         salariesAverage: 1065,
         salariesTop20: 1297,
     },
-    profile2: {
+    {
         salariesBottom20: 989,
         salariesAverage: 1123,
         salariesTop20: 1278,
     },
-};
-
+];
 const App = () => (
     <React.StrictMode>
         <ThemeProvider theme={THEME}>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,7 +12,6 @@ import {
 } from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
 import { COLORS } from '@master-c8/theme';
-import PropTypes from 'prop-types';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -21,7 +21,6 @@ const currencyName = 'USD';
 const options = {
     scales: {
         y: {
-            beginAtZero: true,
             ticks: {
                 display: false,
             },
@@ -37,7 +36,6 @@ const options = {
         title: {
             display: true,
             text: `Normal distribution of salaries (${currencyName})`,
-            fullSize: true,
             font: {
                 size: 20,
             },
@@ -64,111 +62,50 @@ const options = {
 };
 
 export const NormalDistributionChart = ({ values }) => {
-    const {
-        salariesBottom20: salariesBottom20Profile1,
-        salariesAverage: salariesAverageProfile1,
-        salariesTop20: salariesTop20Profile1,
-    } = values.profile1;
-    const {
-        salariesBottom20: salariesBottom20Profile2,
-        salariesAverage: salariesAverageProfile2,
-        salariesTop20: salariesTop20Profile2,
-    } = values.profile2;
+    const lineColors = [COLORS.secondary, COLORS.contrast1];
 
     const data = {
-        datasets: [
-            {
-                label: 'Profile 1',
+        datasets: values.map(({ salariesBottom20, salariesAverage, salariesTop20 }, i) => {
+            return {
+                label: `Profile ${i + 1}`,
                 showLine: true,
-                borderColor: COLORS.secondary,
+                borderColor: lineColors[i] || COLORS.error,
+                backgroundColor: lineColors[i] || COLORS.error,
                 borderWidth: 4,
                 tension: 0.4,
                 data: [
                     {
-                        x: salariesBottom20Profile1 - (salariesTop20Profile1 - salariesBottom20Profile1) * 0.6,
+                        x: salariesBottom20 - (salariesTop20 - salariesBottom20) * 0.6,
                         y: 0,
                     },
                     {
-                        x: salariesBottom20Profile1,
+                        x: salariesBottom20,
                         y: 20,
                     },
                     {
-                        x: salariesAverageProfile1,
+                        x: salariesAverage,
                         y: 50,
                     },
                     {
-                        x: salariesTop20Profile1,
+                        x: salariesTop20,
                         y: 20,
                     },
                     {
-                        x: salariesTop20Profile1 + (salariesTop20Profile1 - salariesBottom20Profile1) * 0.6,
+                        x: salariesTop20 + (salariesTop20 - salariesBottom20) * 0.6,
                         y: 0,
                     },
                 ],
-                backgroundColor: COLORS.secondary,
-            },
-            {
-                label: 'Profile 2',
-                showLine: true,
-                borderColor: COLORS.contrast1,
-                borderWidth: 4,
-                tension: 0.4,
-                data: [
-                    {
-                        x: salariesBottom20Profile1 - (salariesTop20Profile1 - salariesBottom20Profile1) * 0.6,
-                        y: 0,
-                    },
-                    {
-                        x: salariesBottom20Profile2,
-                        y: 20,
-                    },
-                    {
-                        x: salariesAverageProfile2,
-                        y: 50,
-                    },
-                    {
-                        x: salariesTop20Profile2,
-                        y: 20,
-                    },
-                    {
-                        x: salariesTop20Profile1 + (salariesTop20Profile1 - salariesBottom20Profile1) * 0.6,
-                        y: 0,
-                    },
-                ],
-                backgroundColor: COLORS.contrast1,
-            },
-        ],
+            };
+        }),
     };
 
     return <Scatter options={options} data={data} />;
 };
 
 NormalDistributionChart.propTypes = {
-    values: PropTypes.shape({
-        profile1: PropTypes.shape({
-            salariesBottom20: PropTypes.number.isRequired,
-            salariesAverage: PropTypes.number.isRequired,
-            salariesTop20: PropTypes.number.isRequired,
-        }),
-        profile2: PropTypes.shape({
-            salariesBottom20: PropTypes.number.isRequired,
-            salariesAverage: PropTypes.number.isRequired,
-            salariesTop20: PropTypes.number.isRequired,
-        }),
-    }),
+    values: PropTypes.arrayOf(PropTypes.object),
 };
 
 NormalDistributionChart.defaultProps = {
-    values: PropTypes.shape({
-        profile1: {
-            salariesBottom20: 0,
-            salariesAverage: 0,
-            salariesTop20: 0,
-        },
-        profile2: {
-            salariesBottom20: 0,
-            salariesAverage: 0,
-            salariesTop20: 0,
-        },
-    }),
+    values: [],
 };
