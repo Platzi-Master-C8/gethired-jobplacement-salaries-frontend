@@ -43,8 +43,12 @@ const options = {
         },
         legend: {
             position: 'bottom',
+            labels: {
+                boxHeight: 3,
+            },
         },
     },
+    aspectRatio: 1.5,
 };
 
 export const NormalDistributionChart = ({ values }) => {
