@@ -16,13 +16,14 @@ module.exports = {
         'import/prefer-default-export': 'off',
         'import/no-unresolved': 'off',
         'arrow-body-style': 'off',
+        'react/jsx-props-no-spreading': 'off',
         'react/jsx-fragments': ['error', 'element'],
         'react/function-component-definition': [
             'error',
             {
                 namedComponents: 'arrow-function',
             },
-        ]
+        ],
     },
     overrides: [
         {
@@ -31,5 +32,5 @@ module.exports = {
                 'no-restricted-exports': 'off',
             },
         },
-    ]
+    ],
 };

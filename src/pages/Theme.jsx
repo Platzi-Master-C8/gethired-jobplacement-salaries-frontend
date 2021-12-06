@@ -12,6 +12,7 @@ import { makeStyles } from '@mui/styles';
 
 import 'Styles/themeExample.scss';
 import { COLORS } from 'Constants/colors.constants';
+import Calendar from '../components/Calendar';
 
 const useStyle = makeStyles({
     colorContent: {
@@ -90,6 +91,7 @@ const Theme = () => {
                 </AccordionDetails>
             </Accordion>
             <Button />
+            <Calendar />
         </Container>
     );
 };
