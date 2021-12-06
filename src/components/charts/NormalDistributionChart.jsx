@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
+// Not sure yet if this value will change and if it  will be passed as a prop
 const currencyName = 'USD';
 
 const options = {
@@ -45,6 +46,17 @@ const options = {
             position: 'bottom',
             labels: {
                 boxHeight: 3,
+            },
+        },
+        tooltip: {
+            callbacks: {
+                title: ([{ dataIndex }]) => {
+                    const percentage = [0, 20, 50, 80, 100];
+                    return `Averege Salary for the ${percentage[dataIndex]}% range`;
+                },
+                label: ({ label }) => {
+                    return `${currencyName}$ ${label}`;
+                },
             },
         },
     },
