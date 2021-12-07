@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests for component <TabPanel /> Take Snapshot 1`] = `
+<DocumentFragment>
+  <div
+    aria-labelledby="simple-tab-0"
+    id="simple-tabpanel-0"
+    role="tabpanel"
+  >
+    <div
+      class="MuiBox-root css-1phy807"
+    >
+      Tab Panel
+    </div>
+  </div>
+</DocumentFragment>
+`;
