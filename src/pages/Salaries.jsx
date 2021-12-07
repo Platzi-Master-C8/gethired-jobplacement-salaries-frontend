@@ -1,88 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
-import 'Styles/themeExample.scss';
-import { MenuItem, Select, InputLabel, FormControl } from '@mui/material';
-import Card from '@mui/material/Card';
+import { ChevronLeft } from '@master-c8/icons';
+
+import { TabPanel } from 'Components/commons/Tabs';
+import FormCard from 'Components/FormCard';
+
+const initialValues = {
+    jobTitle: '',
+    technologies: [],
+    senority: '',
+    englishLevel: '',
+};
 
 const Theme = () => {
-    const [value, setValue] = React.useState(0);
+    const [tabs, setValue] = React.useState(0);
+    const [formPrimary, setFormPrimary] = useState(initialValues);
+    const [formSecondary, setFormSecondary] = useState(initialValues);
+    const [formCalculate, setFormCalculate] = useState(initialValues);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const handleSelectPrimary = (e) => {
+        const { name, value } = e.target;
+        setFormPrimary((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const handleSelectSecondary = (e) => {
+        const { name, value } = e.target;
+        setFormSecondary((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const handleSelectCalculate = (e) => {
+        const { name, value } = e.target;
+        setFormCalculate((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
     return (
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs
-                    value={value}
+                    value={tabs}
                     onChange={handleChange}
                     aria-label="basic tabs example"
                     textColor="secondary"
                     indicatorColor="secondary"
                 >
-                    <Tab label="Calculate Salary" />
+                    <Tab icon={<ChevronLeft />} label="Calculate Salary" iconPosition="start" />
                     <Tab label="Compare Salary" />
                 </Tabs>
             </Box>
-            {/* <TabPanel value={value} index={0}>
-            Item One
+            <TabPanel value={tabs} index={0}>
+                <FormCard values={formCalculate} onChange={handleSelectCalculate} title="Calculate Salary" />
             </TabPanel>
-            <TabPanel value={value} index={1}>
-            Item Two
+            <TabPanel value={tabs} index={1}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={12} md={6}>
+                        <FormCard values={formPrimary} onChange={handleSelectPrimary} title="Primary Profile" />
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={6}>
+                        <FormCard values={formSecondary} onChange={handleSelectSecondary} title="Secondary Profile" />
+                    </Grid>
+                </Grid>
             </TabPanel>
-            <TabPanel value={value} index={2}>
-            Item Three
-            </TabPanel> */}
-            <Card sx={{ p: 2, boxShadow: 3 }}>
-                <Typography sx={{ m: 1 }} variant="h2">
-                    Primary Profile
-                </Typography>
-                <FormControl variant="filled" sx={{ my: 1 }} fullWidth>
-                    <InputLabel id="label-job">Job title</InputLabel>
-                    <Select labelId="label-job" value="">
-                        <MenuItem>1</MenuItem>
-                        <MenuItem>2</MenuItem>
-                        <MenuItem>3</MenuItem>
-                        <MenuItem>4</MenuItem>
-                        <MenuItem>5</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl variant="filled" sx={{ my: 1 }} fullWidth>
-                    <InputLabel id="label-technologies">Technologies</InputLabel>
-                    <Select labelId="label-technologies" value={[]} multiple>
-                        <MenuItem>1</MenuItem>
-                        <MenuItem>2</MenuItem>
-                        <MenuItem>3</MenuItem>
-                        <MenuItem>4</MenuItem>
-                        <MenuItem>5</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl variant="filled" sx={{ my: 1 }} fullWidth>
-                    <InputLabel id="label-senority">Senority</InputLabel>
-                    <Select labelId="label-senority" value="">
-                        <MenuItem>1</MenuItem>
-                        <MenuItem>2</MenuItem>
-                        <MenuItem>3</MenuItem>
-                        <MenuItem>4</MenuItem>
-                        <MenuItem>5</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl variant="filled" sx={{ my: 1 }} fullWidth>
-                    <InputLabel id="label-english">English Level</InputLabel>
-                    <Select labelId="label-english" value="">
-                        <MenuItem>1</MenuItem>
-                        <MenuItem>2</MenuItem>
-                        <MenuItem>3</MenuItem>
-                        <MenuItem>4</MenuItem>
-                        <MenuItem>5</MenuItem>
-                    </Select>
-                </FormControl>
-            </Card>
         </Box>
     );
 };
