@@ -21,7 +21,7 @@ const Theme = () => {
 
     return (
         <Fragment>
-            <Header />
+            <Header onClickLogin={() => {}} onClickSignup={() => {}} />
             <Container sx={{ mt: 5 }}>
                 <Box sx={{ width: '100%' }}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
