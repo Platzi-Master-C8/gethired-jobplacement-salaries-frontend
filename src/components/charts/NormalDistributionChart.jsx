@@ -67,7 +67,7 @@ export const NormalDistributionChart = ({ values }) => {
     const data = {
         datasets: values.map(({ salariesBottom20, salariesAverage, salariesTop20 }, i) => {
             return {
-                label: `Profile ${i + 1}`,
+                label: values.length === 1 ? `Your Profile` : `Profile ${i + 1}`,
                 showLine: true,
                 borderColor: lineColors[i] || COLORS.error,
                 backgroundColor: lineColors[i] || COLORS.error,
