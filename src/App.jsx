@@ -19,6 +19,11 @@ const values = [
         salariesAverage: 1123,
         salariesTop20: 1278,
     },
+    {
+        salariesBottom20: 909,
+        salariesAverage: 1223,
+        salariesTop20: 1378,
+    },
 ];
 const App = () => (
     <React.StrictMode>
