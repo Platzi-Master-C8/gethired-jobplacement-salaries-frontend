@@ -1,67 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
 import { COLORS } from '@master-c8/theme';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-// Not sure yet if this value will change and if it  will be passed as a prop
-const currencyName = 'USD';
-
-const options = {
-    scales: {
-        y: {
-            ticks: {
-                display: false,
-            },
-        },
-        x: {
-            ticks: {
-                callback: (tick, i, ticks) =>
-                    i === Math.floor(ticks.length / 2) ? [`$${tick} `, '(~median)'] : `$${tick}`,
-            },
-        },
-    },
-    plugins: {
-        title: {
-            display: true,
-            text: `Normal distribution of salaries (${currencyName})`,
-            font: {
-                size: 20,
-            },
-        },
-        legend: {
-            position: 'bottom',
-            labels: {
-                boxHeight: 3,
-            },
-        },
-        tooltip: {
-            callbacks: {
-                title: ([{ dataIndex }]) => {
-                    const percentage = [0, 20, 50, 80, 100];
-                    return `Averege Salary for the ${percentage[dataIndex]}% range`;
+const NormalDistributionChart = ({ values, currencyName }) => {
+    const options = {
+        scales: {
+            y: {
+                ticks: {
+                    display: false,
                 },
-                label: ({ label }) => {
-                    return `${currencyName}$ ${label}`;
+            },
+            x: {
+                ticks: {
+                    callback: (tick, i, ticks) =>
+                        i === Math.floor(ticks.length / 2) ? [`$${tick} `, '(~median)'] : `$${tick}`,
                 },
             },
         },
-    },
-    aspectRatio: 1.5,
-};
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    boxHeight: 3,
+                },
+            },
+            tooltip: {
+                callbacks: {
+                    title: ([{ dataIndex }]) => {
+                        const percentage = [0, 20, 50, 80, 100];
+                        return `Averege Salary for the ${percentage[dataIndex]}% range`;
+                    },
+                    label: ({ label }) => {
+                        return `${currencyName}$ ${label}`;
+                    },
+                },
+            },
+        },
+        aspectRatio: 1.5,
+    };
 
-export const NormalDistributionChart = ({ values }) => {
     const lineColors = [COLORS.secondary, COLORS.contrast1];
 
     const data = {
@@ -99,13 +80,22 @@ export const NormalDistributionChart = ({ values }) => {
         }),
     };
 
-    return <Scatter options={options} data={data} />;
+    return (
+        <React.Fragment>
+            <h2>{`Normal distribution of salaries (${currencyName})`}</h2>
+            <Scatter options={options} data={data} />
+        </React.Fragment>
+    );
 };
 
 NormalDistributionChart.propTypes = {
     values: PropTypes.arrayOf(PropTypes.object),
+    currencyName: PropTypes.string,
 };
 
 NormalDistributionChart.defaultProps = {
     values: [],
+    currencyName: 'USD',
 };
+
+export default NormalDistributionChart;

@@ -3,7 +3,7 @@ import { ThemeProvider } from '@master-c8/theme';
 
 import Routes from 'Routes';
 
-import { NormalDistributionChart } from './components/charts/NormalDistributionChart';
+import NormalDistributionChart from 'Components/Charts/';
 
 import 'Styles/style.scss';
 
@@ -25,12 +25,15 @@ const values = [
         salariesTop20: 1378,
     },
 ];
+
+const currencyName = 'USD';
+
 const App = () => (
     <React.StrictMode>
         <ThemeProvider>
             <Routes />
             <div style={{ width: '50%', margin: '0 auto' }}>
-                <NormalDistributionChart values={values} />
+                <NormalDistributionChart values={values} currencyName={currencyName} />
             </div>
         </ThemeProvider>
     </React.StrictMode>
