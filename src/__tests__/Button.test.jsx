@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { render, waitFor } from '@testing-library/react';
-import Button from 'Components/Button';
+import Button from '../components/Button/Button';
 
 describe('Render component <Button/>', () => {
     test('Expect text Button', async () => {
