@@ -1,1 +1,1 @@
-export {default} from './NormalDistributionChart';
+export { default } from './NormalDistributionChart';

@@ -8,3 +8,13 @@ export const initialValues = {
     senority: '',
     englishLevel: '',
 };
+
+export const values = [
+    {
+        salariesBottom20: 867,
+        salariesAverage: 1065,
+        salariesTop20: 1297,
+    },
+];
+
+export const currencyName = 'USD';
