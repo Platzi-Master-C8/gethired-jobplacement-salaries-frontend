@@ -1,7 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from '@mui/material';
-
-import { THEME } from 'Constants/theme.constant';
+import { ThemeProvider } from '@master-c8/theme';
 
 import Routes from 'Routes';
 
@@ -24,7 +22,7 @@ const values = [
 ];
 const App = () => (
     <React.StrictMode>
-        <ThemeProvider theme={THEME}>
+        <ThemeProvider>
             <Routes />
             <div style={{ width: '50%', margin: '0 auto' }}>
                 <NormalDistributionChart values={values} />
