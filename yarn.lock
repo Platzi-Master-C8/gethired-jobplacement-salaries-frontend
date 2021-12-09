@@ -1461,10 +1461,10 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@master-c8/commons@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@master-c8/commons/-/commons-0.0.5.tgz#663b96ea7ec709ec4d11fc9bdd38db41eb59c2d2"
-  integrity sha512-k0IiMf0091nHlplcK6SF+V2j0Xjx373ijySg6TGx8mVvZzl8HTMKr9q/WiLbpgh0PVO3qHAdPDSaTvbUMOMnwQ==
+"@master-c8/commons@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@master-c8/commons/-/commons-0.0.6.tgz#d1bb5d2c1d58e7ee2dc4faa7dd9dce16a63beca7"
+  integrity sha512-naolnVjuVVkB9qtSAGxYuvotJX0l3L1NutviqVBnTDgG2qfpqvt0VlymF86690Ayxggck2IJH41R/1sFbbo3uA==
   dependencies:
     "@master-c8/icons" "0.1.0"
     "@master-c8/theme" "0.1.3"
@@ -1478,10 +1478,10 @@
     "@mui/material" "^5.2.1"
     prop-types "15.7.2"
 
-"@master-c8/icons@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@master-c8/icons/-/icons-0.1.1.tgz#f080a9472de624e75165205a39d1cfef928c6d42"
-  integrity sha512-/78u39a5QB6V5jh+6CzVi4X8pDSjChdU0WUpbsptwFKE2yHPxYrpL2A1ObO6Y3Qpl6WnTICx9YHp/WK/+0Yzjg==
+"@master-c8/icons@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@master-c8/icons/-/icons-0.1.2.tgz#96c2356f181efd05d5313feb79008f0403459487"
+  integrity sha512-jSWRbls1VHoq1XvnHsk42FmbuJWOxUpldGbBM6B4cJFwdLOuhkIpDv69Fz+dfSfmv/8FDVeyYt+yPBsgbzJBmA==
   dependencies:
     "@mui/material" "^5.2.1"
     prop-types "15.7.2"
@@ -1681,7 +1681,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@testing-library/dom@^8.0.0":
+"@testing-library/dom@^8.0.0", "@testing-library/dom@^8.11.1":
   version "8.11.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.11.1.tgz#03fa2684aa09ade589b460db46b4c7be9fc69753"
   integrity sha512-3KQDyx9r0RKYailW2MiYrSSKEfH0GTkI51UGEvJenvcoDoeRYs0PZpi2SXqtnMClQvCqdtTTpOfFETDTVADpAg==
@@ -1717,6 +1717,13 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^8.0.0"
+
+"@testing-library/user-event@^13.5.0":
+  version "13.5.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-13.5.0.tgz#69d77007f1e124d55314a2b73fd204b333b13295"
+  integrity sha512-5Kwtbo3Y/NowpkbRuSepbyMFkZmHgD+vPzYB/RJ4oxt5Gj/avFFBYjhw27cqSVPVw/3a67NK1PbiIr9k4Gwmdg==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -2812,6 +2819,11 @@ char-regex@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
   integrity sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==
+
+chart.js@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-3.6.2.tgz#47342c551f688ffdda2cd53b534cb7e461ecec33"
+  integrity sha512-Xz7f/fgtVltfQYWq0zL1Xbv7N2inpG+B54p3D5FSvpCdy3sM+oZhbqa42eNuYXltaVvajgX5UpKCU2GeeJIgxg==
 
 "chokidar@>=3.0.0 <4.0.0", chokidar@^3.5.2:
   version "3.5.2"
@@ -6987,6 +6999,11 @@ raw-body@2.4.0:
     http-errors "1.7.2"
     iconv-lite "0.4.24"
     unpipe "1.0.0"
+
+react-chartjs-2@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-4.0.0.tgz#a79919c9efe5381b8cb5abfd0ac7a56c9736cdb8"
+  integrity sha512-0kx41EVO6wIoeU6zvdwovX9kKcdrs7O62DGTSNmwAXZeLGJ3U+n4XijO1kxcMmAi4I6PQJWGD5oRwxVixHSp6g==
 
 react-dom@17.0.2:
   version "17.0.2"

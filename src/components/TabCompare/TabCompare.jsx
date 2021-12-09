@@ -4,7 +4,9 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 
 import FormCard from 'Components/FormCard';
-import { initialValues } from 'Constants';
+import NormalDistributionChart from 'Components/Charts';
+
+import { initialValues, values2, currencyName } from 'Constants';
 
 const TabCompare = () => {
     const [formPrimary, setFormPrimary] = useState(initialValues);
@@ -41,6 +43,11 @@ const TabCompare = () => {
                     <Button variant="contained" fullWidth size="large">
                         Compare salary
                     </Button>
+                </Grid>
+            </Grid>
+            <Grid container sx={{ display: 'flex', justifyContent: 'center' }} spacing={2}>
+                <Grid item xs={6} sx={{ mt: 2 }}>
+                    <NormalDistributionChart values={values2} currencyName={currencyName} />
                 </Grid>
             </Grid>
         </Fragment>
