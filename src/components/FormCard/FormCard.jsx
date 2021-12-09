@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 import Card from '@mui/material/Card';
 
-import Select from 'Components/commons/Select/Select';
+import Select from 'Components/Commons/Select';
 
 import { ListJobs, ListTechonologies, ListSenority, ListEnglish } from 'Constants';
 

@@ -8,7 +8,7 @@ import Container from '@mui/material/Container';
 import { Switch, Currency } from '@master-c8/icons';
 import { Header } from '@master-c8/commons';
 
-import { TabPanel } from 'Components/commons/Tabs';
+import { TabPanel } from 'Components/Commons/Tabs';
 import TabCompare from 'Components/TabCompare';
 import TabCalculate from 'Components/TabCalculate';
 
