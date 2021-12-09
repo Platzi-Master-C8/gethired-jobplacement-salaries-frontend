@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
 
-import { initialValues, values, currencyName } from 'Constants';
+import { initialValues, values1, currencyName } from 'Constants';
 
 const TabCalculate = () => {
     const [formCalculate, setFormCalculate] = useState(initialValues);
@@ -24,7 +24,7 @@ const TabCalculate = () => {
                 <FormCard values={formCalculate} onChange={handleSelectCalculate} title="Calculate Salary" />
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
-                <NormalDistributionChart values={values} currencyName={currencyName} />
+                <NormalDistributionChart values={values1} currencyName={currencyName} />
             </Grid>
         </Grid>
     );
