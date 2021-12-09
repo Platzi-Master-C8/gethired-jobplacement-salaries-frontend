@@ -2,6 +2,7 @@ module.exports = {
     env: {
         browser: true,
         es2021: true,
+        jest: true,
     },
     extends: ['eslint:recommended', 'plugin:react/recommended', 'airbnb', 'airbnb/hooks', 'prettier'],
     parserOptions: {
@@ -14,10 +15,13 @@ module.exports = {
     plugins: ['react', 'prettier'],
     rules: {
         'import/prefer-default-export': 'off',
+        'react/jsx-props-no-spreading': 'off',
         'import/no-unresolved': 'off',
         'arrow-body-style': 'off',
         'react/jsx-props-no-spreading': 'off',
         'react/jsx-fragments': ['error', 'element'],
+        'import/no-extraneous-dependencies': 'off',
+        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
         'react/function-component-definition': [
             'error',
             {
