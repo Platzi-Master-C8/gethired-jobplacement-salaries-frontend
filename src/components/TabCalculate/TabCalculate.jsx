@@ -18,10 +18,22 @@ const TabCalculate = () => {
         }));
     };
 
+    const handleDeleteChip = (_, value, name) => {
+        setFormCalculate((prevState) => ({
+            ...prevState,
+            [name]: prevState[name].filter((chip) => chip !== value),
+        }));
+    };
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={6}>
-                <FormCard values={formCalculate} onChange={handleSelectCalculate} title="Calculate Salary" />
+                <FormCard
+                    values={formCalculate}
+                    onChange={handleSelectCalculate}
+                    onDelete={handleDeleteChip}
+                    title="Calculate Salary"
+                />
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
                 <NormalDistributionChart values={values1} currencyName={currencyName} />
