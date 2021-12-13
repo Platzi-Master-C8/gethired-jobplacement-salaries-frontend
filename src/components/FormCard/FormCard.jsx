@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Typography from '@mui/material/Typography';
-
 import Card from '@mui/material/Card';
 
 import Select from 'Components/Commons/Select';
 
-import { ListJobs, ListTechonologies, ListSenority, ListEnglish } from 'Constants';
+import { selectTechnologies, selectJobs } from 'App/ListData/selectors';
 
-const FormCard = ({ onChange, title, values }) => {
+import { ListSenority, ListEnglish } from 'Constants';
+
+const FormCard = ({ onChange, title, values, listTechnologies, listJobs, children }) => {
     const { jobTitle, technologies, senority, englishLevel } = values;
+
     return (
         <Card sx={{ p: 2, boxShadow: 3, mt: 2 }}>
             {!!title && (
@@ -24,7 +27,7 @@ const FormCard = ({ onChange, title, values }) => {
                 onChange={onChange}
                 id="label-job"
                 name="jobTitle"
-                options={ListJobs}
+                options={listJobs}
             />
             <Select
                 label="Technologies"
@@ -32,7 +35,7 @@ const FormCard = ({ onChange, title, values }) => {
                 onChange={onChange}
                 id="label-technologies"
                 name="technologies"
-                options={ListTechonologies}
+                options={listTechnologies}
                 multiple
             />
             <Select
@@ -51,6 +54,7 @@ const FormCard = ({ onChange, title, values }) => {
                 name="englishLevel"
                 options={ListEnglish}
             />
+            {children}
         </Card>
     );
 };
@@ -62,12 +66,21 @@ FormCard.propTypes = {
         senority: PropTypes.string.isRequired,
         englishLevel: PropTypes.string.isRequired,
     }).isRequired,
+    children: PropTypes.node,
+    listTechnologies: PropTypes.arrayOf(PropTypes.string).isRequired,
+    listJobs: PropTypes.arrayOf(PropTypes.string).isRequired,
     onChange: PropTypes.func.isRequired,
     title: PropTypes.string,
 };
 
 FormCard.defaultProps = {
     title: null,
+    children: null,
 };
 
-export default FormCard;
+const mapStateToProps = (state) => ({
+    listTechnologies: selectTechnologies(state),
+    listJobs: selectJobs(state),
+});
+
+export default connect(mapStateToProps, null)(FormCard);
