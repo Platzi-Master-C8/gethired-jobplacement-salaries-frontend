@@ -30,7 +30,7 @@ module.exports = {
     },
     overrides: [
         {
-            files: ['./src/components/**/index.js'],
+            files: ['./src/components/**/index.js', './src/app/**/index.js'],
             rules: {
                 'no-restricted-exports': 'off',
             },
