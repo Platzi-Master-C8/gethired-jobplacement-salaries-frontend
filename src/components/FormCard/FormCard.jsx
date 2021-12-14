@@ -11,7 +11,7 @@ import { selectTechnologies, selectJobs } from 'App/ListData/selectors';
 import { ListSenority, ListEnglish } from 'Constants';
 
 const FormCard = ({ onChange, title, values, listTechnologies, listJobs, children, onDelete }) => {
-    const { jobTitle, technologies, senority, englishLevel } = values;
+    const { title_id, technologies, seniority, english_level } = values;
 
     return (
         <Card sx={{ p: 2, boxShadow: 3, mt: 2 }}>
@@ -22,10 +22,10 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, childre
             )}
             <Select
                 label="Job Title"
-                value={jobTitle}
+                value={title_id}
                 onChange={onChange}
                 id="label-job"
-                name="jobTitle"
+                name="title_id"
                 options={listJobs}
             />
             <Select
@@ -43,6 +43,7 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, childre
                                 key={value}
                                 label={value}
                                 variant="outlined"
+                                color="primary"
                                 onDelete={(event) => onDelete(event, value, 'technologies')}
                                 onMouseDown={(event) => event.stopPropagation()}
                             />
@@ -52,18 +53,18 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, childre
             />
             <Select
                 label="Senority"
-                value={senority}
+                value={seniority}
                 onChange={onChange}
                 id="label-senority"
-                name="senority"
+                name="seniority"
                 options={ListSenority}
             />
             <Select
                 label="English Level"
-                value={englishLevel}
+                value={english_level}
                 onChange={onChange}
                 id="label-englishLevel"
-                name="englishLevel"
+                name="english_level"
                 options={ListEnglish}
             />
             {children}
@@ -73,10 +74,10 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, childre
 
 FormCard.propTypes = {
     values: PropTypes.shape({
-        jobTitle: PropTypes.string.isRequired,
-        technologies: PropTypes.arrayOf(PropTypes.string).isRequired,
-        senority: PropTypes.string.isRequired,
-        englishLevel: PropTypes.string.isRequired,
+        title_id: PropTypes.string,
+        technologies: PropTypes.arrayOf(PropTypes.string),
+        seniority: PropTypes.string,
+        english_level: PropTypes.string,
     }).isRequired,
     children: PropTypes.node,
     listTechnologies: PropTypes.arrayOf(PropTypes.string).isRequired,

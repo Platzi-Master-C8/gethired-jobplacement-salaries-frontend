@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
@@ -6,27 +8,28 @@ import Button from '@mui/material/Button';
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
 
-import { initialValues, values1, currencyName } from 'Constants';
-import { disabled } from '../../helpers';
+import { values1, currencyName } from 'Constants';
 
-const TabCalculate = () => {
-    const [formCalculate, setFormCalculate] = useState(initialValues);
+import { changesForm, clearFormMain, deleteChip } from 'App/CalculateSalary/slice';
+import { selectFormMain } from 'App/CalculateSalary/selectors';
+
+import { disabled } from 'Helpers';
+
+const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete }) => {
     const isDisabled = disabled(formCalculate);
 
     const handleSelectCalculate = (e) => {
         const { name, value } = e.target;
-        setFormCalculate((prevState) => ({
-            ...prevState,
+        handleCalculate({
             [name]: value,
-        }));
+        });
     };
 
-    const handleDeleteChip = (_, value, name) => {
-        setFormCalculate((prevState) => ({
-            ...prevState,
-            [name]: prevState[name].filter((chip) => chip !== value),
-        }));
+    const handleSubmit = () => {
+        alert(JSON.stringify(formCalculate, null, 2));
     };
+
+    const handleDeleteChip = (_, value) => handleDelete(value);
 
     return (
         <Grid container spacing={2}>
@@ -42,10 +45,13 @@ const TabCalculate = () => {
                         fullWidth
                         variant="contained"
                         size="large"
-                        onClick={() => {}}
+                        onClick={handleSubmit}
                         disabled={isDisabled}
                     >
                         Calculate Salary
+                    </Button>
+                    <Button onClick={clearForm} sx={{ mt: 2, display: 'flex', justifyContent: 'center', mx: 'auto' }}>
+                        Clear form
                     </Button>
                 </FormCard>
             </Grid>
@@ -56,4 +62,21 @@ const TabCalculate = () => {
     );
 };
 
-export default TabCalculate;
+TabCalculate.propTypes = {
+    clearForm: PropTypes.func.isRequired,
+    handleCalculate: PropTypes.func.isRequired,
+    handleDelete: PropTypes.func.isRequired,
+    formCalculate: PropTypes.shape({}).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+    formCalculate: selectFormMain(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    handleCalculate: (data) => dispatch(changesForm({ changes: data })),
+    clearForm: () => dispatch(clearFormMain()),
+    handleDelete: (value) => dispatch(deleteChip(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TabCalculate);
