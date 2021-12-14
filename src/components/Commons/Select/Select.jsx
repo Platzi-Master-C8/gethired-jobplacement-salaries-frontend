@@ -33,13 +33,14 @@ Select.propTypes = {
     helperText: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
     label: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
 };
 
 Select.defaultProps = {
     helperText: '',
     multiple: false,
     disabled: false,
+    value: '',
 };
 
 export default Select;

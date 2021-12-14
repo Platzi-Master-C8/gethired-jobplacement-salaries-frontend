@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { Typography, Card, Chip, Box } from '@mui/material';
 
 import Select from 'Components/Commons/Select';
 
-import { ListJobs, ListTechonologies, ListSenority, ListEnglish } from 'Constants';
+import { selectTechnologies, selectJobs } from 'App/ListData/selectors';
 
-const FormCard = ({ onChange, onDelete, title, values }) => {
-    const { jobTitle, technologies, senority, englishLevel } = values;
+import { ListSenority, ListEnglish } from 'Constants';
+
+const FormCard = ({ onChange, title, values, listTechnologies, listJobs, children, onDelete }) => {
+    const { title_id, technologies, seniority, english_level } = values;
+
     return (
         <Card sx={{ p: 2, boxShadow: 3, mt: 2 }}>
             {!!title && (
@@ -18,11 +22,11 @@ const FormCard = ({ onChange, onDelete, title, values }) => {
             )}
             <Select
                 label="Job Title"
-                value={jobTitle}
+                value={title_id}
                 onChange={onChange}
                 id="label-job"
-                name="jobTitle"
-                options={ListJobs}
+                name="title_id"
+                options={listJobs}
             />
             <Select
                 label="Technologies"
@@ -30,8 +34,8 @@ const FormCard = ({ onChange, onDelete, title, values }) => {
                 onChange={onChange}
                 id="label-technologies"
                 name="technologies"
+                options={listTechnologies}
                 multiple
-                options={ListTechonologies}
                 renderValue={(selected) => (
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                         {selected.map((value) => (
@@ -39,6 +43,7 @@ const FormCard = ({ onChange, onDelete, title, values }) => {
                                 key={value}
                                 label={value}
                                 variant="outlined"
+                                color="primary"
                                 onDelete={(event) => onDelete(event, value, 'technologies')}
                                 onMouseDown={(event) => event.stopPropagation()}
                             />
@@ -48,31 +53,35 @@ const FormCard = ({ onChange, onDelete, title, values }) => {
             />
             <Select
                 label="Senority"
-                value={senority}
+                value={seniority}
                 onChange={onChange}
                 id="label-senority"
-                name="senority"
+                name="seniority"
                 options={ListSenority}
             />
             <Select
                 label="English Level"
-                value={englishLevel}
+                value={english_level}
                 onChange={onChange}
                 id="label-englishLevel"
-                name="englishLevel"
+                name="english_level"
                 options={ListEnglish}
             />
+            {children}
         </Card>
     );
 };
 
 FormCard.propTypes = {
     values: PropTypes.shape({
-        jobTitle: PropTypes.string.isRequired,
-        technologies: PropTypes.arrayOf(PropTypes.string).isRequired,
-        senority: PropTypes.string.isRequired,
-        englishLevel: PropTypes.string.isRequired,
+        title_id: PropTypes.string,
+        technologies: PropTypes.arrayOf(PropTypes.string),
+        seniority: PropTypes.string,
+        english_level: PropTypes.string,
     }).isRequired,
+    children: PropTypes.node,
+    listTechnologies: PropTypes.arrayOf(PropTypes.string).isRequired,
+    listJobs: PropTypes.arrayOf(PropTypes.string).isRequired,
     onChange: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     title: PropTypes.string,
@@ -80,6 +89,12 @@ FormCard.propTypes = {
 
 FormCard.defaultProps = {
     title: null,
+    children: null,
 };
 
-export default FormCard;
+const mapStateToProps = (state) => ({
+    listTechnologies: selectTechnologies(state),
+    listJobs: selectJobs(state),
+});
+
+export default connect(mapStateToProps, null)(FormCard);
