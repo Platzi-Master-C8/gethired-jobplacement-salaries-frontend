@@ -52,10 +52,10 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, childre
                 )}
             />
             <Select
-                label="Senority"
+                label="Seniority"
                 value={seniority}
                 onChange={onChange}
-                id="label-senority"
+                id="label-seniority"
                 name="seniority"
                 options={ListSenority}
             />
