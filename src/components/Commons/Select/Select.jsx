@@ -7,11 +7,12 @@ import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
 import SelectMUI from '@mui/material/Select';
 
-const Select = ({ helperText, options, id, label, value, onChange, multiple, disabled, name }) => {
+const Select = (props) => {
+    const { helperText, options, id, label, value, onChange, multiple, disabled, name, ...otherProps } = props;
     return (
         <FormControl variant="filled" sx={{ my: 1 }} fullWidth disabled={disabled}>
             <InputLabel id={id}>{label}</InputLabel>
-            <SelectMUI labelId={id} value={value} onChange={onChange} multiple={multiple} name={name}>
+            <SelectMUI labelId={id} value={value} onChange={onChange} multiple={multiple} name={name} {...otherProps}>
                 {options?.map((option) => (
                     <MenuItem key={option} value={option}>
                         {option}

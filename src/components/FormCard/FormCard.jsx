@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
+import { Typography, Card, Chip, Box } from '@mui/material';
 
 import Select from 'Components/Commons/Select';
 
@@ -11,7 +10,7 @@ import { selectTechnologies, selectJobs } from 'App/ListData/selectors';
 
 import { ListSenority, ListEnglish } from 'Constants';
 
-const FormCard = ({ onChange, title, values, listTechnologies, listJobs, children }) => {
+const FormCard = ({ onChange, title, values, listTechnologies, listJobs, children, onDelete }) => {
     const { jobTitle, technologies, senority, englishLevel } = values;
 
     return (
@@ -37,6 +36,19 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, childre
                 name="technologies"
                 options={listTechnologies}
                 multiple
+                renderValue={(selected) => (
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        {selected.map((value) => (
+                            <Chip
+                                key={value}
+                                label={value}
+                                variant="outlined"
+                                onDelete={(event) => onDelete(event, value, 'technologies')}
+                                onMouseDown={(event) => event.stopPropagation()}
+                            />
+                        ))}
+                    </Box>
+                )}
             />
             <Select
                 label="Senority"
@@ -70,6 +82,7 @@ FormCard.propTypes = {
     listTechnologies: PropTypes.arrayOf(PropTypes.string).isRequired,
     listJobs: PropTypes.arrayOf(PropTypes.string).isRequired,
     onChange: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
     title: PropTypes.string,
 };
 

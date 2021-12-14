@@ -30,11 +30,30 @@ const TabCompare = () => {
         }));
     };
 
+    const handleDeleteChipPrimary = (_, value, name) => {
+        setFormPrimary((prevState) => ({
+            ...prevState,
+            [name]: prevState[name].filter((chip) => chip !== value),
+        }));
+    };
+
+    const handleDeleteChipSecondary = (_, value, name) => {
+        setFormSecondary((prevState) => ({
+            ...prevState,
+            [name]: prevState[name].filter((chip) => chip !== value),
+        }));
+    };
+
     return (
         <Fragment>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={5}>
-                    <FormCard values={formPrimary} onChange={handleSelectPrimary} title="Primary Profile" />
+                    <FormCard
+                        values={formPrimary}
+                        onChange={handleSelectPrimary}
+                        title="Primary Profile"
+                        onDelete={handleDeleteChipPrimary}
+                    />
                 </Grid>
                 <Grid item xs={12} sm={12} md={2} sx={{ display: 'grid', placeItems: 'center', mt: { xs: 1 } }}>
                     <Switch
@@ -43,7 +62,12 @@ const TabCompare = () => {
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} md={5}>
-                    <FormCard values={formSecondary} onChange={handleSelectSecondary} title="Secondary Profile" />
+                    <FormCard
+                        values={formSecondary}
+                        onChange={handleSelectSecondary}
+                        title="Secondary Profile"
+                        onDelete={handleDeleteChipSecondary}
+                    />
                 </Grid>
             </Grid>
             <Grid container>
