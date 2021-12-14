@@ -26,9 +26,9 @@ exports[`Tests for component <FormCard/> Take Snapshot 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-labelledby="label-job mui-component-select-jobTitle"
+          aria-labelledby="label-job mui-component-select-title_id"
           class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-          id="mui-component-select-jobTitle"
+          id="mui-component-select-title_id"
           role="button"
           tabindex="0"
         >
@@ -41,7 +41,7 @@ exports[`Tests for component <FormCard/> Take Snapshot 1`] = `
         <input
           aria-hidden="true"
           class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-          name="jobTitle"
+          name="title_id"
           tabindex="-1"
           value=""
         />
@@ -122,9 +122,9 @@ exports[`Tests for component <FormCard/> Take Snapshot 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-labelledby="label-senority mui-component-select-senority"
+          aria-labelledby="label-senority mui-component-select-seniority"
           class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-          id="mui-component-select-senority"
+          id="mui-component-select-seniority"
           role="button"
           tabindex="0"
         >
@@ -137,7 +137,7 @@ exports[`Tests for component <FormCard/> Take Snapshot 1`] = `
         <input
           aria-hidden="true"
           class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-          name="senority"
+          name="seniority"
           tabindex="-1"
           value=""
         />
@@ -170,9 +170,9 @@ exports[`Tests for component <FormCard/> Take Snapshot 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-labelledby="label-englishLevel mui-component-select-englishLevel"
+          aria-labelledby="label-englishLevel mui-component-select-english_level"
           class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-          id="mui-component-select-englishLevel"
+          id="mui-component-select-english_level"
           role="button"
           tabindex="0"
         >
@@ -185,7 +185,7 @@ exports[`Tests for component <FormCard/> Take Snapshot 1`] = `
         <input
           aria-hidden="true"
           class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-          name="englishLevel"
+          name="english_level"
           tabindex="-1"
           value=""
         />
