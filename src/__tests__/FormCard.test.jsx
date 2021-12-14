@@ -27,6 +27,6 @@ describe('Tests for component <FormCard/>', () => {
     });
     test('Have 4 selects', () => {
         const { container } = render(<FormCard values={initialValues} onChange={handleChange} />);
-        expect(container.querySelectorAll('input')).toHaveLength(4);
+        expect(container.querySelectorAll('input')).toHaveLength(5);
     });
 });

@@ -11,7 +11,6 @@ import { Header } from '@master-c8/commons';
 import { TabPanel } from 'Components/commons/Tabs';
 import TabCompare from 'Components/TabCompare';
 import TabCalculate from 'Components/TabCalculate';
-import Calendar from 'Components/Calendar';
 
 const Theme = () => {
     const [tabs, setValue] = useState(0);
@@ -45,7 +44,6 @@ const Theme = () => {
                     </TabPanel>
                 </Box>
             </Container>
-            <Calendar />
         </Fragment>
     );
 };
