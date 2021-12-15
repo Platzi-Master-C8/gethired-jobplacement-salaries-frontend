@@ -112,9 +112,9 @@ exports[`Tests for component <FormCard/> Take Snapshot 1`] = `
       <label
         class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="false"
-        id="label-senority"
+        id="label-seniority"
       >
-        Senority
+        Seniority
       </label>
       <div
         class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-cio0x1-MuiInputBase-root-MuiFilledInput-root"
@@ -122,7 +122,7 @@ exports[`Tests for component <FormCard/> Take Snapshot 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-labelledby="label-senority mui-component-select-seniority"
+          aria-labelledby="label-seniority mui-component-select-seniority"
           class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
           id="mui-component-select-seniority"
           role="button"
