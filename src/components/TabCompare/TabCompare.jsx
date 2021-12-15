@@ -3,8 +3,12 @@ import React, { Fragment, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 
+import { Switch } from '@master-c8/icons';
+
 import FormCard from 'Components/FormCard';
-import { initialValues } from 'Constants';
+import NormalDistributionChart from 'Components/Charts';
+
+import { initialValues, values2, currencyName } from 'Constants';
 
 const TabCompare = () => {
     const [formPrimary, setFormPrimary] = useState(initialValues);
@@ -26,14 +30,44 @@ const TabCompare = () => {
         }));
     };
 
+    const handleDeleteChipPrimary = (_, value, name) => {
+        setFormPrimary((prevState) => ({
+            ...prevState,
+            [name]: prevState[name].filter((chip) => chip !== value),
+        }));
+    };
+
+    const handleDeleteChipSecondary = (_, value, name) => {
+        setFormSecondary((prevState) => ({
+            ...prevState,
+            [name]: prevState[name].filter((chip) => chip !== value),
+        }));
+    };
+
     return (
         <Fragment>
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={12} md={6}>
-                    <FormCard values={formPrimary} onChange={handleSelectPrimary} title="Primary Profile" />
+                <Grid item xs={12} sm={12} md={5}>
+                    <FormCard
+                        values={formPrimary}
+                        onChange={handleSelectPrimary}
+                        title="Primary Profile"
+                        onDelete={handleDeleteChipPrimary}
+                    />
                 </Grid>
-                <Grid item xs={12} sm={12} md={6}>
-                    <FormCard values={formSecondary} onChange={handleSelectSecondary} title="Secondary Profile" />
+                <Grid item xs={12} sm={12} md={2} sx={{ display: 'grid', placeItems: 'center', mt: { xs: 1 } }}>
+                    <Switch
+                        sx={{ fontSize: { sm: 60, md: 80 }, transform: { xs: 'rotate(90deg)', md: 'none' } }}
+                        color="primary"
+                    />
+                </Grid>
+                <Grid item xs={12} sm={12} md={5}>
+                    <FormCard
+                        values={formSecondary}
+                        onChange={handleSelectSecondary}
+                        title="Secondary Profile"
+                        onDelete={handleDeleteChipSecondary}
+                    />
                 </Grid>
             </Grid>
             <Grid container>
@@ -41,6 +75,11 @@ const TabCompare = () => {
                     <Button variant="contained" fullWidth size="large">
                         Compare salary
                     </Button>
+                </Grid>
+            </Grid>
+            <Grid container sx={{ display: 'flex', justifyContent: 'center' }} spacing={2}>
+                <Grid item xs={12} md={6} sx={{ mt: 2 }}>
+                    <NormalDistributionChart values={values2} currencyName={currencyName} />
                 </Grid>
             </Grid>
         </Fragment>

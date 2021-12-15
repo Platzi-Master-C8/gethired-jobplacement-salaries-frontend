@@ -8,7 +8,7 @@ const Routes = () => (
     <BrowserRouter>
         <Switch>
             <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<Salaries />} />
+            <Route path="/salaries" element={<Salaries />} />
         </Switch>
     </BrowserRouter>
 );

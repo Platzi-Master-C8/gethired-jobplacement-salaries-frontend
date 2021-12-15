@@ -19,6 +19,8 @@ module.exports = {
             Pages: path.resolve(__dirname, './src/pages'),
             Styles: path.resolve(__dirname, './src/style'),
             Routes: path.resolve(__dirname, './src/routes'),
+            App: path.resolve(__dirname, './src/app'),
+            Helpers: path.resolve(__dirname, './src/helpers'),
         },
     },
     devServer: {

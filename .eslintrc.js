@@ -21,7 +21,9 @@ module.exports = {
         'react/jsx-props-no-spreading': 'off',
         'react/jsx-fragments': ['error', 'element'],
         'import/no-extraneous-dependencies': 'off',
+        'no-param-reassign': 'off',
         'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+        camelcase: 'off',
         'react/function-component-definition': [
             'error',
             {
@@ -31,7 +33,7 @@ module.exports = {
     },
     overrides: [
         {
-            files: ['./src/components/**/index.js'],
+            files: ['./src/components/**/index.js', './src/app/**/index.js'],
             rules: {
                 'no-restricted-exports': 'off',
             },

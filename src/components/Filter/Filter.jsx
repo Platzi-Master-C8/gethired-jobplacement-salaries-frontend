@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
-import Select from 'Components/commons/Select/Select';
+import Select from 'Components/Commons/Select';
 
 const Filter = () => {
     const Filters = ['1', '2', '3', '4'];
@@ -10,38 +10,10 @@ const Filter = () => {
             <Typography sx={{ mb: 2 }} variant="h2">
                 Filters
             </Typography>
-            <Select
-                label="Job Title"
-                // value={jobTitle}
-                // onChange={onChange}
-                // id="label-job"
-                // name="jobTitle"
-                options={Filters}
-            />
-            <Select
-                label="Job Title"
-                // value={jobTitle}
-                // onChange={onChange}
-                // id="label-job"
-                // name="jobTitle"
-                options={Filters}
-            />
-            <Select
-                label="Job Title"
-                // value={jobTitle}
-                // onChange={onChange}
-                // id="label-job"
-                // name="jobTitle"
-                options={Filters}
-            />
-            <Select
-                label="Job Title"
-                // value={jobTitle}
-                // onChange={onChange}
-                // id="label-job"
-                // name="jobTitle"
-                options={Filters}
-            />
+            <Select label="Job Title" options={Filters} />
+            <Select label="English Level" options={Filters} />
+            <Select label="Location" options={Filters} />
+            <Select label="Technologies" options={Filters} />
         </Card>
     );
 };
