@@ -5,10 +5,10 @@ import Salaries from 'Pages/Salaries';
 import NotFound from 'Pages/NotFound';
 
 const Routes = () => (
-    <BrowserRouter>
+    <BrowserRouter basename="/gethired-jobplacement-salaries-frontend/">
         <Switch>
             <Route path="*" element={<NotFound />} />
-            <Route path="/salaries" element={<Salaries />} />
+            <Route path="/" element={<Salaries />} />
         </Switch>
     </BrowserRouter>
 );

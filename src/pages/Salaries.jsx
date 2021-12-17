@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import { Switch, Currency } from '@master-c8/icons';
-import { Header } from '@master-c8/commons';
+import { HeaderJob } from '@master-c8/commons';
 
 import { TabPanel } from 'Components/Commons/Tabs';
 import TabCompare from 'Components/TabCompare';
@@ -21,7 +21,7 @@ const Theme = () => {
 
     return (
         <Fragment>
-            <Header onClickLogin={() => {}} onClickSignup={() => {}} />
+            <HeaderJob />
             <Container sx={{ mt: 5 }}>
                 <Box sx={{ width: '100%' }}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
