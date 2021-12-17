@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { getListByName } from '@Services/salaries';
 
-// eslint-disable-next-line no-return-await
 export const fetchListData = createAsyncThunk('post/fetchListData', async () => ({
     Technologies: await getListByName('technologies'),
     Jobs: await getListByName('titles'),
