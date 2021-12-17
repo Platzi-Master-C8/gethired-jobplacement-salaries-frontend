@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -8,10 +8,20 @@ import Select from 'Components/Commons/Select';
 
 import { selectTechnologies, selectJobs } from 'App/ListData/selectors';
 
-import { ListSenority, ListEnglish } from 'Constants';
+import { fetchListData } from 'App/ListData/slice';
 
-const FormCard = ({ onChange, title, values, listTechnologies, listJobs, children, onDelete }) => {
+import { getListByName } from '@Services/salaries';
+
+const FormCard = ({ onChange, title, values, listTechnologies, listJobs, children, onDelete, addListData }) => {
     const { title_id, technologies, seniority, english_level } = values;
+    const [ListSenority, setListSenority] = useState([]);
+    const [ListEnglish, setListEnglish] = useState([]);
+
+    useEffect(() => {
+        addListData();
+        setListSenority(getListByName('senority'));
+        setListEnglish(getListByName('english'));
+    }, [addListData]);
 
     return (
         <Card sx={{ p: 2, boxShadow: 3, mt: 2 }}>
@@ -85,6 +95,7 @@ FormCard.propTypes = {
     onChange: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     title: PropTypes.string,
+    addListData: PropTypes.func.isRequired,
 };
 
 FormCard.defaultProps = {
@@ -97,4 +108,8 @@ const mapStateToProps = (state) => ({
     listJobs: selectJobs(state),
 });
 
-export default connect(mapStateToProps, null)(FormCard);
+const mapDispatchToProps = (dispatch) => ({
+    addListData: () => dispatch(fetchListData()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormCard);

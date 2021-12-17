@@ -37,5 +37,11 @@ module.exports = {
                 'no-restricted-exports': 'off',
             },
         },
+        {
+            files: ['./src/hooks/useApi.js'],
+            rules: {
+                'react-hooks/exhaustive-deps': 'off',
+            },
+        },
     ],
 };
