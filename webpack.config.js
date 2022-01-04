@@ -1,8 +1,8 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
 module.exports = {
     entry: './src/index.jsx',
@@ -21,7 +21,7 @@ module.exports = {
             Routes: path.resolve(__dirname, './src/routes'),
             App: path.resolve(__dirname, './src/app'),
             Helpers: path.resolve(__dirname, './src/helpers'),
-            '@Services': path.resolve(__dirname, './src/services')
+            Services: path.resolve(__dirname, './src/services')
         },
     },
     devServer: {
