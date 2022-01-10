@@ -8,14 +8,15 @@ import Button from '@mui/material/Button';
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
 
-import { values1, currencyName } from 'Constants';
+import { currencyName } from 'Constants';
 
-import { changesForm, clearFormMain, deleteChip } from 'App/CalculateSalary/slice';
+import { changesForm, clearFormMain, deleteChip, fetchChartData } from 'App/CalculateSalary/slice';
 import { selectFormMain } from 'App/CalculateSalary/selectors';
 
 import { disabled } from 'Helpers';
+import { selectChartData } from '../../app/CalculateSalary/selectors';
 
-const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete }) => {
+const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete, addChartData, chartData }) => {
     const isDisabled = disabled(formCalculate);
 
     const handleSelectCalculate = (e) => {
@@ -26,7 +27,8 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete 
     };
 
     const handleSubmit = () => {
-        alert(JSON.stringify(formCalculate, null, 2));
+        // alert(JSON.stringify(formCalculate, null, 2));
+        addChartData(formCalculate);
     };
 
     const handleDeleteChip = (_, value) => handleDelete(value);
@@ -56,7 +58,7 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete 
                 </FormCard>
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
-                <NormalDistributionChart values={values1} currencyName={currencyName} />
+                <NormalDistributionChart values={chartData} currencyName={currencyName} />
             </Grid>
         </Grid>
     );
@@ -67,16 +69,20 @@ TabCalculate.propTypes = {
     handleCalculate: PropTypes.func.isRequired,
     handleDelete: PropTypes.func.isRequired,
     formCalculate: PropTypes.shape({}).isRequired,
+    addChartData: PropTypes.func.isRequired,
+    chartData: PropTypes.shape([]).isRequired,
 };
 
 const mapStateToProps = (state) => ({
     formCalculate: selectFormMain(state),
+    chartData: selectChartData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
     handleCalculate: (data) => dispatch(changesForm({ changes: data })),
     clearForm: () => dispatch(clearFormMain()),
     handleDelete: (value) => dispatch(deleteChip(value)),
+    addChartData: (data) => dispatch(fetchChartData(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TabCalculate);

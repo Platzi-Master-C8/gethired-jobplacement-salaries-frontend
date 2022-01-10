@@ -1,5 +1,5 @@
 import { urlApi } from 'Constants';
-import { get } from './utilsApi';
+import { get, post } from './utilsApi';
 
 export const getListByName = (name) => {
     const lists = {
@@ -12,4 +12,9 @@ export const getListByName = (name) => {
     }
 
     return get(`${urlApi}${name}`);
+};
+
+
+export const getSalaryProfile = (name, body) => {
+    return post(`${urlApi}${name}`, body);
 };
