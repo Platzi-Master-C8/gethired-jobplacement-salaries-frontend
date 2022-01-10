@@ -70,7 +70,16 @@ TabCalculate.propTypes = {
     handleDelete: PropTypes.func.isRequired,
     formCalculate: PropTypes.shape({}).isRequired,
     addChartData: PropTypes.func.isRequired,
-    chartData: PropTypes.shape([]).isRequired,
+    chartData: PropTypes.arrayOf(
+        PropTypes.shape({
+            english_level: PropTypes.string.isRequired,
+            seniority: PropTypes.number.isRequired,
+            is_remote: PropTypes.bool.isRequired,
+            location: PropTypes.string.isRequired,
+            title_id: PropTypes.string.isRequired,
+            technologies: PropTypes.arrayOf(PropTypes.string),
+        }),
+    ).isRequired,
 };
 
 const mapStateToProps = (state) => ({

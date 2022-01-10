@@ -45,7 +45,6 @@ const calculateSalary = createSlice({
     },
     extraReducers: {
         [fetchChartData.fulfilled]: (state, action) => {
-            console.log("Este es el payload",action.payload);
             state.chartData = [action.payload]
         }
     }
