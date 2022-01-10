@@ -1,4 +1,6 @@
 import React, { Fragment, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
@@ -8,9 +10,11 @@ import { Switch } from '@master-c8/icons';
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
 
-import { initialValues, values2, currencyName } from 'Constants';
+import { initialValues, currencyName } from 'Constants';
+import { fetchComparisonChartData } from '../../app/CalculateSalary/slice';
+import { selectComparisonChartData } from '../../app/CalculateSalary/selectors';
 
-const TabCompare = () => {
+const TabCompare = ({ addChartData, comparisonChartData }) => {
     const [formPrimary, setFormPrimary] = useState(initialValues);
     const [formSecondary, setFormSecondary] = useState(initialValues);
 
@@ -44,6 +48,10 @@ const TabCompare = () => {
         }));
     };
 
+    const handleSubmit = () => {
+        addChartData(); // TODO: the argument should be formCalculate
+    };
+
     return (
         <Fragment>
             <Grid container spacing={2}>
@@ -72,18 +80,40 @@ const TabCompare = () => {
             </Grid>
             <Grid container>
                 <Grid item xs={12} sx={{ mt: 2 }}>
-                    <Button variant="contained" fullWidth size="large">
+                    <Button variant="contained" fullWidth size="large" onClick={handleSubmit}>
                         Compare salary
                     </Button>
                 </Grid>
             </Grid>
             <Grid container sx={{ display: 'flex', justifyContent: 'center' }} spacing={2}>
                 <Grid item xs={12} md={6} sx={{ mt: 2 }}>
-                    <NormalDistributionChart values={values2} currencyName={currencyName} />
+                    <NormalDistributionChart values={comparisonChartData} currencyName={currencyName} />
                 </Grid>
             </Grid>
         </Fragment>
     );
 };
 
-export default TabCompare;
+TabCompare.propTypes = {
+    addChartData: PropTypes.func.isRequired,
+    comparisonChartData: PropTypes.arrayOf(
+        PropTypes.shape({
+            english_level: PropTypes.string.isRequired,
+            seniority: PropTypes.number.isRequired,
+            is_remote: PropTypes.bool.isRequired,
+            location: PropTypes.string.isRequired,
+            title_id: PropTypes.string.isRequired,
+            technologies: PropTypes.arrayOf(PropTypes.string),
+        }),
+    ).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+    comparisonChartData: selectComparisonChartData(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    addChartData: (data) => dispatch(fetchComparisonChartData(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TabCompare);

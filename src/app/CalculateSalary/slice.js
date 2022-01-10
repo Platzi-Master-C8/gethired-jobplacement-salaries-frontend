@@ -10,20 +10,27 @@ const initialState = {
         is_remote: false,
         location: '',
     },
-    chartData: []
+    chartData: [],
+    comparisonChartData: [],
 };
 
+const mockDataProfile = {
+    "english_level": "B2",
+    "seniority": 1,
+    "is_remote": false,
+    "location": "mx",
+    "title_id": "Fullstack",
+    "technologies": [
+        "string"
+    ]
+}
+
 export const fetchChartData = createAsyncThunk("post/fetchChartData", () => // TODO: mandar profile como parametro
-    getSalaryProfile('salaries', JSON.stringify({
-        "english_level": "B2",
-        "seniority": 1,
-        "is_remote": false,
-        "location": "mx",
-        "title_id": "Fullstack",
-        "technologies": [
-            "string"
-        ]
-    })) // 
+    getSalaryProfile('salaries', mockDataProfile) // 
+)
+export const fetchComparisonChartData = createAsyncThunk("post/fetComparisonchChartData", async () => // TODO: mandar profile1 y profile2 como parametro   
+    [await getSalaryProfile('salaries', mockDataProfile), await getSalaryProfile('salaries', mockDataProfile)]
+
 )
 
 const calculateSalary = createSlice({
@@ -46,7 +53,10 @@ const calculateSalary = createSlice({
     extraReducers: {
         [fetchChartData.fulfilled]: (state, action) => {
             state.chartData = [action.payload]
-        }
+        },
+        [fetchComparisonChartData.fulfilled]: (state, action) => {
+            state.comparisonChartData = action.payload
+        },
     }
 });
 

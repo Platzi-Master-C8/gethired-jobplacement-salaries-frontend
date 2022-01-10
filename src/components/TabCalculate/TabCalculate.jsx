@@ -28,7 +28,7 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete,
 
     const handleSubmit = () => {
         // alert(JSON.stringify(formCalculate, null, 2));
-        addChartData(formCalculate);
+        addChartData(); // TODO: the argument should be formCalculate
     };
 
     const handleDeleteChip = (_, value) => handleDelete(value);
