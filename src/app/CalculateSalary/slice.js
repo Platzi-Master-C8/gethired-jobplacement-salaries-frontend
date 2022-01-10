@@ -25,8 +25,11 @@ const mockDataProfile = {
     ]
 }
 
-export const fetchChartData = createAsyncThunk("post/fetchChartData", () => // TODO: mandar profile como parametro
-    getSalaryProfile('salaries', mockDataProfile) // 
+export const fetchChartData = createAsyncThunk("post/fetchChartData", (profile) => {
+    console.log("Este es el profile", profile)
+    console.log("Este es el mock", mockDataProfile)
+    return getSalaryProfile('salaries', profile)
+} // 
 )
 export const fetchComparisonChartData = createAsyncThunk("post/fetComparisonchChartData", async () => // TODO: mandar profile1 y profile2 como parametro   
     [await getSalaryProfile('salaries', mockDataProfile), await getSalaryProfile('salaries', mockDataProfile)]

@@ -23,12 +23,13 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete,
         const { name, value } = e.target;
         handleCalculate({
             [name]: value,
+            seniority: 6, // TODO: ojo. borrar esta linea que es sólo para demostrar que el endpint sí funciona si el seniority es un number
         });
     };
 
     const handleSubmit = () => {
         // alert(JSON.stringify(formCalculate, null, 2));
-        addChartData(); // TODO: the argument should be formCalculate
+        addChartData(formCalculate);
     };
 
     const handleDeleteChip = (_, value) => handleDelete(value);
