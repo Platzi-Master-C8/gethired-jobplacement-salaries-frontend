@@ -10,16 +10,27 @@ import { selectTechnologies, selectJobs } from 'App/ListData/selectors';
 
 import { fetchListData } from 'App/ListData/slice';
 
-import { getListByName } from '@Services/salaries';
+import { getListByName } from 'Services/salaries';
+import { selectSeniority } from '../../app/ListData/selectors';
 
-const FormCard = ({ onChange, title, values, listTechnologies, listJobs, children, onDelete, addListData }) => {
+const FormCard = ({
+    onChange,
+    title,
+    values,
+    listTechnologies,
+    listJobs,
+    ListSenority,
+    children,
+    onDelete,
+    addListData,
+}) => {
     const { title_id, technologies, seniority, english_level } = values;
-    const [ListSenority, setListSenority] = useState([]);
+    // const [ListSenority, setListSenority] = useState([]);
     const [ListEnglish, setListEnglish] = useState([]);
 
     useEffect(() => {
         addListData();
-        setListSenority(getListByName('senority'));
+        // setListSenority(getListByName('senority'));
         setListEnglish(getListByName('english'));
     }, [addListData]);
 
@@ -92,6 +103,7 @@ FormCard.propTypes = {
     children: PropTypes.node,
     listTechnologies: PropTypes.arrayOf(PropTypes.string).isRequired,
     listJobs: PropTypes.arrayOf(PropTypes.string).isRequired,
+    ListSenority: PropTypes.arrayOf(PropTypes.string).isRequired,
     onChange: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     title: PropTypes.string,
@@ -106,6 +118,7 @@ FormCard.defaultProps = {
 const mapStateToProps = (state) => ({
     listTechnologies: selectTechnologies(state),
     listJobs: selectJobs(state),
+    ListSenority: selectSeniority(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

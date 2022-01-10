@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getListByName } from '@Services/salaries';
+import { getListByName } from 'Services/salaries';
 
 export const fetchListData = createAsyncThunk('post/fetchListData', async () => ({
     Technologies: await getListByName('technologies'),
     Jobs: await getListByName('titles'),
+    Seniority: await getListByName('titles'), // TODO: cambiar titles por el nombre real del endpoint
 }));
 
 const dataSlice = createSlice({
@@ -13,6 +14,7 @@ const dataSlice = createSlice({
         list: {
             Technologies: [],
             Jobs: [],
+            Seniority: [],
         },
     },
     extraReducers: {

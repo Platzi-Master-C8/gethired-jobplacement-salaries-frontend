@@ -9,3 +9,8 @@ export const selectJobs = createSelector(
     (state) => state.ListData.list.Jobs,
     (jobs) => jobs,
 );
+
+export const selectSeniority = createSelector(
+    (state) => state.ListData.list.Seniority,
+    (seniority) => seniority,
+);
