@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getSalaryProfile } from '../../services/salaries';
+import { mockDataProfile } from "Constants/mockData";
 
 const initialState = {
     formMain: {
@@ -14,22 +15,12 @@ const initialState = {
     comparisonChartData: [],
 };
 
-const mockDataProfile = {
-    "english_level": "B2",
-    "seniority": 1,
-    "is_remote": false,
-    "location": "mx",
-    "title_id": "Fullstack",
-    "technologies": [
-        "string"
-    ]
-}
 
-export const fetchChartData = createAsyncThunk("post/fetchChartData", (profile) => {
-    return getSalaryProfile('salaries', profile)
+export const fetchChartData = createAsyncThunk("post/fetchChartData", (profile) => {  
+    return getSalaryProfile('salaries', mockDataProfile) // TODO: set the second argument to "profile" for sending real data
 } // 
 )
-export const fetchComparisonChartData = createAsyncThunk("post/fetComparisonchChartData", async () => // TODO: mandar profile1 y profile2 como parametro   
+export const fetchComparisonChartData = createAsyncThunk("post/fetComparisonchChartData", async () => // TODO: receive the 2 profiles as arguments when we develop the state for the comparison forms
     [await getSalaryProfile('salaries', mockDataProfile), await getSalaryProfile('salaries', mockDataProfile)]
 
 )

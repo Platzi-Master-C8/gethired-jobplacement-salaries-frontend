@@ -98,14 +98,21 @@ TabCompare.propTypes = {
     addChartData: PropTypes.func.isRequired,
     comparisonChartData: PropTypes.arrayOf(
         PropTypes.shape({
-            english_level: PropTypes.string.isRequired,
-            seniority: PropTypes.number.isRequired,
-            is_remote: PropTypes.bool.isRequired,
-            location: PropTypes.string.isRequired,
-            title_id: PropTypes.string.isRequired,
-            technologies: PropTypes.arrayOf(PropTypes.string),
+            average: PropTypes.number,
+            top: PropTypes.number,
+            is_remote: PropTypes.number,
         }),
-    ).isRequired,
+    ),
+};
+
+TabCompare.defaultProps = {
+    comparisonChartData: [
+        {
+            average: 0,
+            top: 0,
+            number: 0,
+        },
+    ],
 };
 
 const mapStateToProps = (state) => ({

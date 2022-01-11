@@ -69,7 +69,7 @@ TabCalculate.propTypes = {
     handleDelete: PropTypes.func.isRequired,
     formCalculate: PropTypes.shape({
         english_level: PropTypes.string,
-        seniority: PropTypes.number,
+        seniority: PropTypes.string,
         is_remote: PropTypes.bool,
         location: PropTypes.string,
         title_id: PropTypes.string,
@@ -78,12 +78,9 @@ TabCalculate.propTypes = {
     addChartData: PropTypes.func.isRequired,
     chartData: PropTypes.arrayOf(
         PropTypes.shape({
-            english_level: PropTypes.string,
-            seniority: PropTypes.number,
-            is_remote: PropTypes.bool,
-            location: PropTypes.string,
-            title_id: PropTypes.string,
-            technologies: PropTypes.arrayOf(PropTypes.string),
+            average: PropTypes.number,
+            top: PropTypes.number,
+            is_remote: PropTypes.number,
         }),
     ),
 };
@@ -91,12 +88,9 @@ TabCalculate.propTypes = {
 TabCalculate.defaultProps = {
     chartData: [
         {
-            english_level: '',
-            seniority: null,
-            is_remote: null,
-            location: '',
-            title_id: '',
-            technologies: [],
+            average: 0,
+            top: 0,
+            number: 0,
         },
     ],
 };

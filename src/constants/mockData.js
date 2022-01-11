@@ -139,3 +139,17 @@ export const ListMockJobs = [
     'marketing',
     'sales professional',
 ];
+
+
+export const mockDataProfile = {
+    "english_level": "B2",
+    "seniority": "Mid",
+    "is_remote": true,
+    "location": "mx",
+    "title_id": "Fullstack",
+    "technologies": [
+      {
+        "name": "Python"
+      }
+    ]
+  }
