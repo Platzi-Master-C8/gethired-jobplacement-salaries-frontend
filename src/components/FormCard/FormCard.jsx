@@ -19,7 +19,7 @@ const FormCard = ({
     values,
     listTechnologies,
     listJobs,
-    ListSenority,
+    listSenority,
     children,
     onDelete,
     addListData,
@@ -76,7 +76,7 @@ const FormCard = ({
                 onChange={onChange}
                 id="label-seniority"
                 name="seniority"
-                options={ListSenority}
+                options={listSenority}
             />
             <Select
                 label="English Level"
@@ -101,7 +101,7 @@ FormCard.propTypes = {
     children: PropTypes.node,
     listTechnologies: PropTypes.arrayOf(PropTypes.string).isRequired,
     listJobs: PropTypes.arrayOf(PropTypes.string).isRequired,
-    ListSenority: PropTypes.arrayOf(PropTypes.string).isRequired,
+    listSenority: PropTypes.arrayOf(PropTypes.string).isRequired,
     onChange: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     title: PropTypes.string,
