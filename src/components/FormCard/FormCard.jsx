@@ -11,7 +11,8 @@ import { selectTechnologies, selectJobs } from 'App/ListData/selectors';
 import { fetchListData } from 'App/ListData/slice';
 
 import { getListByName } from 'Services/salaries';
-import { selectSeniority } from '../../app/ListData/selectors';
+
+import { selectSeniority } from 'App/ListData/selectors';
 
 const FormCard = ({
     onChange,
