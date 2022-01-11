@@ -10,7 +10,7 @@ import { selectTechnologies, selectJobs } from 'App/ListData/selectors';
 
 import { fetchListData } from 'App/ListData/slice';
 
-import { getListByName } from '@Services/salaries';
+import { getListByName } from 'Services/salaries';
 
 const FormCard = ({ onChange, title, values, listTechnologies, listJobs, children, onDelete, addListData }) => {
     const { title_id, technologies, seniority, english_level } = values;

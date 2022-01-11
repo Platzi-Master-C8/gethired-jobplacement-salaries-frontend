@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getListByName } from '@Services/salaries';
+import { getListByName } from 'Services/salaries';
 
 export const fetchListData = createAsyncThunk('post/fetchListData', async () => ({
     Technologies: await getListByName('technologies'),
