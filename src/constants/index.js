@@ -1,4 +1,4 @@
-export const ListSenority = ['Junior', 'Mid-Junior', 'Mid', 'Mid-Senior', 'Senior'];
+export const listSenority = ['Junior', 'Mid-Junior', 'Mid', 'Mid-Senior', 'Senior'];
 export const ListEnglish = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 export const initialValues = {
     jobTitle: '',
