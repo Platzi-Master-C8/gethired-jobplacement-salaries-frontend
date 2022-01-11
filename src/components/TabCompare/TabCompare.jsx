@@ -49,7 +49,7 @@ const TabCompare = ({ addChartData, comparisonChartData }) => {
     };
 
     const handleSubmit = () => {
-        addChartData(); // TODO: the argument should be formCalculate
+        addChartData();
     };
 
     return (

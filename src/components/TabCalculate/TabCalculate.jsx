@@ -23,12 +23,10 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete,
         const { name, value } = e.target;
         handleCalculate({
             [name]: value,
-            seniority: 6, // TODO: ojo. borrar esta linea que es sólo para demostrar que el endpint sí funciona si el seniority es un number
         });
     };
 
     const handleSubmit = () => {
-        // alert(JSON.stringify(formCalculate, null, 2));
         addChartData(formCalculate);
     };
 
@@ -69,18 +67,38 @@ TabCalculate.propTypes = {
     clearForm: PropTypes.func.isRequired,
     handleCalculate: PropTypes.func.isRequired,
     handleDelete: PropTypes.func.isRequired,
-    formCalculate: PropTypes.shape({}).isRequired,
+    formCalculate: PropTypes.shape({
+        english_level: PropTypes.string,
+        seniority: PropTypes.number,
+        is_remote: PropTypes.bool,
+        location: PropTypes.string,
+        title_id: PropTypes.string,
+        technologies: PropTypes.arrayOf(PropTypes.string),
+    }).isRequired,
     addChartData: PropTypes.func.isRequired,
     chartData: PropTypes.arrayOf(
         PropTypes.shape({
-            english_level: PropTypes.string.isRequired,
-            seniority: PropTypes.number.isRequired,
-            is_remote: PropTypes.bool.isRequired,
-            location: PropTypes.string.isRequired,
-            title_id: PropTypes.string.isRequired,
+            english_level: PropTypes.string,
+            seniority: PropTypes.number,
+            is_remote: PropTypes.bool,
+            location: PropTypes.string,
+            title_id: PropTypes.string,
             technologies: PropTypes.arrayOf(PropTypes.string),
         }),
-    ).isRequired,
+    ),
+};
+
+TabCalculate.defaultProps = {
+    chartData: [
+        {
+            english_level: '',
+            seniority: null,
+            is_remote: null,
+            location: '',
+            title_id: '',
+            technologies: [],
+        },
+    ],
 };
 
 const mapStateToProps = (state) => ({

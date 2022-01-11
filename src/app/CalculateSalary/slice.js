@@ -26,8 +26,6 @@ const mockDataProfile = {
 }
 
 export const fetchChartData = createAsyncThunk("post/fetchChartData", (profile) => {
-    console.log("Este es el profile", profile)
-    console.log("Este es el mock", mockDataProfile)
     return getSalaryProfile('salaries', profile)
 } // 
 )
