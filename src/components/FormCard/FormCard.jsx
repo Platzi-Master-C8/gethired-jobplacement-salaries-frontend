@@ -25,12 +25,10 @@ const FormCard = ({
     addListData,
 }) => {
     const { title_id, technologies, seniority, english_level } = values;
-    // const [ListSenority, setListSenority] = useState([]);
     const [ListEnglish, setListEnglish] = useState([]);
 
     useEffect(() => {
         addListData();
-        // setListSenority(getListByName('senority'));
         setListEnglish(getListByName('english'));
     }, [addListData]);
 
@@ -118,7 +116,7 @@ FormCard.defaultProps = {
 const mapStateToProps = (state) => ({
     listTechnologies: selectTechnologies(state),
     listJobs: selectJobs(state),
-    ListSenority: selectSeniority(state),
+    listSenority: selectSeniority(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
