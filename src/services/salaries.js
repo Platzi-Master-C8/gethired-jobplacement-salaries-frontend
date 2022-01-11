@@ -1,5 +1,5 @@
 import { urlApi } from 'Constants';
-import { get } from './utilsApi';
+import { get } from './http';
 
 export const getListByName = (name) => {
     const lists = {
