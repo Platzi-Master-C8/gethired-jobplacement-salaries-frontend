@@ -1,9 +1,8 @@
 import { urlApi } from 'Constants';
-import { get, post } from './utilsApi';
+import { get, post } from './http';
 
 export const getListByName = (name) => {
     const lists = {
-        senority: ['Junior', 'Mid-Junior', 'Mid', 'Mid-Senior', 'Senior'],
         english: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
     };
 
