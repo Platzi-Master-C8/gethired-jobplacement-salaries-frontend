@@ -11,10 +11,9 @@ import NormalDistributionChart from 'Components/Charts';
 import { currencyName } from 'Constants';
 
 import { changesForm, clearFormMain, deleteChip, fetchChartData } from 'App/CalculateSalary/slice';
-import { selectFormMain } from 'App/CalculateSalary/selectors';
+import { selectFormMain, selectChartData } from 'App/CalculateSalary/selectors';
 
 import { disabled } from 'Helpers';
-import { selectChartData } from '../../app/CalculateSalary/selectors';
 
 const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete, addChartData, chartData }) => {
     const isDisabled = disabled(formCalculate);
@@ -80,7 +79,7 @@ TabCalculate.propTypes = {
         PropTypes.shape({
             average: PropTypes.number,
             top: PropTypes.number,
-            is_remote: PropTypes.number,
+            bottom: PropTypes.number,
         }),
     ),
 };
@@ -90,7 +89,7 @@ TabCalculate.defaultProps = {
         {
             average: 0,
             top: 0,
-            number: 0,
+            bottom: 0,
         },
     ],
 };

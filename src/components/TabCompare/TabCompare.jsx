@@ -11,8 +11,8 @@ import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
 
 import { initialValues, currencyName } from 'Constants';
-import { fetchComparisonChartData } from '../../app/CalculateSalary/slice';
-import { selectComparisonChartData } from '../../app/CalculateSalary/selectors';
+import { fetchComparisonChartData } from 'App/CalculateSalary/slice';
+import { selectComparisonChartData } from 'App/CalculateSalary/selectors';
 
 const TabCompare = ({ addChartData, comparisonChartData }) => {
     const [formPrimary, setFormPrimary] = useState(initialValues);

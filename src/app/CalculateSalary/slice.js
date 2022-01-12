@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { mockDataProfile } from "Constants/mockData";
+import { mockDataProfile } from 'Constants/mockData';
 import { getSalaryProfile } from 'Services/salaries';
 
 const initialState = {
@@ -16,13 +16,12 @@ const initialState = {
 };
 
 
-export const fetchChartData = createAsyncThunk("post/fetchChartData", (profile) => {
-    return getSalaryProfile('salaries', profile)
-}
+export const fetchChartData = createAsyncThunk("post/fetchChartData", (profile) =>
+    getSalaryProfile('salaries', profile)
 )
+
 export const fetchComparisonChartData = createAsyncThunk("post/fetComparisonchChartData", async () => // TODO: receive the 2 profiles as arguments when we develop the state for the comparison forms
     [await getSalaryProfile('salaries', mockDataProfile), await getSalaryProfile('salaries', mockDataProfile)]
-
 )
 
 const calculateSalary = createSlice({
@@ -42,6 +41,7 @@ const calculateSalary = createSlice({
             state.formMain.technologies = state.formMain.technologies.filter((chip) => chip !== action.payload);
         },
     },
+    // TODO: Add stages when api is rejected
     extraReducers: {
         [fetchChartData.fulfilled]: (state, action) => {
             state.chartData = [action.payload]
