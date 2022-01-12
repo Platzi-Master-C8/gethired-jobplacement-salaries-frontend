@@ -100,7 +100,7 @@ TabCompare.propTypes = {
         PropTypes.shape({
             average: PropTypes.number,
             top: PropTypes.number,
-            is_remote: PropTypes.number,
+            bottom: PropTypes.number,
         }),
     ),
 };
@@ -110,7 +110,7 @@ TabCompare.defaultProps = {
         {
             average: 0,
             top: 0,
-            number: 0,
+            bottom: 0,
         },
     ],
 };

@@ -16,11 +16,11 @@ const initialState = {
 };
 
 
-export const fetchChartData = createAsyncThunk("post/fetchChartData", (profile) =>
+export const fetchChartData = createAsyncThunk('post/fetchChartData', (profile) =>
     getSalaryProfile('salaries', profile)
 )
 
-export const fetchComparisonChartData = createAsyncThunk("post/fetComparisonchChartData", async () => // TODO: receive the 2 profiles as arguments when we develop the state for the comparison forms
+export const fetchComparisonChartData = createAsyncThunk('post/fetComparisonchChartData', async () => // TODO: receive the 2 profiles as arguments when we develop the state for the comparison forms
     [await getSalaryProfile('salaries', mockDataProfile), await getSalaryProfile('salaries', mockDataProfile)]
 )
 
