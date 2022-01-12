@@ -14,7 +14,7 @@ export function post(
     },
 ) {
     return fetch(url, { method: 'POST', body, headers })
-        .then((response) => response)
+        .then((response) => response.json())
         .then((data) => data)
         .catch((error) => error);
 }

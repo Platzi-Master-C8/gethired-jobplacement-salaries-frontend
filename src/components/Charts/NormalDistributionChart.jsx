@@ -46,7 +46,7 @@ const NormalDistributionChart = ({ values, currencyName }) => {
     const lineColors = [COLORS.secondary, COLORS.contrast1];
 
     const data = {
-        datasets: values.map(({ salariesBottom20, salariesAverage, salariesTop20 }, i) => {
+        datasets: values.map(({ bottom, average, top }, i) => {
             return {
                 label: values.length === 1 ? `Your Profile` : `Profile ${i + 1}`,
                 showLine: true,
@@ -56,23 +56,23 @@ const NormalDistributionChart = ({ values, currencyName }) => {
                 tension: 0.4,
                 data: [
                     {
-                        x: salariesBottom20 - (salariesTop20 - salariesBottom20) * 0.6,
+                        x: bottom - (top - bottom) * 0.6,
                         y: 0,
                     },
                     {
-                        x: salariesBottom20,
+                        x: bottom,
                         y: 20,
                     },
                     {
-                        x: salariesAverage,
+                        x: average,
                         y: 50,
                     },
                     {
-                        x: salariesTop20,
+                        x: top,
                         y: 20,
                     },
                     {
-                        x: salariesTop20 + (salariesTop20 - salariesBottom20) * 0.6,
+                        x: top + (top - bottom) * 0.6,
                         y: 0,
                     },
                 ],

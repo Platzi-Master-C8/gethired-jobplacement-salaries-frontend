@@ -6,13 +6,11 @@ import { Typography, Card, Chip, Box } from '@mui/material';
 
 import Select from 'Components/Commons/Select';
 
-import { selectTechnologies, selectJobs } from 'App/ListData/selectors';
+import { selectTechnologies, selectJobs, selectSeniority } from 'App/ListData/selectors';
 
 import { fetchListData } from 'App/ListData/slice';
 
 import { getListByName } from 'Services/salaries';
-
-import { selectSeniority } from 'App/ListData/selectors';
 
 const FormCard = ({
     onChange,
