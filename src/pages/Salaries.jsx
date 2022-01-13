@@ -14,14 +14,14 @@ import TabCalculate from 'Components/TabCalculate';
 
 const Theme = () => {
     const [tabs, setValue] = useState(0);
+    const [open, setOpen] = useState(false);
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+    const handleOpen = () => setOpen(!open);
+    const handleChange = (_, newValue) => setValue(newValue);
 
     return (
         <Fragment>
-            <HeaderJob />
+            <HeaderJob open={open} handleOpen={handleOpen} />
             <Container sx={{ mt: 5 }}>
                 <Box sx={{ width: '100%' }}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

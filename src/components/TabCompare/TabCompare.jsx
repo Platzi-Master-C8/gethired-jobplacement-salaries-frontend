@@ -9,14 +9,16 @@ import { Switch } from '@master-c8/icons';
 
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
+import Select from 'Components/Commons/Select';
 
-import { initialValues, currencyName } from 'Constants';
+import { initialValues, currencyName, ListCurrencies } from 'Constants';
 import { fetchComparisonChartData } from 'App/CalculateSalary/slice';
 import { selectComparisonChartData } from 'App/CalculateSalary/selectors';
 
 const TabCompare = ({ addChartData, comparisonChartData }) => {
     const [formPrimary, setFormPrimary] = useState(initialValues);
     const [formSecondary, setFormSecondary] = useState(initialValues);
+    const [currencies, setCurrencies] = useState('USD');
 
     const handleSelectPrimary = (e) => {
         const { name, value } = e.target;
@@ -48,9 +50,9 @@ const TabCompare = ({ addChartData, comparisonChartData }) => {
         }));
     };
 
-    const handleSubmit = () => {
-        addChartData();
-    };
+    const handleSubmit = () => addChartData();
+
+    const handleCurrencies = (e) => setCurrencies(e.target.value);
 
     return (
         <Fragment>
@@ -88,6 +90,18 @@ const TabCompare = ({ addChartData, comparisonChartData }) => {
             <Grid container sx={{ display: 'flex', justifyContent: 'center' }} spacing={2}>
                 <Grid item xs={12} md={6} sx={{ mt: 2 }}>
                     <NormalDistributionChart values={comparisonChartData} currencyName={currencyName} />
+                </Grid>
+                <Grid item xs={12} md={12} sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
+                    <Select
+                        label="Currencies"
+                        fullWidth={false}
+                        value={currencies}
+                        id="currency"
+                        name="currency"
+                        width={200}
+                        options={ListCurrencies}
+                        onChange={handleCurrencies}
+                    />
                 </Grid>
             </Grid>
         </Fragment>

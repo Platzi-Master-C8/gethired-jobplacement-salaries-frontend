@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import Box from '@mui/system/Box';
 
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
+import Select from 'Components/Commons/Select';
 
-import { currencyName } from 'Constants';
+import { currencyName, ListCurrencies } from 'Constants';
 
 import { changesForm, clearFormMain, deleteChip, fetchChartData } from 'App/CalculateSalary/slice';
 import { selectFormMain, selectChartData } from 'App/CalculateSalary/selectors';
@@ -17,6 +19,7 @@ import { disabled } from 'Helpers';
 
 const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete, addChartData, chartData }) => {
     const isDisabled = disabled(formCalculate);
+    const [currencies, setCurrencies] = useState('USD');
 
     const handleSelectCalculate = (e) => {
         const { name, value } = e.target;
@@ -30,6 +33,8 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete,
     };
 
     const handleDeleteChip = (_, value) => handleDelete(value);
+
+    const handleCurrencies = (e) => setCurrencies(e.target.value);
 
     return (
         <Grid container spacing={2}>
@@ -57,6 +62,18 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete,
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
                 <NormalDistributionChart values={chartData} currencyName={currencyName} />
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Select
+                        label="Currencies"
+                        fullWidth={false}
+                        value={currencies}
+                        id="currency"
+                        name="currency"
+                        width={130}
+                        options={ListCurrencies}
+                        onChange={handleCurrencies}
+                    />
+                </Box>
             </Grid>
         </Grid>
     );
