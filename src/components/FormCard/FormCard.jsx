@@ -34,7 +34,7 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSen
             <Autocomplete
                 sx={{ my: 1 }}
                 options={listJobs}
-                getOptionLabel={(option) => option}
+                isOptionEqualToValue={(option, value) => option === value}
                 onChange={handleTitle}
                 value={title_id}
                 renderInput={(params) => <TextField {...params} variant="filled" label="Job Title" />}
@@ -43,13 +43,14 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSen
                 multiple
                 sx={{ my: 1 }}
                 options={listTechnologies}
-                getOptionLabel={(option) => option}
+                isOptionEqualToValue={(option, value) => option === value}
                 onChange={handleTechnologies}
                 ChipProps={{
                     color: 'primary',
                     variant: 'outlined',
                     size: 'small',
                 }}
+                defaultValue={[]}
                 value={technologies}
                 renderInput={(params) => <TextField {...params} variant="filled" label="Technologies" />}
             />
