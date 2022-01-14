@@ -13,3 +13,8 @@ export const selectComparisonChartData = createSelector(
     (state) => state.Calculate.comparisonChartData,
     (chart) => chart,
 );
+
+export const selectCurrency = createSelector(
+    (state) => state.Calculate.currency,
+    (currency) => currency,
+);

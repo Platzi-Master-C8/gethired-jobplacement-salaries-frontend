@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -12,14 +12,23 @@ import Select from 'Components/Commons/Select';
 
 import { currencyName, ListCurrencies } from 'Constants';
 
-import { changesForm, clearFormMain, deleteChip, fetchChartData } from 'App/CalculateSalary/slice';
+import { changesForm, clearFormMain, deleteChip, fetchChartData, changeCurrency } from 'App/CalculateSalary/slice';
 import { selectFormMain, selectChartData } from 'App/CalculateSalary/selectors';
 
 import { disabled } from 'Helpers';
+import { selectCurrency } from '../../app/CalculateSalary/selectors';
 
-const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete, addChartData, chartData }) => {
+const TabCalculate = ({
+    handleCalculate,
+    formCalculate,
+    clearForm,
+    handleDelete,
+    addChartData,
+    chartData,
+    handleCurrency,
+    currencies,
+}) => {
     const isDisabled = disabled(formCalculate);
-    const [currencies, setCurrencies] = useState('USD');
 
     const handleSelectCalculate = (e) => {
         const { name, value } = e.target;
@@ -34,7 +43,7 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete,
 
     const handleDeleteChip = (_, value) => handleDelete(value);
 
-    const handleCurrencies = (e) => setCurrencies(e.target.value);
+    const handleCurrencies = (e) => handleCurrency(e.target.value);
 
     return (
         <Grid container spacing={2}>
@@ -99,6 +108,8 @@ TabCalculate.propTypes = {
             bottom: PropTypes.number,
         }),
     ),
+    handleCurrency: PropTypes.func.isRequired,
+    currencies: PropTypes.string.isRequired,
 };
 
 TabCalculate.defaultProps = {
@@ -114,6 +125,7 @@ TabCalculate.defaultProps = {
 const mapStateToProps = (state) => ({
     formCalculate: selectFormMain(state),
     chartData: selectChartData(state),
+    currencies: selectCurrency(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -121,6 +133,7 @@ const mapDispatchToProps = (dispatch) => ({
     clearForm: () => dispatch(clearFormMain()),
     handleDelete: (value) => dispatch(deleteChip(value)),
     addChartData: (data) => dispatch(fetchChartData(data)),
+    handleCurrency: (data) => dispatch(changeCurrency(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TabCalculate);

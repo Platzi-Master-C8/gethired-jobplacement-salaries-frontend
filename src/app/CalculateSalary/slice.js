@@ -12,17 +12,18 @@ const initialState = {
         location: '',
     },
     chartData: [],
+    currency: 'USD',
     comparisonChartData: [],
 };
 
-
 export const fetchChartData = createAsyncThunk('post/fetchChartData', (profile) =>
-    getSalaryProfile('salaries', profile)
-)
+    getSalaryProfile('salaries', profile),
+);
 
-export const fetchComparisonChartData = createAsyncThunk('post/fetComparisonchChartData', async () => // TODO: receive the 2 profiles as arguments when we develop the state for the comparison forms
-    [await getSalaryProfile('salaries', mockDataProfile), await getSalaryProfile('salaries', mockDataProfile)]
-)
+export const fetchComparisonChartData = createAsyncThunk('post/fetComparisonchChartData', async () =>
+    // TODO: receive the 2 profiles as arguments when we develop the state for the comparison forms
+    [await getSalaryProfile('salaries', mockDataProfile), await getSalaryProfile('salaries', mockDataProfile)],
+);
 
 const calculateSalary = createSlice({
     name: 'CalculateSalary',
@@ -40,18 +41,21 @@ const calculateSalary = createSlice({
         deleteChip: (state, action) => {
             state.formMain.technologies = state.formMain.technologies.filter((chip) => chip !== action.payload);
         },
+        changeCurrency: (state, action) => {
+            state.currency = action.payload;
+        },
     },
     // TODO: Add stages when api is rejected
     extraReducers: {
         [fetchChartData.fulfilled]: (state, action) => {
-            state.chartData = [action.payload]
+            state.chartData = [action.payload];
         },
         [fetchComparisonChartData.fulfilled]: (state, action) => {
-            state.comparisonChartData = action.payload
+            state.comparisonChartData = action.payload;
         },
-    }
+    },
 });
 
-export const { changesForm, clearFormMain, deleteChip } = calculateSalary.actions;
+export const { changesForm, clearFormMain, deleteChip, changeCurrency } = calculateSalary.actions;
 
 export default calculateSalary.reducer;
