@@ -10,36 +10,31 @@ import NormalDistributionChart from 'Components/Charts';
 
 import { currencyName } from 'Constants';
 
-import { changesForm, clearFormMain, deleteChip, fetchChartData } from 'App/CalculateSalary/slice';
+import { changesForm, clearFormMain, fetchChartData } from 'App/CalculateSalary/slice';
 import { selectFormMain, selectChartData } from 'App/CalculateSalary/selectors';
 
 import { disabled } from 'Helpers';
 
-const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete, addChartData, chartData }) => {
+const TabCalculate = ({ handleCalculate, formCalculate, clearForm, addChartData, chartData }) => {
     const isDisabled = disabled(formCalculate);
 
-    const handleSelectCalculate = (e) => {
-        const { name, value } = e.target;
-        handleCalculate({
-            [name]: value,
-        });
+    const handleSelectCalculate = (e, values, nameAuto) => {
+        if (nameAuto) {
+            handleCalculate({ [nameAuto]: values });
+        } else {
+            const { name, value } = e.target;
+            handleCalculate({ [name]: value });
+        }
     };
 
     const handleSubmit = () => {
         addChartData(formCalculate);
     };
 
-    const handleDeleteChip = (_, value) => handleDelete(value);
-
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={6}>
-                <FormCard
-                    values={formCalculate}
-                    onChange={handleSelectCalculate}
-                    title="Calculate Salary"
-                    onDelete={handleDeleteChip}
-                >
+                <FormCard values={formCalculate} onChange={handleSelectCalculate} title="Calculate Salary">
                     <Button
                         sx={{ mt: 2 }}
                         fullWidth
@@ -65,7 +60,6 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, handleDelete,
 TabCalculate.propTypes = {
     clearForm: PropTypes.func.isRequired,
     handleCalculate: PropTypes.func.isRequired,
-    handleDelete: PropTypes.func.isRequired,
     formCalculate: PropTypes.shape({
         english_level: PropTypes.string,
         seniority: PropTypes.string,
@@ -102,7 +96,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     handleCalculate: (data) => dispatch(changesForm({ changes: data })),
     clearForm: () => dispatch(clearFormMain()),
-    handleDelete: (value) => dispatch(deleteChip(value)),
     addChartData: (data) => dispatch(fetchChartData(data)),
 });
 
