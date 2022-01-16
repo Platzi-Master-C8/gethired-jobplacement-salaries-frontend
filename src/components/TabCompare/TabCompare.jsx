@@ -40,21 +40,6 @@ const TabCompare = ({
         }
     };
 
-    // Before accepting the PR, let me know if this 2 functions can be deleted. It seems that the deleteChips works fine
-    // const handleDeleteChipPrimary = (_, value, name) => {
-    //     setFormPrimary((prevState) => ({
-    //         ...prevState,
-    //         [name]: prevState[name].filter((chip) => chip !== value),
-    //     }));
-    // };
-
-    // const handleDeleteChipSecondary = (_, value, name) => {
-    //     setFormSecondary((prevState) => ({
-    //         ...prevState,
-    //         [name]: prevState[name].filter((chip) => chip !== value),
-    //     }));
-    // };
-
     const handleSubmit = () => {
         addChartData([formMain, formComparison]);
     };
@@ -63,12 +48,7 @@ const TabCompare = ({
         <Fragment>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={5}>
-                    <FormCard
-                        values={formMain}
-                        onChange={handleSelectMain}
-                        title="Primary Profile"
-                        // onDelete={handleDeleteChipPrimary}
-                    />
+                    <FormCard values={formMain} onChange={handleSelectMain} title="Primary Profile" />
                 </Grid>
                 <Grid item xs={12} sm={12} md={2} sx={{ display: 'grid', placeItems: 'center', mt: { xs: 1 } }}>
                     <Switch
@@ -77,12 +57,7 @@ const TabCompare = ({
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} md={5}>
-                    <FormCard
-                        values={formComparison}
-                        onChange={handleSelectComparison}
-                        title="Secondary Profile"
-                        // onDelete={handleDeleteChipSecondary}
-                    />
+                    <FormCard values={formComparison} onChange={handleSelectComparison} title="Secondary Profile" />
                 </Grid>
             </Grid>
             <Grid container>
