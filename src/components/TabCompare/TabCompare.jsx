@@ -22,9 +22,6 @@ const TabCompare = ({
     handleCalculate,
     handleCompare,
 }) => {
-    // const [formPrimary, setFormPrimary] = useState(initialValues);
-    // const [formSecondary, setFormSecondary] = useState(initialValues);
-
     const handleSelectMain = (e, values, nameAuto) => {
         if (nameAuto) {
             handleCalculate({ [nameAuto]: values });
@@ -104,6 +101,15 @@ const TabCompare = ({
     );
 };
 
+const profileShape = {
+    english_level: PropTypes.string,
+    seniority: PropTypes.string,
+    is_remote: PropTypes.bool,
+    location: PropTypes.string,
+    title_id: PropTypes.string,
+    technologies: PropTypes.arrayOf(PropTypes.string),
+};
+
 TabCompare.propTypes = {
     addChartData: PropTypes.func.isRequired,
     comparisonChartData: PropTypes.arrayOf(
@@ -113,22 +119,8 @@ TabCompare.propTypes = {
             bottom: PropTypes.number,
         }),
     ),
-    formMain: PropTypes.shape({
-        english_level: PropTypes.string,
-        seniority: PropTypes.string,
-        is_remote: PropTypes.bool,
-        location: PropTypes.string,
-        title_id: PropTypes.string,
-        technologies: PropTypes.arrayOf(PropTypes.string),
-    }).isRequired,
-    formComparison: PropTypes.shape({
-        english_level: PropTypes.string,
-        seniority: PropTypes.string,
-        is_remote: PropTypes.bool,
-        location: PropTypes.string,
-        title_id: PropTypes.string,
-        technologies: PropTypes.arrayOf(PropTypes.string),
-    }).isRequired,
+    formMain: PropTypes.shape(profileShape).isRequired,
+    formComparison: PropTypes.shape(profileShape).isRequired,
     handleCalculate: PropTypes.func.isRequired,
     handleCompare: PropTypes.func.isRequired,
 };
