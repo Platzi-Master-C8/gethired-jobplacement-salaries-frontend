@@ -16,6 +16,8 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSen
     const { title_id, technologies, seniority, english_level } = values;
     const [ListEnglish, setListEnglish] = useState([]);
 
+    // console.log(title_id, technologies, seniority, english_level);
+
     const handleTechnologies = (e, value) => onChange(e, value, 'technologies');
     const handleTitle = (e, value) => onChange(e, value, 'title_id');
 

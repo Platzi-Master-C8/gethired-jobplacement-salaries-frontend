@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -10,46 +10,56 @@ import { Switch } from '@master-c8/icons';
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
 
-import { initialValues, currencyName } from 'Constants';
-import { fetchComparisonChartData } from 'App/CalculateSalary/slice';
-import { selectComparisonChartData } from 'App/CalculateSalary/selectors';
+import { currencyName } from 'Constants';
+import { fetchComparisonChartData, changesForm, changesFormComparison } from 'App/CalculateSalary/slice';
+import { selectComparisonChartData, selectFormComparison, selectFormMain } from 'App/CalculateSalary/selectors';
 
-const TabCompare = ({ addChartData, comparisonChartData }) => {
-    const [formPrimary, setFormPrimary] = useState(initialValues);
-    const [formSecondary, setFormSecondary] = useState(initialValues);
+const TabCompare = ({
+    addChartData,
+    comparisonChartData,
+    formMain,
+    formComparison,
+    handleCalculate,
+    handleCompare,
+}) => {
+    // const [formPrimary, setFormPrimary] = useState(initialValues);
+    // const [formSecondary, setFormSecondary] = useState(initialValues);
 
-    const handleSelectPrimary = (e) => {
-        const { name, value } = e.target;
-        setFormPrimary((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
+    const handleSelectMain = (e, values, nameAuto) => {
+        if (nameAuto) {
+            handleCalculate({ [nameAuto]: values });
+        } else {
+            const { name, value } = e.target;
+            handleCalculate({ [name]: value });
+        }
     };
 
-    const handleSelectSecondary = (e) => {
-        const { name, value } = e.target;
-        setFormSecondary((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
+    const handleSelectComparison = (e, values, nameAuto) => {
+        if (nameAuto) {
+            handleCompare({ [nameAuto]: values });
+        } else {
+            const { name, value } = e.target;
+            handleCompare({ [name]: value });
+        }
     };
 
-    const handleDeleteChipPrimary = (_, value, name) => {
-        setFormPrimary((prevState) => ({
-            ...prevState,
-            [name]: prevState[name].filter((chip) => chip !== value),
-        }));
-    };
+    // Before accepting the PR, let me know if this 2 functions can be deleted. It seems that the deleteChips works fine
+    // const handleDeleteChipPrimary = (_, value, name) => {
+    //     setFormPrimary((prevState) => ({
+    //         ...prevState,
+    //         [name]: prevState[name].filter((chip) => chip !== value),
+    //     }));
+    // };
 
-    const handleDeleteChipSecondary = (_, value, name) => {
-        setFormSecondary((prevState) => ({
-            ...prevState,
-            [name]: prevState[name].filter((chip) => chip !== value),
-        }));
-    };
+    // const handleDeleteChipSecondary = (_, value, name) => {
+    //     setFormSecondary((prevState) => ({
+    //         ...prevState,
+    //         [name]: prevState[name].filter((chip) => chip !== value),
+    //     }));
+    // };
 
     const handleSubmit = () => {
-        addChartData();
+        addChartData([formMain, formComparison]);
     };
 
     return (
@@ -57,10 +67,10 @@ const TabCompare = ({ addChartData, comparisonChartData }) => {
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={5}>
                     <FormCard
-                        values={formPrimary}
-                        onChange={handleSelectPrimary}
+                        values={formMain}
+                        onChange={handleSelectMain}
                         title="Primary Profile"
-                        onDelete={handleDeleteChipPrimary}
+                        // onDelete={handleDeleteChipPrimary}
                     />
                 </Grid>
                 <Grid item xs={12} sm={12} md={2} sx={{ display: 'grid', placeItems: 'center', mt: { xs: 1 } }}>
@@ -71,10 +81,10 @@ const TabCompare = ({ addChartData, comparisonChartData }) => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={5}>
                     <FormCard
-                        values={formSecondary}
-                        onChange={handleSelectSecondary}
+                        values={formComparison}
+                        onChange={handleSelectComparison}
                         title="Secondary Profile"
-                        onDelete={handleDeleteChipSecondary}
+                        // onDelete={handleDeleteChipSecondary}
                     />
                 </Grid>
             </Grid>
@@ -103,6 +113,24 @@ TabCompare.propTypes = {
             bottom: PropTypes.number,
         }),
     ),
+    formMain: PropTypes.shape({
+        english_level: PropTypes.string,
+        seniority: PropTypes.string,
+        is_remote: PropTypes.bool,
+        location: PropTypes.string,
+        title_id: PropTypes.string,
+        technologies: PropTypes.arrayOf(PropTypes.string),
+    }).isRequired,
+    formComparison: PropTypes.shape({
+        english_level: PropTypes.string,
+        seniority: PropTypes.string,
+        is_remote: PropTypes.bool,
+        location: PropTypes.string,
+        title_id: PropTypes.string,
+        technologies: PropTypes.arrayOf(PropTypes.string),
+    }).isRequired,
+    handleCalculate: PropTypes.func.isRequired,
+    handleCompare: PropTypes.func.isRequired,
 };
 
 TabCompare.defaultProps = {
@@ -117,10 +145,14 @@ TabCompare.defaultProps = {
 
 const mapStateToProps = (state) => ({
     comparisonChartData: selectComparisonChartData(state),
+    formMain: selectFormMain(state),
+    formComparison: selectFormComparison(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
     addChartData: (data) => dispatch(fetchComparisonChartData(data)),
+    handleCalculate: (data) => dispatch(changesForm({ changes: data })),
+    handleCompare: (data) => dispatch(changesFormComparison({ changes: data })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TabCompare);
