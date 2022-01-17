@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Typography, Card, Chip, Box } from '@mui/material';
+import { Typography, Card, Autocomplete, TextField } from '@mui/material';
 
 import Select from 'Components/Commons/Select';
 
@@ -12,19 +12,12 @@ import { fetchListData } from 'App/ListData/slice';
 
 import { getListByName } from 'Services/salaries';
 
-const FormCard = ({
-    onChange,
-    title,
-    values,
-    listTechnologies,
-    listJobs,
-    listSenority,
-    children,
-    onDelete,
-    addListData,
-}) => {
+const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSenority, children, addListData }) => {
     const { title_id, technologies, seniority, english_level } = values;
     const [ListEnglish, setListEnglish] = useState([]);
+
+    const handleTechnologies = (e, value) => onChange(e, value, 'technologies');
+    const handleTitle = (e, value) => onChange(e, value, 'title_id');
 
     useEffect(() => {
         addListData();
@@ -38,36 +31,28 @@ const FormCard = ({
                     {title}
                 </Typography>
             )}
-            <Select
-                label="Job Title"
-                value={title_id}
-                onChange={onChange}
-                id="label-job"
-                name="title_id"
+            <Autocomplete
+                sx={{ my: 1 }}
                 options={listJobs}
+                isOptionEqualToValue={(option, value) => option === value}
+                onChange={handleTitle}
+                value={title_id}
+                renderInput={(params) => <TextField {...params} variant="filled" label="Job Title" />}
             />
-            <Select
-                label="Technologies"
-                value={technologies}
-                onChange={onChange}
-                id="label-technologies"
-                name="technologies"
-                options={listTechnologies}
+            <Autocomplete
                 multiple
-                renderValue={(selected) => (
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                        {selected.map((value) => (
-                            <Chip
-                                key={value}
-                                label={value}
-                                variant="outlined"
-                                color="primary"
-                                onDelete={(event) => onDelete(event, value, 'technologies')}
-                                onMouseDown={(event) => event.stopPropagation()}
-                            />
-                        ))}
-                    </Box>
-                )}
+                sx={{ my: 1 }}
+                options={listTechnologies}
+                isOptionEqualToValue={(option, value) => option === value}
+                onChange={handleTechnologies}
+                ChipProps={{
+                    color: 'primary',
+                    variant: 'outlined',
+                    size: 'small',
+                }}
+                defaultValue={[]}
+                value={technologies}
+                renderInput={(params) => <TextField {...params} variant="filled" label="Technologies" />}
             />
             <Select
                 label="Seniority"
@@ -102,7 +87,6 @@ FormCard.propTypes = {
     listJobs: PropTypes.arrayOf(PropTypes.string).isRequired,
     listSenority: PropTypes.arrayOf(PropTypes.string).isRequired,
     onChange: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
     title: PropTypes.string,
     addListData: PropTypes.func.isRequired,
 };
