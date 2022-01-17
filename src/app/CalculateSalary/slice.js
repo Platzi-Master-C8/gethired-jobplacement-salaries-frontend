@@ -1,9 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { mockDataProfile } from 'Constants/mockData';
 import { getSalaryProfile } from 'Services/salaries';
 
 const initialState = {
     formMain: {
+        title_id: '',
+        technologies: [],
+        seniority: '',
+        english_level: '',
+        is_remote: false,
+        location: '',
+    },
+    formComparison: {
         title_id: '',
         technologies: [],
         seniority: '',
@@ -16,12 +23,11 @@ const initialState = {
 };
 
 export const fetchChartData = createAsyncThunk('post/fetchChartData', (profile) =>
-    getSalaryProfile('salaries', profile),
+    getSalaryProfile('salaries', profile)
 );
 
-export const fetchComparisonChartData = createAsyncThunk('post/fetComparisonchChartData', async () =>
-    // TODO: receive the 2 profiles as arguments when we develop the state for the comparison forms
-    [await getSalaryProfile('salaries', mockDataProfile), await getSalaryProfile('salaries', mockDataProfile)],
+export const fetchComparisonChartData = createAsyncThunk('post/fetComparisonchChartData', async ([profile1, profile2]) =>
+    [await getSalaryProfile('salaries', profile1), await getSalaryProfile('salaries', profile2)]
 );
 
 const calculateSalary = createSlice({
@@ -31,6 +37,12 @@ const calculateSalary = createSlice({
         changesForm(state, action) {
             state.formMain = {
                 ...state.formMain,
+                ...action.payload.changes,
+            };
+        },
+        changesFormComparison(state, action) {
+            state.formComparison = {
+                ...state.formComparison,
                 ...action.payload.changes,
             };
         },
@@ -52,6 +64,6 @@ const calculateSalary = createSlice({
     },
 });
 
-export const { changesForm, clearFormMain, deleteChip } = calculateSalary.actions;
+export const { changesForm, changesFormComparison, clearFormMain, deleteChip } = calculateSalary.actions;
 
 export default calculateSalary.reducer;
