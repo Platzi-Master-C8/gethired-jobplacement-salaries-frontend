@@ -20,7 +20,7 @@ const initialState = {
     },
     chartData: [],
     comparisonChartData: [],
-    snackbarShow: true,
+    snackbarShow: false,
 };
 
 export const fetchChartData = createAsyncThunk('post/fetchChartData', (profile) =>
@@ -53,18 +53,26 @@ const calculateSalary = createSlice({
         deleteChip: (state, action) => {
             state.formMain.technologies = state.formMain.technologies.filter((chip) => chip !== action.payload);
         },
+        closeSnackbar: (state) => {
+            state.snackbarShow = false;
+        }
     },
-    // TODO: Add stages when api is rejected
     extraReducers: {
         [fetchChartData.fulfilled]: (state, action) => {
             state.chartData = [action.payload];
         },
+        [fetchChartData.rejected]: (state) => {
+            state.snackbarShow = true;
+        },
         [fetchComparisonChartData.fulfilled]: (state, action) => {
             state.comparisonChartData = action.payload;
+        },
+        [fetchComparisonChartData.fulfilled]: (state) => {
+            state.snackbarShow = true;
         },
     },
 });
 
-export const { changesForm, changesFormComparison, clearFormMain, deleteChip } = calculateSalary.actions;
+export const { changesForm, changesFormComparison, clearFormMain, deleteChip, closeSnackbar } = calculateSalary.actions;
 
 export default calculateSalary.reducer;
