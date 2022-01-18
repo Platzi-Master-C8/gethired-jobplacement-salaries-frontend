@@ -20,6 +20,7 @@ const initialState = {
     },
     chartData: [],
     comparisonChartData: [],
+    snackbarShow: true,
 };
 
 export const fetchChartData = createAsyncThunk('post/fetchChartData', (profile) =>

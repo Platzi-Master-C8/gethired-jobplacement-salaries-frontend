@@ -14,7 +14,13 @@ export const selectChartData = createSelector(
     (state) => state.Calculate.chartData,
     (chart) => chart,
 );
+
 export const selectComparisonChartData = createSelector(
     (state) => state.Calculate.comparisonChartData,
     (chart) => chart,
+);
+
+export const selectSnackbarShow = createSelector(
+    (state) => state.Calculate.snackbarShow,
+    (snackbar) => snackbar,
 );
