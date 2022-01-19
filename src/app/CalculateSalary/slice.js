@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getSalaryProfile } from 'Services/salaries';
 
 const initialState = {
     formMain: {
@@ -9,7 +10,25 @@ const initialState = {
         is_remote: false,
         location: '',
     },
+    formComparison: {
+        title_id: '',
+        technologies: [],
+        seniority: '',
+        english_level: '',
+        is_remote: false,
+        location: '',
+    },
+    chartData: [],
+    comparisonChartData: [],
 };
+
+export const fetchChartData = createAsyncThunk('post/fetchChartData', (profile) =>
+    getSalaryProfile('salaries', profile)
+);
+
+export const fetchComparisonChartData = createAsyncThunk('post/fetComparisonchChartData', async ([profile1, profile2]) =>
+    [await getSalaryProfile('salaries', profile1), await getSalaryProfile('salaries', profile2)]
+);
 
 const calculateSalary = createSlice({
     name: 'CalculateSalary',
@@ -21,6 +40,12 @@ const calculateSalary = createSlice({
                 ...action.payload.changes,
             };
         },
+        changesFormComparison(state, action) {
+            state.formComparison = {
+                ...state.formComparison,
+                ...action.payload.changes,
+            };
+        },
         clearFormMain(state) {
             state.formMain = initialState.formMain;
         },
@@ -28,8 +53,17 @@ const calculateSalary = createSlice({
             state.formMain.technologies = state.formMain.technologies.filter((chip) => chip !== action.payload);
         },
     },
+    // TODO: Add stages when api is rejected
+    extraReducers: {
+        [fetchChartData.fulfilled]: (state, action) => {
+            state.chartData = [action.payload];
+        },
+        [fetchComparisonChartData.fulfilled]: (state, action) => {
+            state.comparisonChartData = action.payload;
+        },
+    },
 });
 
-export const { changesForm, clearFormMain, deleteChip } = calculateSalary.actions;
+export const { changesForm, changesFormComparison, clearFormMain, deleteChip } = calculateSalary.actions;
 
 export default calculateSalary.reducer;

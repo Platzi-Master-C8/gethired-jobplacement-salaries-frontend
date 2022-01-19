@@ -11,51 +11,121 @@ exports[`Tests for component <FormCard/> Take Snapshot 1`] = `
       Calculate Salary
     </h2>
     <div
-      class="MuiFormControl-root MuiFormControl-fullWidth css-3lxuvf-MuiFormControl-root"
+      aria-expanded="false"
+      class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1kpj6rr-MuiAutocomplete-root"
+      role="combobox"
     >
-      <label
-        class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
-        data-shrink="false"
-        id="label-job"
-      >
-        Job Title
-      </label>
       <div
-        class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-cio0x1-MuiInputBase-root-MuiFilledInput-root"
+        class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-wb57ya-MuiFormControl-root-MuiTextField-root"
       >
+        <label
+          class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink="false"
+          for="mui-1"
+          id="mui-1-label"
+        >
+          Job Title
+        </label>
         <div
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-labelledby="label-job mui-component-select-title_id"
-          class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-          id="mui-component-select-title_id"
-          role="button"
-          tabindex="0"
+          class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1w8yruj-MuiInputBase-root-MuiFilledInput-root"
         >
-          <span
-            class="notranslate"
-          >
-            ​
-          </span>
-        </div>
-        <input
-          aria-hidden="true"
-          class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-          name="title_id"
-          tabindex="-1"
-          value=""
-        />
-        <svg
-          aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-          data-testid="ArrowDropDownIcon"
-          focusable="false"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M7 10l5 5 5-5z"
+          <input
+            aria-autocomplete="list"
+            aria-invalid="false"
+            autocapitalize="none"
+            autocomplete="off"
+            class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+            id="mui-1"
+            spellcheck="false"
+            type="text"
+            value=""
           />
-        </svg>
+          <div
+            class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+          >
+            <button
+              aria-label="Open"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+              tabindex="-1"
+              title="Open"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="ArrowDropDownIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-expanded="false"
+      class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-1kpj6rr-MuiAutocomplete-root"
+      role="combobox"
+    >
+      <div
+        class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-wb57ya-MuiFormControl-root-MuiTextField-root"
+      >
+        <label
+          class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink="false"
+          for="mui-2"
+          id="mui-2-label"
+        >
+          Technologies
+        </label>
+        <div
+          class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1w8yruj-MuiInputBase-root-MuiFilledInput-root"
+        >
+          <input
+            aria-autocomplete="list"
+            aria-invalid="false"
+            autocapitalize="none"
+            autocomplete="off"
+            class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+            id="mui-2"
+            spellcheck="false"
+            type="text"
+            value=""
+          />
+          <div
+            class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+          >
+            <button
+              aria-label="Open"
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+              tabindex="-1"
+              title="Open"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="ArrowDropDownIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -64,9 +134,9 @@ exports[`Tests for component <FormCard/> Take Snapshot 1`] = `
       <label
         class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="false"
-        id="label-technologies"
+        id="label-seniority"
       >
-        Technologies
+        Seniority
       </label>
       <div
         class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-cio0x1-MuiInputBase-root-MuiFilledInput-root"
@@ -74,55 +144,7 @@ exports[`Tests for component <FormCard/> Take Snapshot 1`] = `
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-labelledby="label-technologies mui-component-select-technologies"
-          class="MuiSelect-select MuiSelect-filled MuiSelect-multiple MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-          id="mui-component-select-technologies"
-          role="button"
-          tabindex="0"
-        >
-          <span
-            class="notranslate"
-          >
-            ​
-          </span>
-        </div>
-        <input
-          aria-hidden="true"
-          class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-          name="technologies"
-          tabindex="-1"
-          value=""
-        />
-        <svg
-          aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-          data-testid="ArrowDropDownIcon"
-          focusable="false"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M7 10l5 5 5-5z"
-          />
-        </svg>
-      </div>
-    </div>
-    <div
-      class="MuiFormControl-root MuiFormControl-fullWidth css-3lxuvf-MuiFormControl-root"
-    >
-      <label
-        class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
-        data-shrink="false"
-        id="label-senority"
-      >
-        Senority
-      </label>
-      <div
-        class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-cio0x1-MuiInputBase-root-MuiFilledInput-root"
-      >
-        <div
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-labelledby="label-senority mui-component-select-seniority"
+          aria-labelledby="label-seniority mui-component-select-seniority"
           class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
           id="mui-component-select-seniority"
           role="button"

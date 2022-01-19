@@ -18,7 +18,6 @@ module.exports = {
         'react/jsx-props-no-spreading': 'off',
         'import/no-unresolved': 'off',
         'arrow-body-style': 'off',
-        'react/jsx-props-no-spreading': 'off',
         'react/jsx-fragments': ['error', 'element'],
         'import/no-extraneous-dependencies': 'off',
         'no-param-reassign': 'off',
@@ -36,6 +35,12 @@ module.exports = {
             files: ['./src/components/**/index.js', './src/app/**/index.js'],
             rules: {
                 'no-restricted-exports': 'off',
+            },
+        },
+        {
+            files: ['./src/hooks/useApi.js'],
+            rules: {
+                'react-hooks/exhaustive-deps': 'off',
             },
         },
     ],
