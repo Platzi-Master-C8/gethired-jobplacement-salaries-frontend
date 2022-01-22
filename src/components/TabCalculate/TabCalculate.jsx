@@ -12,10 +12,9 @@ import NormalDistributionChart from 'Components/Charts';
 import { currencyName } from 'Constants';
 
 import { changesForm, clearFormMain, fetchChartData } from 'App/CalculateSalary/slice';
-import { selectFormMain, selectChartData } from 'App/CalculateSalary/selectors';
+import { selectFormMain, selectChartData, selectLoadingFormCalculate } from 'App/CalculateSalary/selectors';
 
 import { disabled } from 'Helpers';
-import { selectLoadingFormCalculate } from '../../app/CalculateSalary/selectors';
 
 const TabCalculate = ({ handleCalculate, formCalculate, clearForm, addChartData, chartData, loadingFormCalculate }) => {
     const isDisabled = disabled(formCalculate);

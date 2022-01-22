@@ -30,10 +30,9 @@ const initialState = {
 export const fetchChartData = createAsyncThunk('post/fetchChartData', async (profile, { rejectWithValue }) => {
     const salaryProfile = await getSalaryProfile('salaries', profile)
 
-    if (!salaryProfile.average) {
-        return rejectWithValue(salaryProfile)
-    }
-
+    // Triggers rejection if the fetch fails or return anything diferent to the salaries values
+    if (!salaryProfile.average) return rejectWithValue(salaryProfile)
+    
     return salaryProfile
 }
 );
@@ -42,12 +41,9 @@ export const fetchComparisonChartData = createAsyncThunk('post/fetComparisonchCh
     const salaryProfile1 = await getSalaryProfile('salaries', profile1)
     const salaryProfile2 = await getSalaryProfile('salaries', profile2)
 
-    if (!salaryProfile1.average) {
-        return rejectWithValue(salaryProfile1)
-    }
-    if (!salaryProfile2.average) {
-        return rejectWithValue(salaryProfile2)
-    }
+    // Triggers rejection if the fetch fails or return anything diferent to the salaries values
+    if (!salaryProfile1.average) return rejectWithValue(salaryProfile1)
+    if (!salaryProfile2.average) return rejectWithValue(salaryProfile2)
 
     return [salaryProfile1, salaryProfile2]
 }

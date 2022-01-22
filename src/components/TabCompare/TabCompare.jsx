@@ -12,8 +12,12 @@ import NormalDistributionChart from 'Components/Charts';
 
 import { currencyName } from 'Constants';
 import { fetchComparisonChartData, changesForm, changesFormComparison } from 'App/CalculateSalary/slice';
-import { selectComparisonChartData, selectFormComparison, selectFormMain } from 'App/CalculateSalary/selectors';
-import { selectLoadingFormComparison } from '../../app/CalculateSalary/selectors';
+import {
+    selectComparisonChartData,
+    selectFormComparison,
+    selectFormMain,
+    selectLoadingFormComparison,
+} from 'App/CalculateSalary/selectors';
 
 const TabCompare = ({
     addChartData,
