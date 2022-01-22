@@ -21,6 +21,10 @@ const initialState = {
     chartData: [],
     comparisonChartData: [],
     snackbarShow: false,
+    loadingButtonsState: {
+        formCalculate: false,
+        formCompare: false,
+    }
 };
 
 export const fetchChartData = createAsyncThunk('post/fetchChartData', async (profile, { rejectWithValue }) => {
@@ -77,26 +81,26 @@ const calculateSalary = createSlice({
     },
     extraReducers: {
         [fetchChartData.fulfilled]: (state, action) => {
-            console.log('fetchChartData.fulfilled');
             state.chartData = [action.payload];
+            state.loadingButtonsState.formCalculate = false
         },
         [fetchChartData.pending]: (state) => {
-            console.log('fetchChartData.pending');
+            state.loadingButtonsState.formCalculate = true
         },
         [fetchChartData.rejected]: (state) => {
-            console.log('fetchChartData.rejected');
             state.snackbarShow = true;
+            state.loadingButtonsState.formCalculate = false
         },
         [fetchComparisonChartData.fulfilled]: (state, action) => {
-            console.log('fetchComparisonChartData.fulfilled');
             state.comparisonChartData = action.payload;
+            state.loadingButtonsState.formCompare = false
         },
-        [fetchComparisonChartData.pending]: (state, action) => {
-            console.log('fetchComparisonChartData.pending');
+        [fetchComparisonChartData.pending]: (state) => {
+            state.loadingButtonsState.formCompare = true
         },
         [fetchComparisonChartData.rejected]: (state) => {
-            console.log('fetchComparisonChartData.rejected');
             state.snackbarShow = true;
+            state.loadingButtonsState.formCompare = false
         },
     },
 });

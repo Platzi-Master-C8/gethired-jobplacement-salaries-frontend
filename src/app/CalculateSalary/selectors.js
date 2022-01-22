@@ -24,3 +24,13 @@ export const selectSnackbarShow = createSelector(
     (state) => state.Calculate.snackbarShow,
     (snackbar) => snackbar,
 );
+
+export const selectLoadingFormCalculate = createSelector(
+    (state) => state.Calculate.loadingButtonsState.formCalculate,
+    (loading) => loading,
+);
+
+export const selectLoadingFormComparison = createSelector(
+    (state) => state.Calculate.loadingButtonsState.formCompare,
+    (loading) => loading,
+);
