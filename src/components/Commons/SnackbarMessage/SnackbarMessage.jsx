@@ -9,16 +9,9 @@ import { selectSnackbarShow } from 'App/CalculateSalary/selectors';
 import { closeSnackbar } from 'App/CalculateSalary/slice';
 
 const SnackbarMessage = ({ snackbarShow, handleCloseSnackbar }) => {
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        handleCloseSnackbar();
-    };
-
     return (
-        <Snackbar open={snackbarShow} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }} variant="filled">
+        <Snackbar open={snackbarShow} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+            <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }} variant="filled">
                 Something went wrong. If the problem persists please contact support
             </Alert>
         </Snackbar>
