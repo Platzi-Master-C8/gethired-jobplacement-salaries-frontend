@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 import { Switch } from '@master-c8/icons';
 
@@ -12,7 +12,12 @@ import NormalDistributionChart from 'Components/Charts';
 
 import { currencyName } from 'Constants';
 import { fetchComparisonChartData, changesForm, changesFormComparison } from 'App/CalculateSalary/slice';
-import { selectComparisonChartData, selectFormComparison, selectFormMain } from 'App/CalculateSalary/selectors';
+import {
+    selectComparisonChartData,
+    selectFormComparison,
+    selectFormMain,
+    selectLoadingFormComparison,
+} from 'App/CalculateSalary/selectors';
 
 const TabCompare = ({
     addChartData,
@@ -21,6 +26,7 @@ const TabCompare = ({
     formComparison,
     handleCalculate,
     handleCompare,
+    loadingFormComparison,
 }) => {
     const handleSelectMain = (e, values, nameAuto) => {
         if (nameAuto) {
@@ -62,9 +68,15 @@ const TabCompare = ({
             </Grid>
             <Grid container>
                 <Grid item xs={12} sx={{ mt: 2 }}>
-                    <Button variant="contained" fullWidth size="large" onClick={handleSubmit}>
+                    <LoadingButton
+                        variant="contained"
+                        fullWidth
+                        size="large"
+                        onClick={handleSubmit}
+                        loading={loadingFormComparison}
+                    >
                         Compare salary
-                    </Button>
+                    </LoadingButton>
                 </Grid>
             </Grid>
             <Grid container sx={{ display: 'flex', justifyContent: 'center' }} spacing={2}>
@@ -98,6 +110,7 @@ TabCompare.propTypes = {
     formComparison: PropTypes.shape(profileShape).isRequired,
     handleCalculate: PropTypes.func.isRequired,
     handleCompare: PropTypes.func.isRequired,
+    loadingFormComparison: PropTypes.bool.isRequired,
 };
 
 TabCompare.defaultProps = {
@@ -114,6 +127,7 @@ const mapStateToProps = (state) => ({
     comparisonChartData: selectComparisonChartData(state),
     formMain: selectFormMain(state),
     formComparison: selectFormComparison(state),
+    loadingFormComparison: selectLoadingFormComparison(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
