@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
@@ -12,11 +13,11 @@ import JobOffer from 'Components/JobOffer';
 import { currencyName } from 'Constants';
 
 import { changesForm, clearFormMain, fetchChartData } from 'App/CalculateSalary/slice';
-import { selectFormMain, selectChartData } from 'App/CalculateSalary/selectors';
+import { selectFormMain, selectChartData, selectLoadingFormCalculate } from 'App/CalculateSalary/selectors';
 
 import { disabled } from 'Helpers';
 
-const TabCalculate = ({ handleCalculate, formCalculate, clearForm, addChartData, chartData }) => {
+const TabCalculate = ({ handleCalculate, formCalculate, clearForm, addChartData, chartData, loadingFormCalculate }) => {
     const isDisabled = disabled(formCalculate);
 
     const handleSelectCalculate = (e, values, nameAuto) => {
@@ -36,16 +37,17 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, addChartData,
         <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={6}>
                 <FormCard values={formCalculate} onChange={handleSelectCalculate} title="Calculate Salary">
-                    <Button
+                    <LoadingButton
                         sx={{ mt: 2 }}
                         fullWidth
                         variant="contained"
                         size="large"
                         onClick={handleSubmit}
                         disabled={isDisabled}
+                        loading={loadingFormCalculate}
                     >
                         Calculate Salary
-                    </Button>
+                    </LoadingButton>
                     <Button onClick={clearForm} sx={{ mt: 2, display: 'flex', justifyContent: 'center', mx: 'auto' }}>
                         Clear form
                     </Button>
@@ -80,6 +82,7 @@ TabCalculate.propTypes = {
             bottom: PropTypes.number,
         }),
     ),
+    loadingFormCalculate: PropTypes.bool.isRequired,
 };
 
 TabCalculate.defaultProps = {
@@ -95,6 +98,7 @@ TabCalculate.defaultProps = {
 const mapStateToProps = (state) => ({
     formCalculate: selectFormMain(state),
     chartData: selectChartData(state),
+    loadingFormCalculate: selectLoadingFormCalculate(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
