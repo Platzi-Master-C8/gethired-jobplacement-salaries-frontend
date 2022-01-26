@@ -1,16 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 
-// import JobCard from 'Components/JobCard';
-// import Filter from 'Components/Filter';
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
+import JobOffer from 'Components/JobOffer';
 
-import { currencyName, values1 } from 'Constants';
+import { currencyName } from 'Constants';
 
 import { changesForm, clearFormMain, fetchChartData } from 'App/CalculateSalary/slice';
 import { selectFormMain, selectChartData } from 'App/CalculateSalary/selectors';
@@ -34,45 +33,31 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, addChartData,
     };
 
     return (
-        <Fragment>
-            <Grid container spacing={2}>
-                <Grid item xs={12} sm={12} md={6}>
-                    <FormCard values={formCalculate} onChange={handleSelectCalculate} title="Calculate Salary">
-                        <Button
-                            sx={{ mt: 2 }}
-                            fullWidth
-                            variant="contained"
-                            size="large"
-                            onClick={handleSubmit}
-                            disabled={isDisabled}
-                        >
-                            <Button
-                                sx={{ mt: 2 }}
-                                fullWidth
-                                variant="contained"
-                                size="large"
-                                onClick={handleSubmit}
-                                disabled={isDisabled}
-                            >
-                                Calculate Salary
-                            </Button>
-                            <Button
-                                onClick={clearForm}
-                                sx={{ mt: 2, display: 'flex', justifyContent: 'center', mx: 'auto' }}
-                            >
-                                Clear form
-                            </Button>
-                        </Button>
-                    </FormCard>
-                </Grid>
-                <Grid item xs={12} sm={12} md={6}>
-                    <NormalDistributionChart values={values1} currencyName={currencyName} />
-                </Grid>
+        <Grid container spacing={2}>
+            <Grid item xs={12} sm={12} md={6}>
+                <FormCard values={formCalculate} onChange={handleSelectCalculate} title="Calculate Salary">
+                    <Button
+                        sx={{ mt: 2 }}
+                        fullWidth
+                        variant="contained"
+                        size="large"
+                        onClick={handleSubmit}
+                        disabled={isDisabled}
+                    >
+                        Calculate Salary
+                    </Button>
+                    <Button onClick={clearForm} sx={{ mt: 2, display: 'flex', justifyContent: 'center', mx: 'auto' }}>
+                        Clear form
+                    </Button>
+                </FormCard>
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
                 <NormalDistributionChart values={chartData} currencyName={currencyName} />
             </Grid>
-        </Fragment>
+            <Grid item xs={12} sm={12} md={6}>
+                <JobOffer />
+            </Grid>
+        </Grid>
     );
 };
 

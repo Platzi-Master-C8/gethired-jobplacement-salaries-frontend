@@ -31,4 +31,6 @@ export const values2 = [
 
 export const API_URL_MOOK = 'https://61d87161e6744d0017ba8b00.mockapi.io';
 
+export const urlApi = 'https://143.198.62.170/api/';
+
 export const currencyName = 'USD';

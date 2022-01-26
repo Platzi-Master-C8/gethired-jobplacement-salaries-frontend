@@ -1,7 +1,6 @@
-import {API_URL_MOOK} from 'Constants';
+import { API_URL_MOOK } from 'Constants';
+import { get } from 'Services/http';
 
 export const getJobs = () => {
-  fetch(`${API_URL_MOOK}/api/vacancies`).then(res => res.json()).then(data => {
-    return data;
-  })
-}
+  return get(`${API_URL_MOOK}/api/vacancies`);
+};
