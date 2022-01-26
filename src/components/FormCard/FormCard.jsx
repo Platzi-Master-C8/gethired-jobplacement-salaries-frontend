@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Typography, Card, Autocomplete, TextField } from '@mui/material';
+import { Typography, Card, Autocomplete, TextField, Grid } from '@mui/material';
 
 import Select from 'Components/Commons/Select';
 
@@ -11,6 +11,8 @@ import { selectTechnologies, selectJobs, selectSeniority } from 'App/ListData/se
 import { fetchListData } from 'App/ListData/slice';
 
 import { getListByName } from 'Services/salaries';
+import { InfoTooltip } from '../Commons/InfoTooltip/InfoTooltip';
+import { englishInfo, seniorityInfo } from '../../constants';
 
 const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSenority, children, addListData }) => {
     const { title_id, technologies, seniority, english_level } = values;
@@ -54,22 +56,36 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSen
                 value={technologies}
                 renderInput={(params) => <TextField {...params} variant="filled" label="Technologies" />}
             />
-            <Select
-                label="Seniority"
-                value={seniority}
-                onChange={onChange}
-                id="label-seniority"
-                name="seniority"
-                options={listSenority}
-            />
-            <Select
-                label="English Level"
-                value={english_level}
-                onChange={onChange}
-                id="label-englishLevel"
-                name="english_level"
-                options={ListEnglish}
-            />
+            <Grid container spacing={2} alignItems="center">
+                <Grid item xs={10.5}>
+                    <Select
+                        label="Seniority"
+                        value={seniority}
+                        onChange={onChange}
+                        id="label-seniority"
+                        name="seniority"
+                        options={listSenority}
+                    />
+                </Grid>
+                <Grid item xs={1.5}>
+                    <InfoTooltip {...seniorityInfo} />
+                </Grid>
+            </Grid>
+            <Grid container spacing={2} alignItems="center">
+                <Grid item xs={10.5}>
+                    <Select
+                        label="English Level"
+                        value={english_level}
+                        onChange={onChange}
+                        id="label-englishLevel"
+                        name="english_level"
+                        options={ListEnglish}
+                    />
+                </Grid>
+                <Grid item xs={1.5}>
+                    <InfoTooltip {...englishInfo} />
+                </Grid>
+            </Grid>
             {children}
         </Card>
     );
