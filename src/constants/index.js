@@ -28,6 +28,4 @@ export const values2 = [
     },
 ];
 
-export const urlApi = 'https://143.198.62.170/api/';
-
 export const currencyName = 'USD';
