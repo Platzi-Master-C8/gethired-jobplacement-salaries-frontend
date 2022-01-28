@@ -18,6 +18,7 @@ import {
     selectFormMain,
     selectLoadingFormComparison,
 } from 'App/CalculateSalary/selectors';
+// import { disabled } from '../../helpers';
 
 const TabCompare = ({
     addChartData,
@@ -74,6 +75,7 @@ const TabCompare = ({
                         size="large"
                         onClick={handleSubmit}
                         loading={loadingFormComparison}
+                        // disabled={isDisabled}
                     >
                         Compare salary
                     </LoadingButton>

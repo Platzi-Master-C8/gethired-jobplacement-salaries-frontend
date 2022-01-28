@@ -27,66 +27,74 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSen
     }, [addListData]);
 
     return (
-        <Card sx={{ p: 2, boxShadow: 3, mt: 2 }}>
-            {!!title && (
-                <Typography sx={{ mb: 2 }} variant="h2">
-                    {title}
-                </Typography>
-            )}
-            <Autocomplete
-                sx={{ my: 1 }}
-                options={listJobs}
-                isOptionEqualToValue={(option, value) => option === value}
-                onChange={handleTitle}
-                value={title_id}
-                renderInput={(params) => <TextField {...params} variant="filled" label="Job Title" />}
-            />
-            <Autocomplete
-                multiple
-                sx={{ my: 1 }}
-                options={listTechnologies}
-                isOptionEqualToValue={(option, value) => option === value}
-                onChange={handleTechnologies}
-                ChipProps={{
-                    color: 'primary',
-                    variant: 'outlined',
-                    size: 'small',
-                }}
-                defaultValue={[]}
-                value={technologies}
-                renderInput={(params) => <TextField {...params} variant="filled" label="Technologies" />}
-            />
-            <Grid container spacing={2} alignItems="center">
+        <Card sx={{ pr: 4, pl: 0, pt: 4, pb: 2, boxShadow: 3, mt: 2 }}>
+            <Grid container spacing={2} alignItems="center" justifyContent="end">
                 <Grid item xs={10.5}>
-                    <Select
-                        label="Seniority"
-                        value={seniority}
-                        onChange={onChange}
-                        id="label-seniority"
-                        name="seniority"
-                        options={listSenority}
+                    {!!title && <Typography variant="h2">{title}</Typography>}
+                </Grid>
+                <Grid item xs={10.5}>
+                    <Autocomplete
+                        sx={{ my: 1 }}
+                        options={listJobs}
+                        isOptionEqualToValue={(option, value) => option === value}
+                        onChange={handleTitle}
+                        value={title_id}
+                        renderInput={(params) => <TextField {...params} variant="filled" label="Job Title" />}
                     />
                 </Grid>
-                <Grid item xs={1.5}>
-                    <InfoTooltip {...seniorityInfo} />
-                </Grid>
-            </Grid>
-            <Grid container spacing={2} alignItems="center">
                 <Grid item xs={10.5}>
-                    <Select
-                        label="English Level"
-                        value={english_level}
-                        onChange={onChange}
-                        id="label-englishLevel"
-                        name="english_level"
-                        options={ListEnglish}
+                    <Autocomplete
+                        multiple
+                        sx={{ my: 1 }}
+                        options={listTechnologies}
+                        isOptionEqualToValue={(option, value) => option === value}
+                        onChange={handleTechnologies}
+                        ChipProps={{
+                            color: 'primary',
+                            variant: 'outlined',
+                            size: 'small',
+                        }}
+                        defaultValue={[]}
+                        value={technologies}
+                        renderInput={(params) => <TextField {...params} variant="filled" label="Technologies" />}
                     />
                 </Grid>
-                <Grid item xs={1.5}>
-                    <InfoTooltip {...englishInfo} />
+                <Grid item xs={12} container alignItems="center" justifyContent="end">
+                    <Grid item sx={{ mr: 1 }} xs={1} sm={1}>
+                        <InfoTooltip {...seniorityInfo} />
+                    </Grid>
+                    <Grid item xs={10.5}>
+                        <Select
+                            label="Seniority"
+                            value={seniority}
+                            onChange={onChange}
+                            id="label-seniority"
+                            name="seniority"
+                            options={listSenority}
+                        />
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} container alignItems="center" justifyContent="end">
+                    <Grid item sx={{ mr: 1 }} xs={1} sm={1}>
+                        <InfoTooltip {...englishInfo} />
+                    </Grid>
+                    <Grid item xs={10.5}>
+                        <Select
+                            label="English Level"
+                            value={english_level}
+                            onChange={onChange}
+                            id="label-englishLevel"
+                            name="english_level"
+                            options={ListEnglish}
+                        />
+                    </Grid>
                 </Grid>
             </Grid>
-            {children}
+            <Grid item xs={12} container direction="row" alignItems="center" justifyContent="end">
+                <Grid item xs={10.5}>
+                    {children}
+                </Grid>
+            </Grid>
         </Card>
     );
 };

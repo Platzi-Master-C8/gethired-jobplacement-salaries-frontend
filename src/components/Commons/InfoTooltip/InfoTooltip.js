@@ -8,8 +8,6 @@ import { Typography } from '@mui/material';
 export const InfoTooltip = ({ title, texts, infoLink }) => {
     const [open, setOpen] = useState(false);
 
-    // const { level, description } = texts
-
     const htmlTitle = () => {
         return (
             <React.Fragment>
@@ -60,7 +58,10 @@ export const InfoTooltip = ({ title, texts, infoLink }) => {
 
 InfoTooltip.propTypes = {
     title: PropTypes.string.isRequired,
-    texts: PropTypes.arrayOf(PropTypes.string),
+    texts: PropTypes.arrayOf(PropTypes.shape({
+        level: PropTypes.string,
+        description: PropTypes.string,
+    })),
     infoLink: PropTypes.string
 
 }
