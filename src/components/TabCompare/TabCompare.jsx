@@ -18,7 +18,7 @@ import {
     selectFormMain,
     selectLoadingFormComparison,
 } from 'App/CalculateSalary/selectors';
-import { disabled } from '../../helpers';
+import { disabled } from 'Helpers';
 
 const TabCompare = ({
     addChartData,

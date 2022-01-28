@@ -11,8 +11,8 @@ import { selectTechnologies, selectJobs, selectSeniority } from 'App/ListData/se
 import { fetchListData } from 'App/ListData/slice';
 
 import { getListByName } from 'Services/salaries';
-import { InfoTooltip } from '../Commons/InfoTooltip/InfoTooltip';
-import { englishInfo, seniorityInfo } from '../../constants';
+import { englishInfo, seniorityInfo } from 'Constants';
+import { InfoTooltip } from 'Components/Commons/InfoTooltip/InfoTooltip';
 
 const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSenority, children, addListData }) => {
     const { title_id, technologies, seniority, english_level } = values;
