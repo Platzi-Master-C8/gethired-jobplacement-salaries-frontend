@@ -27,31 +27,29 @@ export const InfoTooltip = ({ title, texts, infoLink }) => {
     };
 
     return (
-        <div>
-            <ClickAwayListener onClickAway={handleTooltipClose}>
-                <div>
-                    <Tooltip
-                        PopperProps={{
-                            disablePortal: true,
-                        }}
-                        onClose={handleTooltipClose}
-                        open={open}
-                        disableFocusListener
-                        disableHoverListener
-                        disableTouchListener
-                        title={
-                            htmlTitle()
-                        }
-                    >
-                        <InfoRoundedIcon
-                            onClick={handleTooltipOpen}
-                            color="primary"
-                            fontSize="large"
-                        />
-                    </Tooltip>
-                </div>
-            </ClickAwayListener>
-        </div>
+        <ClickAwayListener onClickAway={handleTooltipClose}>
+            <div>
+                <Tooltip
+                    PopperProps={{
+                        disablePortal: true,
+                    }}
+                    onClose={handleTooltipClose}
+                    open={open}
+                    disableFocusListener
+                    disableHoverListener
+                    disableTouchListener
+                    title={
+                        htmlTitle()
+                    }
+                >
+                    <InfoRoundedIcon
+                        onClick={handleTooltipOpen}
+                        color="primary"
+                        fontSize="large"
+                    />
+                </Tooltip>
+            </div>
+        </ClickAwayListener>
     );
 }
 

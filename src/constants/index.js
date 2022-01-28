@@ -1,5 +1,3 @@
-export const listSenority = ['Junior', 'Mid-Junior', 'Mid', 'Mid-Senior', 'Senior'];
-export const ListEnglish = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 export const initialValues = {
     jobTitle: '',
     technologies: [],
@@ -30,6 +28,7 @@ export const values2 = [
 
 export const currencyName = 'USD';
 
+// TODO: Delete these constants when the api/senioriy and api/english get updated and we can retrieve this info from the backend
 export const englishInfo = {
     title: 'English Levels accordingly to CEFR',
     texts: [
