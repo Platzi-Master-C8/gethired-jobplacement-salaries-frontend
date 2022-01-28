@@ -18,7 +18,7 @@ import {
     selectFormMain,
     selectLoadingFormComparison,
 } from 'App/CalculateSalary/selectors';
-// import { disabled } from '../../helpers';
+import { disabled } from '../../helpers';
 
 const TabCompare = ({
     addChartData,
@@ -29,6 +29,8 @@ const TabCompare = ({
     handleCompare,
     loadingFormComparison,
 }) => {
+    const isDisabled = Boolean(disabled(formMain) || disabled(formComparison));
+
     const handleSelectMain = (e, values, nameAuto) => {
         if (nameAuto) {
             handleCalculate({ [nameAuto]: values });
@@ -75,7 +77,7 @@ const TabCompare = ({
                         size="large"
                         onClick={handleSubmit}
                         loading={loadingFormComparison}
-                        // disabled={isDisabled}
+                        disabled={isDisabled}
                     >
                         Compare salary
                     </LoadingButton>
