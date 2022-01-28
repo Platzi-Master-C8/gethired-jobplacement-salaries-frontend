@@ -34,3 +34,8 @@ export const selectLoadingFormComparison = createSelector(
     (state) => state.Calculate.loadingButtonsState.formCompare,
     (loading) => loading,
 );
+
+export const selectVacancies = createSelector(
+    (state) => state.Calculate.vacancies,
+    (vacancies) => vacancies,
+);

@@ -12,9 +12,9 @@ const JobCard = ({ job, onClick }) => {
                 <Grid item xs={12} sm={12} md={10}>
                     {/* <CardContent> */}
                     <Typography sx={{ mb: 4 }} variant="h2">
-                        {job.title_of_vacancie}
+                        {job.name}
                     </Typography>
-                    <Typography sx={{ mb: 4 }}>{job.vacancie_details}</Typography>
+                    <Typography sx={{ mb: 4 }}>{job.description}</Typography>
                     <Typography>${job.salary}</Typography>
                     {/* </CardContent> */}
                 </Grid>
@@ -30,8 +30,8 @@ const JobCard = ({ job, onClick }) => {
 
 JobCard.propTypes = {
     job: PropTypes.shape({
-        title_of_vacancie: PropTypes.string.isRequired,
-        vacancie_details: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
         salary: PropTypes.string.isRequired,
     }).isRequired,
     onClick: PropTypes.func.isRequired,

@@ -1,8 +1,10 @@
 import React, { useState, useCallback, useEffect, Fragment } from 'react';
 import Typography from '@mui/material/Typography';
+import { connect } from 'react-redux';
 
 import { getJobs } from '../../services/jobs';
 import JobCard from './JobCard';
+import { selectVacancies } from '../../app/CalculateSalary/selectors';
 
 const JobOffer = () => {
     const [listJobs, setListJobs] = useState([]);
@@ -41,4 +43,14 @@ const JobOffer = () => {
     );
 };
 
-export default JobOffer;
+const mapStateToProps = (state) => ({
+    vacancies: selectVacancies(state),
+});
+
+// const mapDispatchToProps = (dispatch) => ({
+//     handleCalculate: (data) => dispatch(changesForm({ changes: data })),
+//     clearForm: () => dispatch(clearFormMain()),
+//     addChartData: (data) => dispatch(fetchChartData(data)),
+// });
+
+export default connect(mapStateToProps)(JobOffer);

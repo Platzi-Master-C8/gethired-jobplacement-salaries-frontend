@@ -1,6 +1,15 @@
-import { API_URL_MOOK } from 'Constants';
 import { get } from 'Services/http';
 
-export const getJobs = () => {
-  return get(`${API_URL_MOOK}/api/vacancies`);
+const API_URL = process.env.COMPANIES_API_URL;
+
+export const getJobs = async () => {
+    const { data } = await get(`${API_URL}vacancies`);
+    const vacancies = data
+        .map((element) => {
+            let list = [];
+            list = list.concat(element.vacancies);
+            return list;
+        })
+        .flat();
+    return vacancies;
 };
