@@ -14,3 +14,8 @@ export const selectSeniority = createSelector(
     (state) => state.ListData.list.Seniority,
     (seniority) => seniority,
 );
+
+export const selectListCurrencies = createSelector(
+    (state) => state.ListData.list.Currencies,
+    (currencies) => currencies.map(({ currency }) => currency),
+);

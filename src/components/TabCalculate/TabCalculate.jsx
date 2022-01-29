@@ -11,13 +11,17 @@ import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
 import Select from 'Components/Commons/Select';
 
-import { currencyName, ListCurrencies } from 'Constants';
-
 import { changesForm, clearFormMain, fetchChartData, changeCurrency } from 'App/CalculateSalary/slice';
-import { selectFormMain, selectChartData, selectLoadingFormCalculate } from 'App/CalculateSalary/selectors';
+import {
+    selectFormMain,
+    selectChartData,
+    selectLoadingFormCalculate,
+    selectCurrency,
+} from 'App/CalculateSalary/selectors';
+
+import { selectListCurrencies } from 'App/ListData/selectors';
 
 import { disabled } from 'Helpers';
-import { selectCurrency } from '../../app/CalculateSalary/selectors';
 
 const TabCalculate = ({
     handleCalculate,
@@ -26,7 +30,8 @@ const TabCalculate = ({
     addChartData,
     chartData,
     handleCurrency,
-    currencies,
+    currency,
+    listCurrencies,
     loadingFormCalculate,
 }) => {
     const isDisabled = disabled(formCalculate);
@@ -67,16 +72,16 @@ const TabCalculate = ({
                 </FormCard>
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
-                <NormalDistributionChart values={chartData} currencyName={currencyName} />
+                <NormalDistributionChart values={chartData} currencyName={currency} />
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <Select
-                        label="Currencies"
+                        label="Selected currency"
                         fullWidth={false}
-                        value={currencies}
+                        value={currency}
                         id="currency"
                         name="currency"
-                        width={130}
-                        options={ListCurrencies}
+                        width={200}
+                        options={listCurrencies}
                         onChange={handleCurrencies}
                     />
                 </Box>
@@ -105,8 +110,9 @@ TabCalculate.propTypes = {
         }),
     ),
     handleCurrency: PropTypes.func.isRequired,
-    currencies: PropTypes.string.isRequired,
+    currency: PropTypes.string.isRequired,
     loadingFormCalculate: PropTypes.bool.isRequired,
+    listCurrencies: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 TabCalculate.defaultProps = {
@@ -122,7 +128,8 @@ TabCalculate.defaultProps = {
 const mapStateToProps = (state) => ({
     formCalculate: selectFormMain(state),
     chartData: selectChartData(state),
-    currencies: selectCurrency(state),
+    currency: selectCurrency(state),
+    listCurrencies: selectListCurrencies(state),
     loadingFormCalculate: selectLoadingFormCalculate(state),
 });
 

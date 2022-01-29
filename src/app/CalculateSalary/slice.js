@@ -19,7 +19,7 @@ const initialState = {
         location: '',
     },
     chartData: [],
-    currency: 'USD',
+    currency: '',
     comparisonChartData: [],
     snackbarShow: false,
     loadingButtonsState: {
@@ -104,6 +104,7 @@ const calculateSalary = createSlice({
     },
 });
 
-export const { changesForm, clearFormMain, deleteChip, changeCurrency, closeSnackbar } = calculateSalary.actions;
+export const { changesForm, changesFormComparison, clearFormMain, deleteChip, changeCurrency, closeSnackbar } =
+    calculateSalary.actions;
 
 export default calculateSalary.reducer;
