@@ -1,29 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { Typography, Card, Autocomplete, TextField, Grid } from '@mui/material';
 
 import Select from 'Components/Commons/Select';
-
-import { selectTechnologies, selectJobs, selectSeniority } from 'App/ListData/selectors';
-
-import { fetchListData } from 'App/ListData/slice';
-
-import { getListByName } from 'Services/salaries';
-import { englishInfo, seniorityInfo } from 'Constants';
 import { InfoTooltip } from 'Components/Commons/InfoTooltip/InfoTooltip';
 
-const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSenority, children, addListData }) => {
-    const { title_id, technologies, seniority, english_level } = values;
-    const [ListEnglish, setListEnglish] = useState([]);
+import { selectTechnologies, selectJobs, selectSeniority, selectEnglish } from 'App/ListData/selectors';
+import { fetchListData } from 'App/ListData/slice';
+
+const FormCard = ({
+    onChange,
+    title,
+    values,
+    listTechnologies,
+    listJobs,
+    listSeniority,
+    listEnglish,
+    children,
+    addListData,
+}) => {
+    const { title_id, technologies, seniority, english_level } = values; // creo que no necesito values
 
     const handleTechnologies = (e, value) => onChange(e, value, 'technologies');
     const handleTitle = (e, value) => onChange(e, value, 'title_id');
 
     useEffect(() => {
         addListData();
-        setListEnglish(getListByName('english'));
     }, [addListData]);
 
     return (
@@ -61,7 +65,7 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSen
                 </Grid>
                 <Grid item xs={12} container alignItems="center" justifyContent="end">
                     <Grid item sx={{ mr: 1 }} xs={1} sm={1}>
-                        <InfoTooltip {...seniorityInfo} />
+                        <InfoTooltip {...listSeniority} />
                     </Grid>
                     <Grid item xs={10.5}>
                         <Select
@@ -70,13 +74,13 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSen
                             onChange={onChange}
                             id="label-seniority"
                             name="seniority"
-                            options={listSenority}
+                            options={listSeniority.texts.map(({ level }) => level)}
                         />
                     </Grid>
                 </Grid>
                 <Grid item xs={12} container alignItems="center" justifyContent="end">
                     <Grid item sx={{ mr: 1 }} xs={1} sm={1}>
-                        <InfoTooltip {...englishInfo} />
+                        <InfoTooltip {...listEnglish} />
                     </Grid>
                     <Grid item xs={10.5}>
                         <Select
@@ -85,7 +89,7 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSen
                             onChange={onChange}
                             id="label-englishLevel"
                             name="english_level"
-                            options={ListEnglish}
+                            options={listEnglish.texts.map(({ level }) => level)}
                         />
                     </Grid>
                 </Grid>
@@ -109,7 +113,16 @@ FormCard.propTypes = {
     children: PropTypes.node,
     listTechnologies: PropTypes.arrayOf(PropTypes.string).isRequired,
     listJobs: PropTypes.arrayOf(PropTypes.string).isRequired,
-    listSenority: PropTypes.arrayOf(PropTypes.string).isRequired,
+    listSeniority: PropTypes.shape({
+        title: PropTypes.string,
+        texts: PropTypes.arrayOf(PropTypes.shape({ level: PropTypes.string, description: PropTypes.string })),
+        infoLink: PropTypes.string,
+    }).isRequired,
+    listEnglish: PropTypes.shape({
+        title: PropTypes.string,
+        texts: PropTypes.arrayOf(PropTypes.shape({ level: PropTypes.string, description: PropTypes.string })),
+        infoLink: PropTypes.string,
+    }).isRequired,
     onChange: PropTypes.func.isRequired,
     title: PropTypes.string,
     addListData: PropTypes.func.isRequired,
@@ -123,7 +136,8 @@ FormCard.defaultProps = {
 const mapStateToProps = (state) => ({
     listTechnologies: selectTechnologies(state),
     listJobs: selectJobs(state),
-    listSenority: selectSeniority(state),
+    listSeniority: selectSeniority(state),
+    listEnglish: selectEnglish(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

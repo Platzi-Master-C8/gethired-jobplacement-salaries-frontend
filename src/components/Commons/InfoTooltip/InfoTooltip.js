@@ -55,7 +55,7 @@ export const InfoTooltip = ({ title, texts, infoLink }) => {
 
 
 InfoTooltip.propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     texts: PropTypes.arrayOf(PropTypes.shape({
         level: PropTypes.string,
         description: PropTypes.string,
@@ -65,6 +65,7 @@ InfoTooltip.propTypes = {
 }
 
 InfoTooltip.defaultProps = {
+    title: '',
     texts: [],
     infoLink: null
 }
