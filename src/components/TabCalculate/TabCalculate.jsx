@@ -4,14 +4,12 @@ import PropTypes from 'prop-types';
 
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import Box from '@mui/system/Box';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
-import Select from 'Components/Commons/Select';
 
-import { changesForm, clearFormMain, fetchChartData, changeCurrency } from 'App/CalculateSalary/slice';
+import { changesForm, clearFormMain, fetchChartData } from 'App/CalculateSalary/slice';
 import {
     selectFormMain,
     selectChartData,
@@ -29,9 +27,7 @@ const TabCalculate = ({
     clearForm,
     addChartData,
     chartData,
-    handleCurrency,
     currency,
-    listCurrencies,
     loadingFormCalculate,
 }) => {
     const isDisabled = disabled(formCalculate);
@@ -48,8 +44,6 @@ const TabCalculate = ({
     const handleSubmit = () => {
         addChartData(formCalculate);
     };
-
-    const handleCurrencies = (e) => handleCurrency(e.target.value);
 
     return (
         <Grid container spacing={2}>
@@ -73,18 +67,6 @@ const TabCalculate = ({
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
                 <NormalDistributionChart values={chartData} currencyName={currency} />
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Select
-                        label="Selected currency"
-                        fullWidth={false}
-                        value={currency}
-                        id="currency"
-                        name="currency"
-                        width={200}
-                        options={listCurrencies}
-                        onChange={handleCurrencies}
-                    />
-                </Box>
             </Grid>
         </Grid>
     );
@@ -109,10 +91,8 @@ TabCalculate.propTypes = {
             bottom: PropTypes.number,
         }),
     ),
-    handleCurrency: PropTypes.func.isRequired,
     currency: PropTypes.string.isRequired,
     loadingFormCalculate: PropTypes.bool.isRequired,
-    listCurrencies: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 TabCalculate.defaultProps = {
@@ -137,7 +117,6 @@ const mapDispatchToProps = (dispatch) => ({
     handleCalculate: (data) => dispatch(changesForm({ changes: data })),
     clearForm: () => dispatch(clearFormMain()),
     addChartData: (data) => dispatch(fetchChartData(data)),
-    handleCurrency: (data) => dispatch(changeCurrency(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TabCalculate);

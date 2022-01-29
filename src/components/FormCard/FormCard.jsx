@@ -14,10 +14,7 @@ import { getListByName } from 'Services/salaries';
 
 const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSenority, children, addListData }) => {
     const { title_id, technologies, seniority, english_level } = values;
-
     const [ListEnglish, setListEnglish] = useState([]);
-    const hasJobs = listJobs.lenght ? listJobs : [];
-    const hasTechnologies = listTechnologies.lenght ? listTechnologies : [];
 
     const handleTechnologies = (e, value) => onChange(e, value, 'technologies');
     const handleTitle = (e, value) => onChange(e, value, 'title_id');
@@ -36,8 +33,8 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSen
             )}
             <Autocomplete
                 sx={{ my: 1 }}
-                options={hasJobs}
-                isOptionEqualToValue={(option, value) => !!option && option === value}
+                options={listJobs}
+                isOptionEqualToValue={(option, value) => option === value}
                 onChange={handleTitle}
                 value={title_id}
                 renderInput={(params) => <TextField {...params} variant="filled" label="Job Title" />}
@@ -45,7 +42,7 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSen
             <Autocomplete
                 multiple
                 sx={{ my: 1 }}
-                options={hasTechnologies}
+                options={listTechnologies}
                 isOptionEqualToValue={(option, value) => option === value}
                 onChange={handleTechnologies}
                 ChipProps={{
