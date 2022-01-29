@@ -23,6 +23,7 @@ module.exports = {
             App: path.resolve(__dirname, './src/app'),
             Helpers: path.resolve(__dirname, './src/helpers'),
             Services: path.resolve(__dirname, './src/services'),
+            Libs: path.resolve(__dirname, './src/libs')
         },
     },
     devServer: {
