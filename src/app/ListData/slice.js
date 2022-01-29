@@ -22,7 +22,6 @@ const dataSlice = createSlice({
     extraReducers: {
         [fetchListData.fulfilled]: (state, action) => {
             state.list = action.payload;
-
         },
     },
 });

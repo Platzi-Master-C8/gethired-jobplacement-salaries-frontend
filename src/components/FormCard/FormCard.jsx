@@ -21,7 +21,7 @@ const FormCard = ({
     children,
     addListData,
 }) => {
-    const { title_id, technologies, seniority, english_level } = values; // creo que no necesito values
+    const { title_id, technologies, seniority, english_level } = values;
 
     const handleTechnologies = (e, value) => onChange(e, value, 'technologies');
     const handleTitle = (e, value) => onChange(e, value, 'title_id');
