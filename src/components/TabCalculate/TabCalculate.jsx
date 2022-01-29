@@ -9,6 +9,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
 import JobOffer from 'Components/JobOffer';
+import Filter from 'Components/Filter';
 
 import { currencyName } from 'Constants';
 
@@ -56,7 +57,10 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, addChartData,
             <Grid item xs={12} sm={12} md={6}>
                 <NormalDistributionChart values={chartData} currencyName={currencyName} />
             </Grid>
-            <Grid item xs={12} sm={12} md={6}>
+            <Grid item xs={12} sm={12} md={4}>
+                <Filter />
+            </Grid>
+            <Grid item xs={12} sm={12} md={8}>
                 <JobOffer />
             </Grid>
         </Grid>
