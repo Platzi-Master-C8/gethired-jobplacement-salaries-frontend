@@ -117,7 +117,8 @@
             "^Components(.*)": "<rootDir>/src/components/$1",
             "^Constants(.*)": "<rootDir>/src/constants/$1",
             "^App(.*)": "<rootDir>/src/app/$1",
-            "^Services(.*)": "<rootDir>/src/services/$1"
+            "^Services(.*)": "<rootDir>/src/services/$1",
+            "^Libs(.*)": "<rootDir>/src/Libs/$1"
         }
     }
 }
