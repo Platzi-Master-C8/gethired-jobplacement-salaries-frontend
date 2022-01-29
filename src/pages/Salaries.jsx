@@ -11,6 +11,7 @@ import { HeaderJob } from '@master-c8/commons';
 import { TabPanel } from 'Components/Commons/Tabs';
 import TabCompare from 'Components/TabCompare';
 import TabCalculate from 'Components/TabCalculate';
+import SnackbarMessage from 'Components/Commons/SnackbarMessage/SnackbarMessage';
 
 const Theme = () => {
     const [tabs, setValue] = useState(0);
@@ -44,6 +45,7 @@ const Theme = () => {
                     </TabPanel>
                 </Box>
             </Container>
+            <SnackbarMessage />
         </Fragment>
     );
 };
