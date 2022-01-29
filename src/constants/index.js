@@ -1,5 +1,4 @@
 export const ListEnglish = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-export const ListCurrencies = ['USD', 'AED', 'AFN', 'ALL', 'AMD', 'ANG'];
 
 export const initialValues = {
     jobTitle: '',
