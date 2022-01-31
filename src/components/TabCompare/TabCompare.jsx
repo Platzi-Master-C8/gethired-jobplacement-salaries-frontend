@@ -10,14 +10,15 @@ import { Switch } from '@master-c8/icons';
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
 
-import { currencyName } from 'Constants';
 import { fetchComparisonChartData, changesForm, changesFormComparison } from 'App/CalculateSalary/slice';
 import {
     selectComparisonChartData,
     selectFormComparison,
     selectFormMain,
     selectLoadingFormComparison,
+    selectCurrency,
 } from 'App/CalculateSalary/selectors';
+import { selectListCurrencies } from 'App/ListData/selectors';
 
 const TabCompare = ({
     addChartData,
@@ -26,6 +27,7 @@ const TabCompare = ({
     formComparison,
     handleCalculate,
     handleCompare,
+    currency,
     loadingFormComparison,
 }) => {
     const handleSelectMain = (e, values, nameAuto) => {
@@ -81,7 +83,7 @@ const TabCompare = ({
             </Grid>
             <Grid container sx={{ display: 'flex', justifyContent: 'center' }} spacing={2}>
                 <Grid item xs={12} md={6} sx={{ mt: 2 }}>
-                    <NormalDistributionChart values={comparisonChartData} currencyName={currencyName} />
+                    <NormalDistributionChart values={comparisonChartData} currencyName={currency} />
                 </Grid>
             </Grid>
         </Fragment>
@@ -111,6 +113,7 @@ TabCompare.propTypes = {
     handleCalculate: PropTypes.func.isRequired,
     handleCompare: PropTypes.func.isRequired,
     loadingFormComparison: PropTypes.bool.isRequired,
+    currency: PropTypes.string.isRequired,
 };
 
 TabCompare.defaultProps = {
@@ -127,6 +130,8 @@ const mapStateToProps = (state) => ({
     comparisonChartData: selectComparisonChartData(state),
     formMain: selectFormMain(state),
     formComparison: selectFormComparison(state),
+    currency: selectCurrency(state),
+    listCurrencies: selectListCurrencies(state),
     loadingFormComparison: selectLoadingFormComparison(state),
 });
 

@@ -50,7 +50,6 @@ const FormCard = ({ onChange, title, values, listTechnologies, listJobs, listSen
                     variant: 'outlined',
                     size: 'small',
                 }}
-                defaultValue={[]}
                 value={technologies}
                 renderInput={(params) => <TextField {...params} variant="filled" label="Technologies" />}
             />
