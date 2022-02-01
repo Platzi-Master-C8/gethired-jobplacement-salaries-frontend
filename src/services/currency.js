@@ -7,3 +7,8 @@ export const getCurrencyExchange = (to, value) => {
     const data = get(url);
     return data.converted_currency[0];
 };
+
+export const getListCurrencies = () => {
+    const url = `${API_URL}currencies`;
+    return get(url);
+};

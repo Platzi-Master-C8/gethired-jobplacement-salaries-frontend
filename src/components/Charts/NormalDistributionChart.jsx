@@ -82,7 +82,7 @@ const NormalDistributionChart = ({ values, currencyName }) => {
 
     return (
         <React.Fragment>
-            <h2>{`Normal distribution of salaries (${currencyName})`}</h2>
+            <h2>{`Normal distribution of salaries (${currencyName || 'USD'})`}</h2>
             <Scatter options={options} data={data} />
         </React.Fragment>
     );
