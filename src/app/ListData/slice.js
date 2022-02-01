@@ -6,6 +6,7 @@ import { getListCurrencies } from 'Services/currency';
 export const fetchListData = createAsyncThunk('post/fetchListData', async () => ({
     Technologies: await getListByName('technologies'),
     Jobs: await getListByName('titles'),
+    English: await getListByName('english'),
     Seniority: await getListByName('seniority'),
     Currencies: await getListCurrencies(),
 }));
@@ -16,7 +17,8 @@ const dataSlice = createSlice({
         list: {
             Technologies: [],
             Jobs: [],
-            Seniority: [],
+            English: { level: '', texts: [], description: '' },
+            Seniority: { level: '', texts: [], description: '' },
             Currencies: [],
         },
     },

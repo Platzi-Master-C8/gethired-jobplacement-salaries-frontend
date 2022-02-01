@@ -18,6 +18,7 @@ import {
     selectLoadingFormComparison,
     selectCurrency,
 } from 'App/CalculateSalary/selectors';
+import { disabled } from 'Helpers';
 import { selectListCurrencies } from 'App/ListData/selectors';
 
 const TabCompare = ({
@@ -30,6 +31,8 @@ const TabCompare = ({
     currency,
     loadingFormComparison,
 }) => {
+    const isDisabled = Boolean(disabled(formMain) || disabled(formComparison));
+
     const handleSelectMain = (e, values, nameAuto) => {
         if (nameAuto) {
             handleCalculate({ [nameAuto]: values });
@@ -76,6 +79,7 @@ const TabCompare = ({
                         size="large"
                         onClick={handleSubmit}
                         loading={loadingFormComparison}
+                        disabled={isDisabled}
                     >
                         Compare salary
                     </LoadingButton>

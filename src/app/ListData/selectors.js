@@ -15,6 +15,11 @@ export const selectSeniority = createSelector(
     (seniority) => seniority,
 );
 
+export const selectEnglish = createSelector(
+    (state) => state.ListData.list.English,
+    (english) => english,
+);
+
 export const selectListCurrencies = createSelector(
     (state) => state.ListData.list.Currencies,
     (currencies) => currencies.map(({ currency }) => currency),
