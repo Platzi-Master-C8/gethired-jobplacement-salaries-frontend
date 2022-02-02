@@ -1,18 +1,19 @@
 import React, { useState, useCallback, useEffect, Fragment } from 'react';
 import Typography from '@mui/material/Typography';
 import { connect } from 'react-redux';
+import { exchangeValueOfObject } from 'Libs/exchange';
 
-import { getJobs } from '../../services/jobs';
+import { getJobs } from 'Services/jobs';
+import { selectVacancies } from 'App/CalculateSalary/selectors';
 import JobCard from './JobCard';
-import { selectVacancies } from '../../app/CalculateSalary/selectors';
 
-const JobOffer = () => {
+const Jobs = () => {
     const [listJobs, setListJobs] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const getJobsList = useCallback(async () => {
         const jobs = await getJobs();
-        setListJobs(jobs);
+        setListJobs(jobs.map((job) => exchangeValueOfObject(job, 'salary', 2)));
     }, []);
 
     useEffect(() => {
@@ -53,4 +54,4 @@ const mapStateToProps = (state) => ({
 //     addChartData: (data) => dispatch(fetchChartData(data)),
 // });
 
-export default connect(mapStateToProps)(JobOffer);
+export default connect(mapStateToProps)(Jobs);

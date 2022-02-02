@@ -11,7 +11,7 @@ const Filter = () => {
                 Filters
             </Typography>
             <Select label="Job Title" options={Filters} />
-            <Select label="English Level" options={Filters} />
+            <Select label="Jobsss" options={Filters} />
             <Select label="Location" options={Filters} />
             <Select label="Technologies" options={Filters} />
         </Card>
