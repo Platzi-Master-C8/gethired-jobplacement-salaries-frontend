@@ -20,6 +20,11 @@ export const selectComparisonChartData = createSelector(
     (chart) => chart,
 );
 
+export const selectCurrency = createSelector(
+    (state) => state.Calculate.currency,
+    (currency) => currency,
+);
+
 export const selectSnackbarShow = createSelector(
     (state) => state.Calculate.snackbarShow,
     (snackbar) => snackbar,

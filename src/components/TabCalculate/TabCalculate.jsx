@@ -10,14 +10,27 @@ import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
 import JobOffers from 'Components/JobOffers';
 
-import { currencyName } from 'Constants';
-
 import { changesForm, clearFormMain, fetchChartData } from 'App/CalculateSalary/slice';
-import { selectFormMain, selectChartData, selectLoadingFormCalculate } from 'App/CalculateSalary/selectors';
+import {
+    selectFormMain,
+    selectChartData,
+    selectLoadingFormCalculate,
+    selectCurrency,
+} from 'App/CalculateSalary/selectors';
+
+import { selectListCurrencies } from 'App/ListData/selectors';
 
 import { disabled } from 'Helpers';
 
-const TabCalculate = ({ handleCalculate, formCalculate, clearForm, addChartData, chartData, loadingFormCalculate }) => {
+const TabCalculate = ({
+    handleCalculate,
+    formCalculate,
+    clearForm,
+    addChartData,
+    chartData,
+    currency,
+    loadingFormCalculate,
+}) => {
     const isDisabled = disabled(formCalculate);
 
     const handleSelectCalculate = (e, values, nameAuto) => {
@@ -54,7 +67,7 @@ const TabCalculate = ({ handleCalculate, formCalculate, clearForm, addChartData,
                 </FormCard>
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
-                <NormalDistributionChart values={chartData} currencyName={currencyName} />
+                <NormalDistributionChart values={chartData} currencyName={currency} />
             </Grid>
             <JobOffers />
         </Grid>
@@ -80,6 +93,7 @@ TabCalculate.propTypes = {
             bottom: PropTypes.number,
         }),
     ),
+    currency: PropTypes.string.isRequired,
     loadingFormCalculate: PropTypes.bool.isRequired,
 };
 
@@ -96,6 +110,8 @@ TabCalculate.defaultProps = {
 const mapStateToProps = (state) => ({
     formCalculate: selectFormMain(state),
     chartData: selectChartData(state),
+    currency: selectCurrency(state),
+    listCurrencies: selectListCurrencies(state),
     loadingFormCalculate: selectLoadingFormCalculate(state),
 });
 

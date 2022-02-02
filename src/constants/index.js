@@ -1,9 +1,7 @@
-export const listSenority = ['Junior', 'Mid-Junior', 'Mid', 'Mid-Senior', 'Senior'];
-export const ListEnglish = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 export const initialValues = {
     jobTitle: '',
     technologies: [],
-    senority: '',
+    seniority: '',
     englishLevel: '',
 };
 
@@ -28,9 +26,5 @@ export const values2 = [
         salariesTop20: 1327,
     },
 ];
-
-export const API_URL_MOOK = 'https://61d87161e6744d0017ba8b00.mockapi.io';
-
-export const urlApi = 'https://143.198.62.170/api/';
 
 export const currencyName = 'USD';

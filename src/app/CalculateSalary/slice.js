@@ -20,31 +20,13 @@ const initialState = {
         location: '',
     },
     chartData: [],
+    currency: '',
     comparisonChartData: [],
     snackbarShow: false,
     loadingButtonsState: {
         formCalculate: false,
         formCompare: false,
     },
-    vacancies: [
-        {
-            id: 0,
-            userId: '',
-            name: 'Vacante de prueba',
-            postulation_deadline: '',
-            description: '',
-            status: false,
-            salary: '',
-            company_id: 0,
-            typeWork: '',
-            job_location: '',
-            skills: '',
-            hours_per_week: '',
-            minimum_experience: '',
-            created_at: '',
-            updated_at: '',
-        },
-    ],
 };
 
 export const fetchChartData = createAsyncThunk('post/fetchChartData', async (profile, { rejectWithValue }) => {
@@ -68,11 +50,6 @@ export const fetchComparisonChartData = createAsyncThunk(
     },
 );
 
-export const fetchVacancies = createAsyncThunk('get/fetchVacancies', async () => {
-    const vacancies = await getJobs();
-    return vacancies;
-});
-
 const calculateSalary = createSlice({
     name: 'CalculateSalary',
     initialState,
@@ -94,6 +71,9 @@ const calculateSalary = createSlice({
         },
         deleteChip: (state, action) => {
             state.formMain.technologies = state.formMain.technologies.filter((chip) => chip !== action.payload);
+        },
+        changeCurrency: (state, action) => {
+            state.currency = action.payload;
         },
         closeSnackbar: (state) => {
             state.snackbarShow = false;
@@ -125,6 +105,7 @@ const calculateSalary = createSlice({
     },
 });
 
-export const { changesForm, changesFormComparison, clearFormMain, deleteChip, closeSnackbar } = calculateSalary.actions;
+export const { changesForm, changesFormComparison, clearFormMain, deleteChip, changeCurrency, closeSnackbar } =
+    calculateSalary.actions;
 
 export default calculateSalary.reducer;

@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import dataReducer from './ListData';
+import dataReducer from './ListData/slice';
 import calculateReducer from './CalculateSalary/slice';
 
 const rootReducer = combineReducers({
