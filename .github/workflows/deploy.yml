@@ -27,3 +27,7 @@ jobs:
               with:
                   branch: deploy
                   folder: dist
+              env:
+                  CURRENCY_API_URL: ${{ secrets.CURRENCY_API_URL }}
+                  SALARIES_API_URL: ${{ secrets.SALARIES_API_URL }}
+                  COMPANIES_API_URL: ${{ secrets.COMPANIES_API_URL }}
