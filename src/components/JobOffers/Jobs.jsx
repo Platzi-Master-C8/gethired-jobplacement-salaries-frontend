@@ -6,30 +6,24 @@ import PropTypes from 'prop-types';
 
 import { getJobs } from 'Services/jobs';
 import { selectVacancies, selectCurrency } from 'App/CalculateSalary/selectors';
-import { getCurrencyExchange } from 'Services/currency';
+import useCurrency from 'Hooks/useCurrency';
 import JobCard from './JobCard';
 
-const Jobs = ({ currencyType }) => {
+const Jobs = ({ currency }) => {
     const [listJobs, setListJobs] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [currencyValue, setCurrencyValue] = useState(1);
+    const { currencyValue } = useCurrency(currency);
 
     const getJobsList = useCallback(async () => {
         const jobs = await getJobs();
         setListJobs(jobs.map((job) => exchangeValueOfObject(job, 'salary', currencyValue)));
     }, [currencyValue]);
 
-    const getCurrencyValue = useCallback(async (value) => {
-        const response = await getCurrencyExchange(value, 1);
-        setCurrencyValue(response);
-    }, []);
-
     useEffect(() => {
-        getCurrencyValue(currencyType);
         setLoading(true);
         getJobsList();
         setLoading(false);
-    }, [currencyType, getCurrencyValue, getJobsList]);
+    }, [getJobsList]);
 
     const handleClick = () => {
         // TODO: redirect to job detail
@@ -54,12 +48,12 @@ const Jobs = ({ currencyType }) => {
 };
 
 Jobs.propTypes = {
-    currencyType: PropTypes.string.isRequired,
+    currency: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
     vacancies: selectVacancies(state),
-    currencyType: selectCurrency(state),
+    currency: selectCurrency(state),
 });
 
 // const mapDispatchToProps = (dispatch) => ({
