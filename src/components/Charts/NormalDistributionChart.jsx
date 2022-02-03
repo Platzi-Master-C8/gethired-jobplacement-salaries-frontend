@@ -6,7 +6,13 @@ import { COLORS } from '@master-c8/theme';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const NormalDistributionChart = ({ values, currencyName }) => {
+const NormalDistributionChart = ({ values, currencyName, currencyValue }) => {
+    const newValues = values.map((item) => ({
+        top: item.top * currencyValue,
+        bottom: item.bottom * currencyValue,
+        average: item.average * currencyValue,
+    }));
+
     const options = {
         scales: {
             y: {
@@ -46,9 +52,9 @@ const NormalDistributionChart = ({ values, currencyName }) => {
     const lineColors = [COLORS.secondary, COLORS.contrast1];
 
     const data = {
-        datasets: values.map(({ bottom, average, top }, i) => {
+        datasets: newValues.map(({ bottom, average, top }, i) => {
             return {
-                label: values.length === 1 ? `Your Profile` : `Profile ${i + 1}`,
+                label: newValues.length === 1 ? `Your Profile` : `Profile ${i + 1}`,
                 showLine: true,
                 borderColor: lineColors[i] || COLORS.error,
                 backgroundColor: lineColors[i] || COLORS.error,
@@ -91,11 +97,13 @@ const NormalDistributionChart = ({ values, currencyName }) => {
 NormalDistributionChart.propTypes = {
     values: PropTypes.arrayOf(PropTypes.object),
     currencyName: PropTypes.string,
+    currencyValue: PropTypes.number,
 };
 
 NormalDistributionChart.defaultProps = {
     values: [],
     currencyName: 'USD',
+    currencyValue: 1,
 };
 
 export default NormalDistributionChart;
