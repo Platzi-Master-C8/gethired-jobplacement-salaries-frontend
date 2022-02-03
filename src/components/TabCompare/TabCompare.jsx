@@ -21,6 +21,8 @@ import {
 import { disabled } from 'Helpers';
 import { selectListCurrencies } from 'App/ListData/selectors';
 
+import useCurrency from 'Hooks/useCurrency';
+
 const TabCompare = ({
     addChartData,
     comparisonChartData,
@@ -32,6 +34,8 @@ const TabCompare = ({
     loadingFormComparison,
 }) => {
     const isDisabled = Boolean(disabled(formMain) || disabled(formComparison));
+
+    const { currencyValue } = useCurrency(currency);
 
     const handleSelectMain = (e, values, nameAuto) => {
         if (nameAuto) {
@@ -87,7 +91,11 @@ const TabCompare = ({
             </Grid>
             <Grid container sx={{ display: 'flex', justifyContent: 'center' }} spacing={2}>
                 <Grid item xs={12} md={6} sx={{ mt: 2 }}>
-                    <NormalDistributionChart values={comparisonChartData} currencyName={currency} />
+                    <NormalDistributionChart
+                        values={comparisonChartData}
+                        currencyName={currency}
+                        currencyValue={currencyValue}
+                    />
                 </Grid>
             </Grid>
         </Fragment>
