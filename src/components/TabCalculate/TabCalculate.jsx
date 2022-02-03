@@ -21,6 +21,7 @@ import {
 import { selectListCurrencies } from 'App/ListData/selectors';
 
 import { disabled } from 'Helpers';
+import useCurrency from 'Hooks/useCurrency';
 
 const TabCalculate = ({
     handleCalculate,
@@ -31,6 +32,8 @@ const TabCalculate = ({
     currency,
     loadingFormCalculate,
 }) => {
+    const { currencyValue } = useCurrency(currency);
+
     const isDisabled = disabled(formCalculate);
 
     const handleSelectCalculate = (e, values, nameAuto) => {
@@ -67,7 +70,7 @@ const TabCalculate = ({
                 </FormCard>
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
-                <NormalDistributionChart values={chartData} currencyName={currency} />
+                <NormalDistributionChart values={chartData} currencyName={currency} currencyValue={currencyValue} />
             </Grid>
             <JobOffers />
         </Grid>
