@@ -21,7 +21,7 @@ import {
 import { disabled } from 'Helpers';
 import { selectListCurrencies } from 'App/ListData/selectors';
 
-import useCurrency from '../../Hooks/useCurrency';
+import useCurrency from 'Hooks/useCurrency';
 
 const TabCompare = ({
     addChartData,

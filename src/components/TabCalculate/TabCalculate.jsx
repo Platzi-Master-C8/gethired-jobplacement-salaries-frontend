@@ -20,7 +20,7 @@ import {
 import { selectListCurrencies } from 'App/ListData/selectors';
 
 import { disabled } from 'Helpers';
-import useCurrency from '../../Hooks/useCurrency';
+import useCurrency from 'Hooks/useCurrency';
 
 const TabCalculate = ({
     handleCalculate,
