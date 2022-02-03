@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getSalaryProfile } from 'Services/salaries';
-import { getJobs } from '../../services/jobs';
 
 const initialState = {
     formMain: {
