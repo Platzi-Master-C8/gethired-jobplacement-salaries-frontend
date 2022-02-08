@@ -11,20 +11,22 @@ import { HeaderJob } from '@master-c8/commons';
 import { TabPanel } from 'Components/Commons/Tabs';
 import TabCompare from 'Components/TabCompare';
 import TabCalculate from 'Components/TabCalculate';
+import SnackbarMessage from 'Components/Commons/SnackbarMessage/SnackbarMessage';
+import Currencies from 'Components/Currencies';
 
-const Theme = () => {
+const Salaries = () => {
     const [tabs, setValue] = useState(0);
+    const [open, setOpen] = useState(false);
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+    const handleOpen = () => setOpen(!open);
+    const handleChange = (_, newValue) => setValue(newValue);
 
     return (
         <Fragment>
-            <HeaderJob />
+            <HeaderJob open={open} handleOpen={handleOpen} />
             <Container sx={{ mt: 5 }}>
                 <Box sx={{ width: '100%' }}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 2 }}>
                         <Tabs
                             value={tabs}
                             onChange={handleChange}
@@ -36,6 +38,7 @@ const Theme = () => {
                             <Tab icon={<Switch />} label="Compare Salary" iconPosition="start" />
                         </Tabs>
                     </Box>
+                    <Currencies />
                     <TabPanel value={tabs} index={0}>
                         <TabCalculate />
                     </TabPanel>
@@ -44,8 +47,9 @@ const Theme = () => {
                     </TabPanel>
                 </Box>
             </Container>
+            <SnackbarMessage />
         </Fragment>
     );
 };
 
-export default Theme;
+export default Salaries;

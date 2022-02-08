@@ -6,7 +6,13 @@ import { COLORS } from '@master-c8/theme';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const NormalDistributionChart = ({ values, currencyName }) => {
+const NormalDistributionChart = ({ values, currencyName, currencyValue }) => {
+    const newValues = values.map((item) => ({
+        top: item.top * currencyValue,
+        bottom: item.bottom * currencyValue,
+        average: item.average * currencyValue,
+    }));
+
     const options = {
         scales: {
             y: {
@@ -46,9 +52,9 @@ const NormalDistributionChart = ({ values, currencyName }) => {
     const lineColors = [COLORS.secondary, COLORS.contrast1];
 
     const data = {
-        datasets: values.map(({ salariesBottom20, salariesAverage, salariesTop20 }, i) => {
+        datasets: newValues.map(({ bottom, average, top }, i) => {
             return {
-                label: values.length === 1 ? `Your Profile` : `Profile ${i + 1}`,
+                label: newValues.length === 1 ? `Your Profile` : `Profile ${i + 1}`,
                 showLine: true,
                 borderColor: lineColors[i] || COLORS.error,
                 backgroundColor: lineColors[i] || COLORS.error,
@@ -56,23 +62,23 @@ const NormalDistributionChart = ({ values, currencyName }) => {
                 tension: 0.4,
                 data: [
                     {
-                        x: salariesBottom20 - (salariesTop20 - salariesBottom20) * 0.6,
+                        x: bottom - (top - bottom) * 0.6,
                         y: 0,
                     },
                     {
-                        x: salariesBottom20,
+                        x: bottom,
                         y: 20,
                     },
                     {
-                        x: salariesAverage,
+                        x: average,
                         y: 50,
                     },
                     {
-                        x: salariesTop20,
+                        x: top,
                         y: 20,
                     },
                     {
-                        x: salariesTop20 + (salariesTop20 - salariesBottom20) * 0.6,
+                        x: top + (top - bottom) * 0.6,
                         y: 0,
                     },
                 ],
@@ -82,7 +88,7 @@ const NormalDistributionChart = ({ values, currencyName }) => {
 
     return (
         <React.Fragment>
-            <h2>{`Normal distribution of salaries (${currencyName})`}</h2>
+            <h2>{`Normal distribution of salaries (${currencyName || 'USD'})`}</h2>
             <Scatter options={options} data={data} />
         </React.Fragment>
     );
@@ -91,11 +97,13 @@ const NormalDistributionChart = ({ values, currencyName }) => {
 NormalDistributionChart.propTypes = {
     values: PropTypes.arrayOf(PropTypes.object),
     currencyName: PropTypes.string,
+    currencyValue: PropTypes.number,
 };
 
 NormalDistributionChart.defaultProps = {
     values: [],
     currencyName: 'USD',
+    currencyValue: 1,
 };
 
 export default NormalDistributionChart;

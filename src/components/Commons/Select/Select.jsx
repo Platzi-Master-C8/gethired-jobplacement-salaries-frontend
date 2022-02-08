@@ -8,9 +8,22 @@ import InputLabel from '@mui/material/InputLabel';
 import SelectMUI from '@mui/material/Select';
 
 const Select = (props) => {
-    const { helperText, options, id, label, value, onChange, multiple, disabled, name, ...otherProps } = props;
+    const {
+        helperText,
+        options,
+        id,
+        label,
+        value,
+        onChange,
+        multiple,
+        disabled,
+        name,
+        fullWidth,
+        width,
+        ...otherProps
+    } = props;
     return (
-        <FormControl variant="filled" sx={{ my: 1 }} fullWidth disabled={disabled}>
+        <FormControl variant="filled" sx={{ my: 1, width }} fullWidth={fullWidth} disabled={disabled}>
             <InputLabel id={id}>{label}</InputLabel>
             <SelectMUI labelId={id} value={value} onChange={onChange} multiple={multiple} name={name} {...otherProps}>
                 {options?.map((option) => (
@@ -33,7 +46,9 @@ Select.propTypes = {
     helperText: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
     label: PropTypes.string.isRequired,
+    fullWidth: PropTypes.bool,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+    width: PropTypes.number,
 };
 
 Select.defaultProps = {
@@ -41,6 +56,8 @@ Select.defaultProps = {
     multiple: false,
     disabled: false,
     value: '',
+    fullWidth: true,
+    width: null,
 };
 
 export default Select;

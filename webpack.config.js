@@ -3,6 +3,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: './src/index.jsx',
@@ -20,7 +21,10 @@ module.exports = {
             Styles: path.resolve(__dirname, './src/style'),
             Routes: path.resolve(__dirname, './src/routes'),
             App: path.resolve(__dirname, './src/app'),
+            Hooks: path.resolve(__dirname, './src/hooks'),
             Helpers: path.resolve(__dirname, './src/helpers'),
+            Services: path.resolve(__dirname, './src/services'),
+            Libs: path.resolve(__dirname, './src/libs')
         },
     },
     devServer: {
@@ -100,6 +104,9 @@ module.exports = {
             // generateStatsFile: true,
             analyzerMode: 'disabled',
             generateStatsFile: true,
+        }),
+        new Dotenv({
+            path: './.env',
         }),
     ],
 };
