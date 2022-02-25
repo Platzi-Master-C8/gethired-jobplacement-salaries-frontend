@@ -15,10 +15,14 @@ module.exports = {
     plugins: ['react', 'prettier'],
     rules: {
         'import/prefer-default-export': 'off',
+        'react/jsx-props-no-spreading': 'off',
         'import/no-unresolved': 'off',
         'arrow-body-style': 'off',
         'react/jsx-fragments': ['error', 'element'],
         'import/no-extraneous-dependencies': 'off',
+        'no-param-reassign': 'off',
+        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+        camelcase: 'off',
         'react/function-component-definition': [
             'error',
             {
@@ -28,9 +32,15 @@ module.exports = {
     },
     overrides: [
         {
-            files: ['./src/components/**/index.js'],
+            files: ['./src/components/**/index.js', './src/app/**/index.js'],
             rules: {
                 'no-restricted-exports': 'off',
+            },
+        },
+        {
+            files: ['./src/hooks/useApi.js'],
+            rules: {
+                'react-hooks/exhaustive-deps': 'off',
             },
         },
     ],

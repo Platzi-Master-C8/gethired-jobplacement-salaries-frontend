@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom';
 
-import Theme from 'Pages/Theme';
+import Salaries from 'Pages/Salaries';
 import NotFound from 'Pages/NotFound';
 
 const Routes = () => (
-    <BrowserRouter>
+    <BrowserRouter basename="/salaries/">
         <Switch>
             <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<Theme />} />
+            <Route path="/" element={<Salaries />} />
         </Switch>
     </BrowserRouter>
 );
