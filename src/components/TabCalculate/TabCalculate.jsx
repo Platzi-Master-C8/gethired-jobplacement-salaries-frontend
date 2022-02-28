@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -50,30 +50,35 @@ const TabCalculate = ({
     };
 
     return (
-        <Grid container spacing={2}>
-            <Grid item xs={12} sm={12} md={6}>
-                <FormCard values={formCalculate} onChange={handleSelectCalculate} title="Calculate Salary">
-                    <LoadingButton
-                        sx={{ mt: 2 }}
-                        fullWidth
-                        variant="contained"
-                        size="large"
-                        onClick={handleSubmit}
-                        disabled={isDisabled}
-                        loading={loadingFormCalculate}
-                    >
-                        Calculate Salary
-                    </LoadingButton>
-                    <Button onClick={clearForm} sx={{ mt: 2, display: 'flex', justifyContent: 'center', mx: 'auto' }}>
-                        Clear form
-                    </Button>
-                </FormCard>
-            </Grid>
-            <Grid item xs={12} sm={12} md={6}>
-                <NormalDistributionChart values={chartData} currencyName={currency} currencyValue={currencyValue} />
+        <Fragment>
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={12} md={6}>
+                    <FormCard values={formCalculate} onChange={handleSelectCalculate} title="Calculate Salary">
+                        <LoadingButton
+                            sx={{ mt: 2 }}
+                            fullWidth
+                            variant="contained"
+                            size="large"
+                            onClick={handleSubmit}
+                            disabled={isDisabled}
+                            loading={loadingFormCalculate}
+                        >
+                            Calculate Salary
+                        </LoadingButton>
+                        <Button
+                            onClick={clearForm}
+                            sx={{ mt: 2, display: 'flex', justifyContent: 'center', mx: 'auto' }}
+                        >
+                            Clear form
+                        </Button>
+                    </FormCard>
+                </Grid>
+                <Grid item xs={12} sm={12} md={6}>
+                    <NormalDistributionChart values={chartData} currencyName={currency} currencyValue={currencyValue} />
+                </Grid>
             </Grid>
             <JobOffers />
-        </Grid>
+        </Fragment>
     );
 };
 
