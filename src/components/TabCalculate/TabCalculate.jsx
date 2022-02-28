@@ -8,6 +8,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
+import JobOffers from 'Components/JobOffers';
 
 import { changesForm, clearFormMain, fetchChartData } from 'App/CalculateSalary/slice';
 import {
@@ -71,6 +72,7 @@ const TabCalculate = ({
             <Grid item xs={12} sm={12} md={6}>
                 <NormalDistributionChart values={chartData} currencyName={currency} currencyValue={currencyValue} />
             </Grid>
+            <JobOffers />
         </Grid>
     );
 };
