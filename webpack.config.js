@@ -11,7 +11,6 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
         chunkFilename: '[name].bundle.js',
-        publicPath: '/'
     },
     resolve: {
         extensions: ['.js', '.jsx'],
@@ -25,7 +24,7 @@ module.exports = {
             Hooks: path.resolve(__dirname, './src/hooks'),
             Helpers: path.resolve(__dirname, './src/helpers'),
             Services: path.resolve(__dirname, './src/services'),
-            Libs: path.resolve(__dirname, './src/libs')
+            Libs: path.resolve(__dirname, './src/libs'),
         },
     },
     devServer: {
