@@ -48,7 +48,7 @@ const Filter = ({ list, setFilters }) => {
         <Card sx={{ p: 2, boxShadow: 3, mt: 2 }}>
             <Box component="form" onSubmit={handleSubmit(onSubmitFilter)}>
                 <Typography sx={{ mb: 2 }} variant="h2">
-                    Filters
+                    Filters Offers
                 </Typography>
                 <Controller
                     name="typeWork"
