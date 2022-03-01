@@ -1,6 +1,6 @@
 import { get, post } from './http';
 
-const API_URL = process.env.REACT_APP_SALARIES_API_URL;
+const API_URL = process.env.SALARIES_API_URL;
 
 export const getListByName = (name) => {
     return get(`${API_URL}${name}`);
