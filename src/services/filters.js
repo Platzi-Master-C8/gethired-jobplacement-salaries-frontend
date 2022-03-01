@@ -1,6 +1,6 @@
 import { get } from 'Services/http';
 
-const API_URL = process.env.COMPANIES_API_URL;
+const API_URL = process.env.REACT_APP_COMPANIES_API_URL;
 
 export const getListCompanies = async () => {
     const data = await get(`${API_URL}companies/select`);

@@ -1,6 +1,6 @@
 import { get } from 'Services/http';
 
-const API_URL = process.env.SALARIES_API_URL;
+const API_URL = process.env.REACT_APP_SALARIES_API_URL;
 
 export const getCurrencyExchange = async (to, value) => {
     const url = `${API_URL}exchange?Code%20Name=${to}&Value%20to%20exchange=${value}`;
