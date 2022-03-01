@@ -37,7 +37,7 @@ const Salaries = () => {
                                 display: 'flex',
                                 textDecoration: 'none',
                             }}
-                            href="https://www.get-hired.work/"
+                            href={process.env.ENTERPRISES_URL}
                         >
                             <ListItemIcon sx={{ justifyContent: 'center' }}>
                                 <Home color="secondary" />
