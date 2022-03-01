@@ -9,44 +9,43 @@ import { selectFilters } from 'App/Filters/selectors';
 import { getJobs } from 'Services/jobs';
 import useCurrency from 'Hooks/useCurrency';
 import JobCard from './JobCard';
+import GroupSkeleton from './JobSkeleton';
 
 const Jobs = ({ currency, filters }) => {
     const [listJobs, setListJobs] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const { currencyValue } = useCurrency(currency);
 
     const getJobsList = useCallback(
         async (fil) => {
-            const jobs = await getJobs(fil);
-            setListJobs(jobs.map((job) => exchangeValueOfObject(job, 'salary', currencyValue)));
+            setLoading(true);
+            try {
+                const jobs = await getJobs(fil);
+                setListJobs(jobs.map((job) => exchangeValueOfObject(job, 'salary', currencyValue)));
+            } catch {
+                console.log('');
+            } finally {
+                setLoading(false);
+            }
         },
         [currencyValue],
     );
 
     useEffect(() => {
-        setLoading(true);
         getJobsList(filters);
-        setLoading(false);
     }, [getJobsList, filters]);
-
-    const handleClick = () => {
-        // TODO: redirect to job detail
-        console.log('clicked');
-    };
 
     return (
         <Fragment>
-            {!listJobs && !loading && (
-                <Typography variant="h4" component="h4">
-                    Loading...
+            {loading && <GroupSkeleton />}
+            {listJobs.length < 1 && !loading && (
+                <Typography variant="h6" sx={{ textAlign: 'center', mt: 4 }}>
+                    No jobs found 🥲
                 </Typography>
             )}
-            {listJobs < 1 && loading && (
-                <Typography variant="h4" component="h4">
-                    No jobs found
-                </Typography>
-            )}
-            {listJobs && listJobs.map((job) => <JobCard key={job.id} job={job} onClick={handleClick} />)}
+            {listJobs?.map((job) => (
+                <JobCard key={job.id} job={job} />
+            ))}
         </Fragment>
     );
 };

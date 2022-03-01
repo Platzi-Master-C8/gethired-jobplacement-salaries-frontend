@@ -20,9 +20,12 @@ const filters = createSlice({
                 ...action.payload,
             };
         },
+        resetFilters(state) {
+            state.filters = initialState.filters;
+        },
     },
 });
 
-export const { changeFilter } = filters.actions;
+export const { changeFilter, resetFilters } = filters.actions;
 
 export default filters.reducer;

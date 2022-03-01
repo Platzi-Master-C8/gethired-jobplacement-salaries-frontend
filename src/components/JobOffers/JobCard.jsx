@@ -14,13 +14,11 @@ const JobCard = ({ job }) => {
         <Card sx={{ p: 2, boxShadow: 3, mt: 2 }}>
             <Grid container spacing={4}>
                 <Grid item xs={12} sm={12} md={10}>
-                    {/* <CardContent> */}
                     <Typography sx={{ mb: 4 }} variant="h2">
                         {job.name}
                     </Typography>
                     <Typography sx={{ mb: 4 }}>{job.description}</Typography>
                     <Typography>{helpCurrency(job.salary)}</Typography>
-                    {/* </CardContent> */}
                 </Grid>
                 <Grid item xs={12} sm={12} md={2} sx={{ display: 'flex', alignItems: 'center' }}>
                     <Button onClick={handleOpenClose} variant="contained" color="primary" size="large">

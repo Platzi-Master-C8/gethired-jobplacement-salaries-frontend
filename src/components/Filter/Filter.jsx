@@ -14,19 +14,19 @@ import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 
 import { selectAllList } from 'App/ListData/selectors';
-import { changeFilter } from 'App/Filters/slice';
+import { changeFilter, resetFilters } from 'App/Filters/slice';
 
-const initialValues = {
+const defaultValues = {
     typeWork: null ?? '',
-    company: null,
-    job_location: null,
     min_salary: null,
     max_salary: null,
+    job_location: null,
+    company: null,
 };
 
-const Filter = ({ list, setFilters }) => {
+const Filter = ({ list, setFilters, resetFilter }) => {
     const { register, handleSubmit, formState, control, getValues, reset } = useForm({
-        defaultValues: initialValues,
+        defaultValues,
     });
     const { errors } = formState;
 
@@ -40,8 +40,12 @@ const Filter = ({ list, setFilters }) => {
     };
 
     const handleReset = () => {
-        reset(initialValues);
-        setFilters(initialValues);
+        reset(defaultValues);
+        resetFilter();
+    };
+
+    const disabledButton = () => {
+        return Object.entries(getValues()).every(([, value]) => value === null || value === '');
     };
 
     return (
@@ -65,25 +69,27 @@ const Filter = ({ list, setFilters }) => {
                 />
                 <Controller
                     name="company"
+                    onChange={([, data]) => data}
                     control={control}
-                    render={({ field: { value, ref, onChange, ...field } }) => (
+                    defaultValue={{ id: '', name: '' }}
+                    render={({ field: { onChange, ...field } }) => (
                         <Autocomplete
                             {...field}
-                            onChange={(e, data) => onChange(data)}
                             freeSolo
+                            onChange={(e, data) => onChange(data)}
                             disableClearable
                             options={list.Companies}
-                            getOptionLabel={(option) => option?.name || ''}
-                            renderInput={(params) => (
-                                <TextField variant="filled" inputRef={ref} {...params} label="Companies" />
-                            )}
+                            getOptionLabel={(option) => option?.name}
+                            renderInput={(params) => <TextField variant="filled" {...params} label="Companies" />}
                         />
                     )}
                 />
                 <Controller
                     name="job_location"
                     control={control}
-                    render={({ field: { ref, onChange, ...field } }) => (
+                    onChange={([, data]) => data}
+                    defaultValue=""
+                    render={({ field: { value, onChange, ...field } }) => (
                         <Autocomplete
                             {...field}
                             onChange={(e, data) => onChange(data)}
@@ -91,9 +97,7 @@ const Filter = ({ list, setFilters }) => {
                             sx={{ mt: 1 }}
                             disableClearable
                             options={list.Locations?.map((location) => location.job_location)}
-                            renderInput={(params) => (
-                                <TextField variant="filled" inputRef={ref} {...params} label="Job Location" />
-                            )}
+                            renderInput={(params) => <TextField variant="filled" {...params} label="Job Location" />}
                         />
                     )}
                 />
@@ -139,7 +143,7 @@ const Filter = ({ list, setFilters }) => {
                 >
                     Filter
                 </Button>
-                <Button fullWidth onClick={handleReset}>
+                <Button disabled={disabledButton()} fullWidth onClick={handleReset}>
                     Clear Filters
                 </Button>
             </Box>
@@ -168,6 +172,7 @@ Filter.propTypes = {
         ),
     }).isRequired,
     setFilters: PropTypes.func.isRequired,
+    resetFilter: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -176,6 +181,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     setFilters: (data) => dispatch(changeFilter(data)),
+    resetFilter: () => dispatch(resetFilters()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
