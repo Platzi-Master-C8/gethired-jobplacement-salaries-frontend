@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 import { helpCurrency } from 'Helpers';
+import JobDetailsModal from './JobDetailsModal';
 
-const JobCard = ({ job, onClick }) => {
+const JobCard = ({ job }) => {
+
+    const [showDetail, setShowDetail] = useState(false);
+    const handleOpenClose = () => setShowDetail(!showDetail);
     return (
         <Card sx={{ p: 2, boxShadow: 3, mt: 2 }}>
             <Grid container spacing={4}>
@@ -20,11 +24,12 @@ const JobCard = ({ job, onClick }) => {
                     {/* </CardContent> */}
                 </Grid>
                 <Grid item xs={12} sm={12} md={2} sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Button onClick={onClick} variant="contained" color="primary" size="large">
-                        Apply
+                    <Button onClick={handleOpenClose} variant="contained" color="primary" size="large">
+                        Details
                     </Button>
                 </Grid>
             </Grid>
+            <JobDetailsModal showDetail={showDetail} handleOpenClose={handleOpenClose} vacancyInfo={job} />
         </Card>
     );
 };
@@ -35,7 +40,6 @@ JobCard.propTypes = {
         description: PropTypes.string.isRequired,
         salary: PropTypes.number.isRequired,
     }).isRequired,
-    onClick: PropTypes.func.isRequired,
 };
 
 export default JobCard;
