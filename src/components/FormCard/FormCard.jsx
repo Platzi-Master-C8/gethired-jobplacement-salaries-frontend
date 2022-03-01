@@ -38,6 +38,7 @@ const FormCard = ({
                 </Grid>
                 <Grid item xs={10.5}>
                     <Autocomplete
+                        freeSolo
                         sx={{ my: 1 }}
                         options={listJobs}
                         isOptionEqualToValue={(option, value) => option === value}
@@ -49,6 +50,7 @@ const FormCard = ({
                 <Grid item xs={10.5}>
                     <Autocomplete
                         multiple
+                        freeSolo
                         sx={{ my: 1 }}
                         options={listTechnologies}
                         isOptionEqualToValue={(option, value) => option === value}

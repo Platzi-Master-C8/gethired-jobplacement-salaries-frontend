@@ -16,8 +16,6 @@ export const fetchListData = createAsyncThunk('post/fetchListData', async () => 
     Locations: await getListLocations(),
 }));
 
-export const fetchListJobs = createAsyncThunk('post/fetchJobs', async (params) => ({}));
-
 const dataSlice = createSlice({
     name: 'ListData',
     initialState: {

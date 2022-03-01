@@ -54,7 +54,7 @@ const Jobs = ({ currency, filters }) => {
 Jobs.propTypes = {
     currency: PropTypes.string.isRequired,
     filters: PropTypes.shape({
-        typeWork: PropTypes.number,
+        typeWork: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         company: PropTypes.string,
         job_location: PropTypes.string,
         min_salary: PropTypes.number,
@@ -67,11 +67,5 @@ const mapStateToProps = (state) => ({
     currency: selectCurrency(state),
     filters: selectFilters(state),
 });
-
-// const mapDispatchToProps = (dispatch) => ({
-//     handleCalculate: (data) => dispatch(changesForm({ changes: data })),
-//     clearForm: () => dispatch(clearFormMain()),
-//     addChartData: (data) => dispatch(fetchChartData(data)),
-// });
 
 export default connect(mapStateToProps)(Jobs);
