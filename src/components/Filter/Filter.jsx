@@ -14,8 +14,7 @@ import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 
 import { selectAllList } from 'App/ListData/selectors';
-import { changeFilter } from 'App/CalculateSalary/slice';
-import { getJobs } from '../../services/jobs';
+import { changeFilter } from 'App/Filters/slice';
 
 const initialValues = {
     typeWork: null ?? '',
@@ -32,14 +31,12 @@ const Filter = ({ list, setFilters }) => {
     const { errors } = formState;
 
     const onSubmitFilter = (data) => {
-        console.log('🚀 ~ file: Filter.jsx ~ line 34 ~ onSubmitFilter ~ data', data);
         const { company, ...rest } = data;
         const info = {
             ...rest,
             'company[]': company?.id,
         };
         setFilters(info);
-        getJobs(info);
     };
 
     const handleReset = () => {

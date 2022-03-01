@@ -4,26 +4,30 @@ import { connect } from 'react-redux';
 import { exchangeValueOfObject } from 'Libs/exchange';
 import PropTypes from 'prop-types';
 
-import { getJobs } from 'Services/jobs';
 import { selectVacancies, selectCurrency } from 'App/CalculateSalary/selectors';
+import { selectFilters } from 'App/Filters/selectors';
+import { getJobs } from 'Services/jobs';
 import useCurrency from 'Hooks/useCurrency';
 import JobCard from './JobCard';
 
-const Jobs = ({ currency }) => {
+const Jobs = ({ currency, filters }) => {
     const [listJobs, setListJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const { currencyValue } = useCurrency(currency);
 
-    const getJobsList = useCallback(async () => {
-        const jobs = await getJobs();
-        setListJobs(jobs.map((job) => exchangeValueOfObject(job, 'salary', currencyValue)));
-    }, [currencyValue]);
+    const getJobsList = useCallback(
+        async (fil) => {
+            const jobs = await getJobs(fil);
+            setListJobs(jobs.map((job) => exchangeValueOfObject(job, 'salary', currencyValue)));
+        },
+        [currencyValue],
+    );
 
     useEffect(() => {
         setLoading(true);
-        getJobsList();
+        getJobsList(filters);
         setLoading(false);
-    }, [getJobsList]);
+    }, [getJobsList, filters]);
 
     const handleClick = () => {
         // TODO: redirect to job detail
@@ -49,11 +53,19 @@ const Jobs = ({ currency }) => {
 
 Jobs.propTypes = {
     currency: PropTypes.string.isRequired,
+    filters: PropTypes.shape({
+        typeWork: PropTypes.number,
+        company: PropTypes.string,
+        job_location: PropTypes.string,
+        min_salary: PropTypes.number,
+        max_salary: PropTypes.number,
+    }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
     vacancies: selectVacancies(state),
     currency: selectCurrency(state),
+    filters: selectFilters(state),
 });
 
 // const mapDispatchToProps = (dispatch) => ({

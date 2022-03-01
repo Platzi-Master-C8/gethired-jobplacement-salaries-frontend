@@ -26,13 +26,6 @@ const initialState = {
         formCalculate: false,
         formCompare: false,
     },
-    filters: {
-        typeWork: null ?? '',
-        'company[]': null,
-        job_location: null,
-        min_salary: null,
-        max_salary: null,
-    },
 };
 
 export const fetchChartData = createAsyncThunk('post/fetchChartData', async (profile, { rejectWithValue }) => {
@@ -83,12 +76,6 @@ const calculateSalary = createSlice({
         },
         closeSnackbar: (state) => {
             state.snackbarShow = false;
-        },
-        changeFilter: (state, action) => {
-            state.filters = {
-                ...state.filters,
-                ...action.payload,
-            };
         },
     },
     extraReducers: {
