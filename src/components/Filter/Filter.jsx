@@ -21,8 +21,6 @@ const defaultValues = {
     typeWork: null ?? '',
     min_salary: null,
     max_salary: null,
-    job_location: null,
-    company: null,
 };
 
 const Filter = ({ list, setFilters, resetFilter, loading, error }) => {
@@ -103,7 +101,7 @@ const Filter = ({ list, setFilters, resetFilter, loading, error }) => {
                         control={control}
                         onChange={([, data]) => data}
                         defaultValue=""
-                        render={({ field: { value, onChange, ...field } }) => (
+                        render={({ field: { onChange, ...field } }) => (
                             <Autocomplete
                                 {...field}
                                 onChange={(e, data) => onChange(data)}
