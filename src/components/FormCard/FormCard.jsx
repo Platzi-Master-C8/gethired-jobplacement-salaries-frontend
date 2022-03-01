@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Typography, Card, Autocomplete, TextField, Grid } from '@mui/material';
+import { Typography, Card, Autocomplete, TextField, Grid, MenuItem } from '@mui/material';
 
 import Select from 'Components/Commons/Select';
 import { InfoTooltip } from 'Components/Commons/InfoTooltip/InfoTooltip';
@@ -21,10 +21,10 @@ const FormCard = ({
     children,
     addListData,
 }) => {
-    const { title_id, technologies, seniority, english_level } = values;
+    const { title_name, technologies, seniority, english_level } = values;
 
     const handleTechnologies = (e, value) => onChange(e, value, 'technologies');
-    const handleTitle = (e, value) => onChange(e, value, 'title_id');
+    const handleTitle = (e, value) => onChange(e, value, 'title_name');
 
     useEffect(() => {
         addListData();
@@ -42,7 +42,7 @@ const FormCard = ({
                         options={listJobs}
                         isOptionEqualToValue={(option, value) => option === value}
                         onChange={handleTitle}
-                        value={title_id}
+                        value={title_name}
                         renderInput={(params) => <TextField {...params} variant="filled" label="Job Title" />}
                     />
                 </Grid>
@@ -70,12 +70,18 @@ const FormCard = ({
                     <Grid item xs={10.5}>
                         <Select
                             label="Seniority"
-                            value={seniority}
+                            value={seniority || ''}
                             onChange={onChange}
                             id="label-seniority"
                             name="seniority"
                             options={listSeniority.texts.map(({ level }) => level)}
-                        />
+                        >
+                            {listSeniority.texts?.map(({ level }, key) => (
+                                <MenuItem key={level} value={Number(key + 1)}>
+                                    {level}
+                                </MenuItem>
+                            ))}
+                        </Select>
                     </Grid>
                 </Grid>
                 <Grid item xs={12} container alignItems="center" justifyContent="end">
@@ -105,9 +111,9 @@ const FormCard = ({
 
 FormCard.propTypes = {
     values: PropTypes.shape({
-        title_id: PropTypes.string,
+        title_name: PropTypes.string,
         technologies: PropTypes.arrayOf(PropTypes.string),
-        seniority: PropTypes.string,
+        seniority: PropTypes.number,
         english_level: PropTypes.string,
     }).isRequired,
     children: PropTypes.node,

@@ -24,3 +24,8 @@ export const selectListCurrencies = createSelector(
     (state) => state.ListData.list.Currencies,
     (currencies) => currencies.map(({ currency }) => currency),
 );
+
+export const selectAllList = createSelector(
+    (state) => state.ListData.list,
+    (all) => all,
+);

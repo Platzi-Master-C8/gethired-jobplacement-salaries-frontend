@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
+import { helpCurrency } from 'Helpers';
 
 const JobCard = ({ job, onClick }) => {
     return (
@@ -15,7 +16,7 @@ const JobCard = ({ job, onClick }) => {
                         {job.name}
                     </Typography>
                     <Typography sx={{ mb: 4 }}>{job.description}</Typography>
-                    <Typography>${job.salary}</Typography>
+                    <Typography>{helpCurrency(job.salary)}</Typography>
                     {/* </CardContent> */}
                 </Grid>
                 <Grid item xs={12} sm={12} md={2} sx={{ display: 'flex', alignItems: 'center' }}>
@@ -32,7 +33,7 @@ JobCard.propTypes = {
     job: PropTypes.shape({
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
-        salary: PropTypes.string.isRequired,
+        salary: PropTypes.number.isRequired,
     }).isRequired,
     onClick: PropTypes.func.isRequired,
 };

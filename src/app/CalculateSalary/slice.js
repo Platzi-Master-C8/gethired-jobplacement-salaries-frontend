@@ -3,28 +3,35 @@ import { getSalaryProfile } from 'Services/salaries';
 
 const initialState = {
     formMain: {
-        title_id: '',
+        title_name: '',
         technologies: [],
-        seniority: '',
+        seniority: null,
         english_level: '',
-        is_remote: false,
+        is_remote: true,
         location: '',
     },
     formComparison: {
-        title_id: '',
+        title_name: '',
         technologies: [],
-        seniority: '',
+        seniority: null,
         english_level: '',
-        is_remote: false,
+        is_remote: true,
         location: '',
     },
     chartData: [],
-    currency: '',
+    currency: 'USD',
     comparisonChartData: [],
     snackbarShow: false,
     loadingButtonsState: {
         formCalculate: false,
         formCompare: false,
+    },
+    filters: {
+        typeWork: null ?? '',
+        'company[]': null,
+        job_location: null,
+        min_salary: null,
+        max_salary: null,
     },
 };
 
@@ -77,6 +84,12 @@ const calculateSalary = createSlice({
         closeSnackbar: (state) => {
             state.snackbarShow = false;
         },
+        changeFilter: (state, action) => {
+            state.filters = {
+                ...state.filters,
+                ...action.payload,
+            };
+        },
     },
     extraReducers: {
         [fetchChartData.fulfilled]: (state, action) => {
@@ -104,7 +117,14 @@ const calculateSalary = createSlice({
     },
 });
 
-export const { changesForm, changesFormComparison, clearFormMain, deleteChip, changeCurrency, closeSnackbar } =
-    calculateSalary.actions;
+export const {
+    changesForm,
+    changesFormComparison,
+    clearFormMain,
+    deleteChip,
+    changeCurrency,
+    closeSnackbar,
+    changeFilter,
+} = calculateSalary.actions;
 
 export default calculateSalary.reducer;

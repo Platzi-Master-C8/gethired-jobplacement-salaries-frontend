@@ -5,7 +5,7 @@ import Salaries from 'Pages/Salaries';
 import NotFound from 'Pages/NotFound';
 
 const Routes = () => (
-    <BrowserRouter basename="/salaries/">
+    <BrowserRouter>
         <Switch>
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Salaries />} />

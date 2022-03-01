@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { getListByName } from 'Services/salaries';
 import { getListCurrencies } from 'Services/currency';
+import { getListCompanies } from 'Services/filters';
+import { getListLocations, getListTypeWork } from '../../services/filters';
 
 export const fetchListData = createAsyncThunk('post/fetchListData', async () => ({
     Technologies: await getListByName('technologies'),
@@ -9,6 +11,9 @@ export const fetchListData = createAsyncThunk('post/fetchListData', async () => 
     English: await getListByName('english'),
     Seniority: await getListByName('seniority'),
     Currencies: await getListCurrencies(),
+    Companies: await getListCompanies(),
+    TypeWork: await getListTypeWork(),
+    Locations: await getListLocations(),
 }));
 
 const dataSlice = createSlice({
@@ -20,6 +25,9 @@ const dataSlice = createSlice({
             English: { level: '', texts: [], description: '' },
             Seniority: { level: '', texts: [], description: '' },
             Currencies: [],
+            Companies: [],
+            TypeWork: [],
+            Locations: [],
         },
     },
     extraReducers: {
