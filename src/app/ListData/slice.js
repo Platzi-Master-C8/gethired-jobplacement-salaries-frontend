@@ -29,10 +29,22 @@ const dataSlice = createSlice({
             TypeWork: [],
             Locations: [],
         },
+        loading: false,
+        error: null,
     },
     extraReducers: {
         [fetchListData.fulfilled]: (state, action) => {
             state.list = action.payload;
+            state.loading = false;
+            state.error = null;
+        },
+        [fetchListData.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+        },
+        [fetchListData.rejected]: (state) => {
+            state.loading = false;
+            state.error = 'Ups! There is an error';
         },
     },
 });

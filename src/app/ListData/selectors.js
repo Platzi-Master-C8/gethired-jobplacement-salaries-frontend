@@ -29,3 +29,13 @@ export const selectAllList = createSelector(
     (state) => state.ListData.list,
     (all) => all,
 );
+
+export const selectLoading = createSelector(
+    (state) => state.ListData.loading,
+    (load) => load,
+);
+
+export const selectError = createSelector(
+    (state) => state.ListData.error,
+    (error) => error,
+);
