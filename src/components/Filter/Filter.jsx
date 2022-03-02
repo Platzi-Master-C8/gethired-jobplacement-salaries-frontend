@@ -83,7 +83,7 @@ const Filter = ({ list, setFilters, resetFilter, loading, error }) => {
                         name="company"
                         onChange={([, data]) => data}
                         control={control}
-                        defaultValue={{ id: '', name: '' }}
+                        defaultValue={{ id: null, name: null }}
                         render={({ field: { onChange, ...field } }) => (
                             <Autocomplete
                                 {...field}
@@ -91,7 +91,7 @@ const Filter = ({ list, setFilters, resetFilter, loading, error }) => {
                                 onChange={(e, data) => onChange(data)}
                                 disableClearable
                                 options={list.Companies}
-                                getOptionLabel={(option) => option?.name}
+                                getOptionLabel={(option) => option?.name ?? ''}
                                 renderInput={(params) => <TextField variant="filled" {...params} label="Companies" />}
                             />
                         )}
@@ -100,7 +100,7 @@ const Filter = ({ list, setFilters, resetFilter, loading, error }) => {
                         name="job_location"
                         control={control}
                         onChange={([, data]) => data}
-                        defaultValue=""
+                        defaultValue={null}
                         render={({ field: { onChange, ...field } }) => (
                             <Autocomplete
                                 {...field}

@@ -24,8 +24,7 @@ const JobCard = ({ job, currency }) => {
                     </Typography>
                     <Typography sx={{ mb: 4 }}>{job.description}</Typography>
                     <Typography>
-                        {helpCurrency(job.salary)}
-                        {currency}
+                        {helpCurrency(job.salary)} {currency}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm={12} md={2} sx={{ display: 'flex', alignItems: 'center' }}>

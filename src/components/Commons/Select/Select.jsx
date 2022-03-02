@@ -57,7 +57,7 @@ Select.propTypes = {
     options: PropTypes.arrayOf(PropTypes.string),
     label: PropTypes.string.isRequired,
     fullWidth: PropTypes.bool,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string), PropTypes.number]),
     width: PropTypes.number,
     children: PropTypes.node,
 };
