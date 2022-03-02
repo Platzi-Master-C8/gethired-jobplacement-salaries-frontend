@@ -47,3 +47,12 @@ export const isDisabledClear = (obj) => {
 
     return !empty;
 };
+
+export const disabledButton = (data) => {
+    return Object.entries(data).every(([, value]) => {
+        if (value && typeof value === 'object') {
+            return Object.entries(value).every(([, val]) => val === null || val === '');
+        }
+        return value === null || value === '';
+    });
+};

@@ -16,6 +16,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 import { selectAllList, selectLoading, selectError } from 'App/ListData/selectors';
 import { changeFilter, resetFilters } from 'App/Filters/slice';
+import { disabledButton } from 'Helpers';
 
 const defaultValues = {
     typeWork: null ?? '',
@@ -30,10 +31,11 @@ const Filter = ({ list, setFilters, resetFilter, loading, error }) => {
     const { errors } = formState;
 
     const onSubmitFilter = (data) => {
-        const { company, ...rest } = data;
+        const { job_location, company, ...rest } = data;
         const info = {
             ...rest,
             'company[]': company?.id,
+            job_location: job_location.job_location,
         };
         setFilters(info);
     };
@@ -43,9 +45,7 @@ const Filter = ({ list, setFilters, resetFilter, loading, error }) => {
         resetFilter();
     };
 
-    const disabledButton = () => {
-        return Object.entries(getValues()).every(([, value]) => value === null || value === '');
-    };
+    const hasDisabled = disabledButton(getValues());
 
     return (
         <Card sx={{ p: 2, boxShadow: 3, mt: 2 }}>
@@ -100,7 +100,7 @@ const Filter = ({ list, setFilters, resetFilter, loading, error }) => {
                         name="job_location"
                         control={control}
                         onChange={([, data]) => data}
-                        defaultValue={null}
+                        defaultValue={{ job_location: null }}
                         render={({ field: { onChange, ...field } }) => (
                             <Autocomplete
                                 {...field}
@@ -108,7 +108,8 @@ const Filter = ({ list, setFilters, resetFilter, loading, error }) => {
                                 freeSolo
                                 sx={{ mt: 1 }}
                                 disableClearable
-                                options={list.Locations?.map((location) => location.job_location)}
+                                getOptionLabel={(option) => option?.job_location ?? ''}
+                                options={list.Locations}
                                 renderInput={(params) => (
                                     <TextField variant="filled" {...params} label="Job Location" />
                                 )}
@@ -157,7 +158,7 @@ const Filter = ({ list, setFilters, resetFilter, loading, error }) => {
                     >
                         Filter
                     </Button>
-                    <Button disabled={disabledButton()} fullWidth onClick={handleReset}>
+                    <Button disabled={hasDisabled} fullWidth onClick={handleReset}>
                         Clear Filters
                     </Button>
                 </Box>
