@@ -20,7 +20,7 @@ import {
 
 import { selectListCurrencies } from 'App/ListData/selectors';
 
-import { disabled } from 'Helpers';
+import { disabled, isDisabledClear } from 'Helpers';
 import useCurrency from 'Hooks/useCurrency';
 
 const TabCalculate = ({
@@ -66,7 +66,9 @@ const TabCalculate = ({
                             Calculate Salary
                         </LoadingButton>
                         <Button
+                            fullWidth
                             onClick={clearForm}
+                            disabled={isDisabledClear(formCalculate)}
                             sx={{ mt: 2, display: 'flex', justifyContent: 'center', mx: 'auto' }}
                         >
                             Clear form

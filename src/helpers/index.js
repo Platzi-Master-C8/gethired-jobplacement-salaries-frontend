@@ -35,3 +35,14 @@ export const sum = (app) => {
     const sumTotal = Object.keys(rest).reduce((acc, key) => acc + parseFloat(rest[key] || 0), 0);
     return (sumTotal / 7).toFixed(1);
 };
+
+export const isDisabledClear = (obj) => {
+    const empty = Object.entries(obj).some(([, value]) => {
+        if (Array.isArray(value)) {
+            return !!value.length;
+        }
+        return !!value;
+    });
+
+    return !empty;
+};

@@ -67,6 +67,9 @@ const calculateSalary = createSlice({
         },
         clearFormMain(state) {
             state.formMain = initialState.formMain;
+            state.formComparison = initialState.formComparison;
+            state.chartData = initialState.chartData;
+            state.comparisonChartData = initialState.comparisonChartData;
         },
         deleteChip: (state, action) => {
             state.formMain.technologies = state.formMain.technologies.filter((chip) => chip !== action.payload);
