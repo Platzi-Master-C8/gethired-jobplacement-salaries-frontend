@@ -89,10 +89,10 @@ TabCalculate.propTypes = {
     handleCalculate: PropTypes.func.isRequired,
     formCalculate: PropTypes.shape({
         english_level: PropTypes.string,
-        seniority: PropTypes.string,
+        seniority: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         is_remote: PropTypes.bool,
         location: PropTypes.string,
-        title_id: PropTypes.string,
+        title_name: PropTypes.string,
         technologies: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
     addChartData: PropTypes.func.isRequired,
