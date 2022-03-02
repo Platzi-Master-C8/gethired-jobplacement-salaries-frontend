@@ -37,7 +37,8 @@ export const sum = (app) => {
 };
 
 export const isDisabledClear = (obj) => {
-    const empty = Object.entries(obj).some(([, value]) => {
+    const { is_remote, ...rest } = obj;
+    const empty = Object.entries(rest).some(([, value]) => {
         if (Array.isArray(value)) {
             return !!value.length;
         }
