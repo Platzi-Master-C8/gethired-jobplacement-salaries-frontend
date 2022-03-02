@@ -31,11 +31,11 @@ This project is part of the Job Placement cell. He also belongs to cohort 8 of P
 -   [Vercel](https://vercel.com/)
 -   [Webpack](https://webpack.js.org/)
 
-## Design
+## Design System 🪄
 
 You can design system [here](https://www.figma.com/file/JbToDZz42lRNoZFCdDxya5/Standards?node-id=0%3A1)
 
-## Setup and test
+## Setup and test ⚙️
 
 First, clone the repository and install the dependencies
 
