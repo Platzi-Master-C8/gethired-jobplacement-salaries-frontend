@@ -35,3 +35,24 @@ export const sum = (app) => {
     const sumTotal = Object.keys(rest).reduce((acc, key) => acc + parseFloat(rest[key] || 0), 0);
     return (sumTotal / 7).toFixed(1);
 };
+
+export const isDisabledClear = (obj) => {
+    const { is_remote, ...rest } = obj;
+    const empty = Object.entries(rest).some(([, value]) => {
+        if (Array.isArray(value)) {
+            return !!value.length;
+        }
+        return !!value;
+    });
+
+    return !empty;
+};
+
+export const disabledButton = (data) => {
+    return Object.entries(data).every(([, value]) => {
+        if (value && typeof value === 'object') {
+            return Object.entries(value).every(([, val]) => val === null || val === '');
+        }
+        return value === null || value === '';
+    });
+};

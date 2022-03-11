@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import PropTypes from 'prop-types';
+
+import { selectCurrency } from 'App/CalculateSalary/selectors';
 import { helpCurrency } from 'Helpers';
+
 import JobDetailsModal from './JobDetailsModal';
 
-const JobCard = ({ job }) => {
+const JobCard = ({ job, currency }) => {
     const [showDetail, setShowDetail] = useState(false);
     const handleOpenClose = () => setShowDetail(!showDetail);
     return (
@@ -18,7 +23,9 @@ const JobCard = ({ job }) => {
                         {job.name}
                     </Typography>
                     <Typography sx={{ mb: 4 }}>{job.description}</Typography>
-                    <Typography>{helpCurrency(job.salary)}</Typography>
+                    <Typography>
+                        {helpCurrency(job.salary)} {currency}
+                    </Typography>
                 </Grid>
                 <Grid item xs={12} sm={12} md={2} sx={{ display: 'flex', alignItems: 'center' }}>
                     <Button onClick={handleOpenClose} variant="contained" color="primary" size="large">
@@ -37,6 +44,11 @@ JobCard.propTypes = {
         description: PropTypes.string.isRequired,
         salary: PropTypes.number.isRequired,
     }).isRequired,
+    currency: PropTypes.string.isRequired,
 };
 
-export default JobCard;
+const mapToStateToProps = (state) => ({
+    currency: selectCurrency(state),
+});
+
+export default connect(mapToStateToProps, null)(JobCard);
