@@ -3,7 +3,9 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const Dotenv = require('dotenv-webpack');
+// const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
+require('dotenv').config({ path: './.env' });
 
 module.exports = {
     entry: './src/index.jsx',
@@ -11,7 +13,6 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
         chunkFilename: '[name].bundle.js',
-        publicPath: '/'
     },
     resolve: {
         extensions: ['.js', '.jsx'],
@@ -25,7 +26,7 @@ module.exports = {
             Hooks: path.resolve(__dirname, './src/hooks'),
             Helpers: path.resolve(__dirname, './src/helpers'),
             Services: path.resolve(__dirname, './src/services'),
-            Libs: path.resolve(__dirname, './src/libs')
+            Libs: path.resolve(__dirname, './src/libs'),
         },
     },
     devServer: {
@@ -106,8 +107,16 @@ module.exports = {
             analyzerMode: 'disabled',
             generateStatsFile: true,
         }),
-        new Dotenv({
-            path: './.env',
+        // new Dotenv({
+        //     path: './.env',
+        // }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(process.env),
         }),
+        // new webpack.DefinePlugin({
+        //     'process.env': {
+        //         SALARIES_API_URL: JSON.stringify(process.env.SALARIES_API_URL),
+        //     },
+        // }),
     ],
 };

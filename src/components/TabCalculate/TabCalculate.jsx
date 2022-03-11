@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,6 +8,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import FormCard from 'Components/FormCard';
 import NormalDistributionChart from 'Components/Charts';
+import JobOffers from 'Components/JobOffers';
 
 import { changesForm, clearFormMain, fetchChartData } from 'App/CalculateSalary/slice';
 import {
@@ -19,7 +20,7 @@ import {
 
 import { selectListCurrencies } from 'App/ListData/selectors';
 
-import { disabled } from 'Helpers';
+import { disabled, isDisabledClear } from 'Helpers';
 import useCurrency from 'Hooks/useCurrency';
 
 const TabCalculate = ({
@@ -49,29 +50,37 @@ const TabCalculate = ({
     };
 
     return (
-        <Grid container spacing={2}>
-            <Grid item xs={12} sm={12} md={6}>
-                <FormCard values={formCalculate} onChange={handleSelectCalculate} title="Calculate Salary">
-                    <LoadingButton
-                        sx={{ mt: 2 }}
-                        fullWidth
-                        variant="contained"
-                        size="large"
-                        onClick={handleSubmit}
-                        disabled={isDisabled}
-                        loading={loadingFormCalculate}
-                    >
-                        Calculate Salary
-                    </LoadingButton>
-                    <Button onClick={clearForm} sx={{ mt: 2, display: 'flex', justifyContent: 'center', mx: 'auto' }}>
-                        Clear form
-                    </Button>
-                </FormCard>
+        <Fragment>
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={12} md={6}>
+                    <FormCard values={formCalculate} onChange={handleSelectCalculate} title="Calculate Salary">
+                        <LoadingButton
+                            sx={{ mt: 2 }}
+                            fullWidth
+                            variant="contained"
+                            size="large"
+                            onClick={handleSubmit}
+                            disabled={isDisabled}
+                            loading={loadingFormCalculate}
+                        >
+                            Calculate Salary
+                        </LoadingButton>
+                        <Button
+                            fullWidth
+                            onClick={clearForm}
+                            disabled={isDisabledClear(formCalculate)}
+                            sx={{ mt: 2, display: 'flex', justifyContent: 'center', mx: 'auto' }}
+                        >
+                            Clear form
+                        </Button>
+                    </FormCard>
+                </Grid>
+                <Grid item xs={12} sm={12} md={6}>
+                    <NormalDistributionChart values={chartData} currencyName={currency} currencyValue={currencyValue} />
+                </Grid>
             </Grid>
-            <Grid item xs={12} sm={12} md={6}>
-                <NormalDistributionChart values={chartData} currencyName={currency} currencyValue={currencyValue} />
-            </Grid>
-        </Grid>
+            <JobOffers />
+        </Fragment>
     );
 };
 
@@ -80,10 +89,10 @@ TabCalculate.propTypes = {
     handleCalculate: PropTypes.func.isRequired,
     formCalculate: PropTypes.shape({
         english_level: PropTypes.string,
-        seniority: PropTypes.string,
+        seniority: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         is_remote: PropTypes.bool,
         location: PropTypes.string,
-        title_id: PropTypes.string,
+        title_name: PropTypes.string,
         technologies: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
     addChartData: PropTypes.func.isRequired,

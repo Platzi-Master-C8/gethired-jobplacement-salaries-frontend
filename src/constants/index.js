@@ -5,6 +5,7 @@ export const initialValues = {
     englishLevel: '',
 };
 
+export const ListSalaries = ['700', '800', '900', '1000', '1200', '1300', '1400', '1500'];
 export const values1 = [
     {
         salariesBottom20: 867,
